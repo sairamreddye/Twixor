@@ -1,0 +1,93 @@
+::ng-deep .attachment_item .list {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+::ng-deep .attachment_item .list p {
+    margin: 0;
+}
+::ng-deep .separator {
+    margin-bottom: 10px;
+}
+::ng-deep .btn-danger {
+    margin: 10px 0 0 0;
+}
+::ng-deep .btn.button_closed.chats {
+    background-color: #f7f8ff;
+    font-size: 12px;
+}
+::ng-deep .mat-dialog-container{
+		border-radius: 20px;
+}
+
+::ng-deep .chats {
+    width: 50%;
+    border-radius: 10px;
+}
+::ng-deep .row.mt-2.mr-0.ml-0.separator {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 18px;
+}
+::ng-deep .disp.ng-star-inserted {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 10px;
+}
+::ng-deep .attachment_item:hover{
+    background:#848ddb;
+    color: #fff;
+}
+
+::ng-deep .mat-dialog-container {
+    overflow-y: hidden !important;
+    height:386px !important;
+    min-height:390px !important;
+    max-height:390px !important;
+}
+
+::ng-deep *::-webkit-scrollbar {
+   width: 5px;
+}
+::ng-deep    *::-webkit-scrollbar-track {
+   background: white;
+}
+::ng-deep  *::-webkit-scrollbar-thumb {
+   background: #848ddb;
+}
+::ng-deep  *::-webkit-scrollbar-thumb:hover {
+   background: #848ddb;
+}
+
+::ng-deep .attachmentScroll{
+    overflow-y: auto; 
+    overflow-x: hidden;
+    height:200px;
+    margin-bottom: 10px;
+}
+::ng-deep  a.btn.btn-primary.chats {
+    background-color: #848ddb;
+    border: 1px solid #848ddb;
+    font-size:12px;
+ }
+ ::ng-deep a.btn.btn-closed.chats {
+    font-size: 12px;
+}
+::ng-deep button.btn.btn-danger {
+    font-size: 12px;
+}
+::ng-deep .font_size_16{
+    font-size:14px;
+}
+ 
+::ng-deep .font_size_14{
+    font-size:14px;
+}
+
+::ng-deep button.btn.btn-primary.document_attachment.mb-4 {
+    background-color: #848ddb !important;
+    border: 1px solid #848ddb !important;
+    font-size: 12px;
+}
+  ::ng-deep .btn.btn-warning.text-white.mr-4.mb-4 {
+    font-size: 12px;
+}

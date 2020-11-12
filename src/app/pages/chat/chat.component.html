@@ -1,0 +1,89 @@
+<!-- <div class="row m-0"> -->
+<!-- Content Wrapper -->
+<div class="col-md-12 aside_right" id="main">
+   <div id="content-wrapper" class="d-flex flex-column resize">
+      <div class="row">
+         <!---column 1 starts here---->
+         <div *ngIf="showToast" class="toast toast-{{toast.type}}">
+            <p class="mb-0">{{toast.body}}</p>
+            <a class="close" (click)="removeToast()">&times;</a>
+         </div>
+         <div *ngIf="showLoader">
+            <img src="assets/img/loader.gif" class="chat_loader">
+         </div>
+
+         <div class="col-sm-3 active_chats">
+            <div class="chats_notify card mt-2 bg_grey p-2">
+               <div class="row mr-0 ml-0 mb-1"><img src="assets/img/Asset8.svg" class="live_img">
+                  <div class="font_15 mt-1 pt-1 pl-1">Live Chats</div>
+               </div>
+               <!-- <hr> -->
+               <div class="row m-0 chatsapp">
+                  <ul class="chatslabel p-0 mb-0">
+                     <li class="nc"> <span>NC - {{ newChatCount }} </span>
+                        <p (click)="checkLiveChats('new')" class="mb-0"> NewChats - {{ newChatCount }} </p>
+                     </li>
+                     <li class="tc"><span> TC - {{ transferredChatCount }} </span>
+                        <p (click)="checkLiveChats('transferred')" class="mb-0"> TransferredChats -
+                           {{ transferredChatCount }} </p>
+                     </li>
+                     <li class="ic"><span>IC - {{ invitedChatCount }} </span>
+                        <p (click)="checkLiveChats('invited')" class="mb-0"> InvitedChats - {{ invitedChatCount }} </p>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+
+            <div class="">
+               <div class="row mt-2 mr-0 ml-0">
+                  <div *ngIf="segment === 'active'" class="col-md-12 menu p-0 mb-2">
+                     <span class="btn btn-primary chats">Active Chats</span>
+                     <span class="btn btn-closed chats" (click)="switchSegment('closed')">Closed Chats</span>
+                  </div>
+                  <div *ngIf="segment === 'closed'" class="col-md-12 menu p-0 mb-2">
+                     <span class="btn btn-closed chats" (click)="switchSegment('active')">Active Chats</span>
+                     <span class="btn btn-primary chats">Closed Chats</span>
+                  </div>
+
+               </div>
+               <div class="displayMessage" *ngIf="displayMessage">{{displayText}}</div>
+               <div *ngIf="!displayMessage">
+                  <div class="row margin_bottom_15">
+                     <div class="col-md-12">
+                        <input class="form-control border-0" type="search" placeholder="Search conversation">
+                        <img src="assets/img/Asset18.svg" class="fa fa-search">
+                     </div>
+                  </div>
+                  <hr class="mb-0 mt-0">
+                  <div class="chatScroll">
+                     <ul class="list-group list-group-flush">
+                        <li class="list-group-item pr-0 pl-0" (click)="openConversation(i)"
+                           *ngFor="let chat of chats;index as i ;trackBy: trackById"
+                           [class.activeChatPreviousSelected]="i == previousSelected"
+                           [class.activeChatPrevious]="i == selectedIndex - 1"
+                           [class.activeChat]="i == selectedIndex">
+                           <h6 class="mb-0"><span class="status"></span><span
+                                 class="chat_user">{{chat.customerName}}</span><span
+                                 class="chat_date float-right">{{ checkDate(i) }}</span></h6>
+                           <p class="pr-2 pl-2" *ngIf=" chat.newMsgCount == 0 " class="message">
+                              {{chat.messages[chat.messages.length - 1].message?chat.messages[chat.messages.length - 1].message:chat.messages[chat.messages.length - 1].attachment?.url?chat.messages[chat.messages.length - 1].attachment.url:chat.lastMessage?chat.lastMessage:'Empty message' }}
+                           </p>
+                           <p class="pr-2 pl-2" *ngIf=" chat.newMsgCount > 0" class="new_message">
+                              {{chat.messages[chat.messages.length - 1].message?chat.messages[chat.messages.length - 1].message:chat.messages[chat.messages.length - 1].attachment?.url?chat.messages[chat.messages.length - 1].attachment.url:chat.lastMessage?chat.lastMessage:'Empty message' }}
+                           </p>
+                           <span class="chatBadge"
+                              *ngIf="chat.newMsgCount > 0 && chat.chatId != chatId">{{chat.newMsgCount}}</span>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- column 1 ends here-->
+         <app-conversation [conversationParams]="conversationParams" class="col-sm-6 box_shadow"></app-conversation>
+         <app-chat-options [chatOptions]="chatOptions" (saveNote)="getChatOptions($event)" class="col-sm-3 p-0">
+         </app-chat-options>
+      </div>
+   </div>
+</div>
+<!-- </div> -->

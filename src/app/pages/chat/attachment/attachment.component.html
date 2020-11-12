@@ -1,0 +1,29 @@
+<div id="">
+<div class="row mt-2 mr-0 ml-0 separator">
+    <div *ngIf = "segment === 'public'">
+        <a class="btn btn-primary chats" >Public</a>
+        <a class="btn btn-closed chats" (click)="switchSegment('private')">Private</a>
+    </div>
+    <div *ngIf = "segment === 'private'">
+        <a class="btn btn-closed chats" (click)="switchSegment('public')" >Public</a>
+        <a class="btn btn-primary chats" >Private</a>
+    </div>
+ </div>
+ <div class="disp" *ngIf="displayMessage">{{displayText}}</div>
+ <div *ngIf="!displayMessage" >
+   <div class="attachmentScroll">
+     <div (click)="selectAttachment(i)" *ngFor="let attachment of attachments;index as i;trackBy: trackById" class="attachment_item">
+       <div class="list">
+           <div *ngIf="attachment.data.type != 'MSG' || attachment.data.type != 'URL'">
+               <p class="font_size_16"> {{ attachment.data.name }}</p>
+           </div>
+           <div *ngIf="attachment.data.type == 'MSG' || attachment.data.type == 'URL'">
+               <p class="font_size_14"> {{ attachment.data.desc }}</p>
+           </div>     
+       </div>
+
+     </div>
+   </div>
+ </div>
+</div>
+<button  (click)="closeDialog()" class="btn btn-danger">Close</button>

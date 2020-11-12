@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="col-md-12 col-sm-12">
+    <img src="../../../../assets/img/logoTwixorlogin.png" alt="Twixor" />
+  </div>
+</div>
+
+<header>
+  <div class="container-fluid twixor_Heading_main">
+    <div class="col-md-12 col-sm-12">
+      <div class="twixor_Heading">
+        <h2> Welcome to Twixor</h2>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<div class="container Twixor_login_form">
+  <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" class="form">
+
+    <mat-form-field floatLabel="never" class="form-element">
+      <!-- <span>Email</span> -->
+      <input type="text" matInput placeholder="email" formControlName="email">
+      <mat-error *ngIf="loginForm.controls['email'].invalid">
+        {{getError('email')}}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field floatLabel="never" class="form-element">
+      <!-- <span>password</span> -->
+      <input type="password" matInput placeholder="Password" formControlName="password">
+      <mat-error *ngIf="!loginForm.controls['password'].valid">
+        {{getError('pass')}}
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-element">
+      <button mat-raised-button color="primary" type="submit" class="button"
+        [disabled]="!loginForm.valid">login</button>
+    </div>
+
+  </form>
+</div>

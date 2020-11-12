@@ -1,0 +1,20 @@
+.sidebar {
+    flex: 0 0 13.667%;
+    max-width: 13.667%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+.col-md-10.aside_right {
+    flex:87%;
+    max-width:87%;
+    margin-left: 11rem;
+   
+}
+
+#content{
+  height: 100vh;
+  width:87vw;
+}

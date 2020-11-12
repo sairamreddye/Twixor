@@ -1,0 +1,228 @@
+@import "~@ng-select/ng-select/themes/material.theme.css";
+
+.disp{
+  text-align: center;
+  margin: 10px;
+}
+.chat_option_loader{
+  position: absolute;
+  top:200px;
+  left:140px;
+  z-index:2;
+}
+button.btn.btn-primary.document_attachment.mb-4 {
+  background-color: #848ddb !important;
+  border: 1px solid #848ddb !important;
+}
+.accordionChatOptions {
+  background-color: #f7f8ff;
+  color: #444;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 12px;
+  transition: 0.4s;
+  padding: .65rem 1.25rem;
+}
+.accordionChatOptions:hover{
+  background-color:#e1e4fd !important;
+}
+label.col-md-12.label_value{
+  word-wrap: break-word;
+  font-size: 12px;
+  font-weight: 700;
+  padding:0px;
+  margin-bottom:0px;
+}
+
+*::-webkit-scrollbar {
+	width: 0%;
+}
+*::-webkit-scrollbar-track {
+	background: white;
+}
+*::-webkit-scrollbar-thumb {
+	background:white;
+}
+*::-webkit-scrollbar-thumb:hover {
+	background:white;
+}
+
+.chatOptionsScroll{
+  overflow-y: auto; 
+  overflow-x: hidden;
+  height:95vh;
+  margin-bottom: 10px;
+}
+
+.panel {
+  padding: 10px 20px 10px 20px;
+  display: none;
+  background-color: white;
+}
+.font_size_12{
+  font-size:12px;
+}
+
+.card-link::after {
+    color: #333;
+    top: -2px;
+    right: 0px;
+    position: absolute;
+    font-family: "FontAwesome";
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+}
+.card-link.font_12 {
+    width: 100%;
+    display: inline-block;
+}
+
+.card-link::after {
+    color: #333;
+    top: -2px;
+    right: 0px;
+    position: absolute;
+    font-family: "FontAwesome";
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+}
+.card-link {
+    position: relative;
+    color:#333;
+    width: 100%;
+    display: block;
+}
+.form-control.bg-white.rounded {
+    height: 120px;
+}
+.form-control.bg-white.border_radius {
+  font-size: 14px;
+  border-radius: 15px;
+}
+.form-group.mb-0 {
+  line-height: 26px;
+}
+label.col-md-12.label_name {
+  font-size: 12px;
+  padding:0px;
+  color: #888787;
+ margin-bottom:0px;
+}
+.font-14{font-size:14px !important;color: #a2a2a2 !important;padding-bottom:0px !important;}
+label.grey_color {
+  color: #a2a2a2;
+  font-size: 12px;
+}
+::placeholder{font-size:14px;}
+textarea::placeholder{
+  color: #b9bac0;
+}
+
+.col-md-12.chat_con.d-flex.justify-content-end {
+    left: 0px;
+}
+.chat-bg {
+background-color: #12b4da73;
+width: 40px;
+color: white;
+height: 40px;
+display: inline-block;
+border-radius: 60px;
+box-shadow: 0px 0px 2px #888;
+padding: 6px;
+margin-right: 20px;
+margin-top: -2%;
+}
+
+.fa.fa-comment-o.bg-white {
+font-size: 23px;
+color: white;
+position: absolute;
+right: 27px;
+border-radius: 79%;
+bottom: 9px;
+}
+.fa.fa-question {
+color: #7c7c7c;
+position: absolute;
+padding-top: 7px;
+font-size: 13px;
+right: 35px;
+}
+#show_popup {
+box-shadow: 0 0 10px black;
+z-index: 2;
+position: fixed;
+bottom: 60px;
+right: 13px;
+width: 18%;
+border-radius: 15px;
+}
+#chat_toggle {
+position: fixed;
+bottom: 0px;
+right: 0px;
+left: -4px;
+}
+.grey_text {
+color: #b9bac0;
+}
+.font_20{font-size:20px;}
+
+.btn.btn-primary.send {
+  width: 88%;
+  border-radius: 50px;
+  margin-right: 0;
+  height: 35px;
+  margin: 6px 2% 0 0;
+  color: #fff;
+  
+}
+
+button.btn.btn-primary {
+  margin-top: 15px;
+  background-color: #848ddb !important;
+  border: 1px solid #848ddb !important;
+}
+.col-sm-3 {
+  padding: 0px !important;
+}
+app-chat-options.col-sm-3 {
+  padding: 0px !important;
+}
+
+img.plus_icon {
+  width: 20px;
+  float: right;
+}
+img.minus_icon {
+  width: 20px;
+  float: right;
+}
+app-chat-options.col-sm-3{padding:0px !important;}
+.accordion {
+  border-bottom: 1px solid #ccc !important;
+}
+.col-sm-3{
+  padding:0px !important;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .chat_option_loader{ 
+    top: 170px;
+    left: 75px;
+    z-index: 2;
+}
+  }
+
+.btn.btn-primary.fontsize_12{font-size:12px}
+@media (min-width: 800px) and (max-width: 980px) {
+  .chatOptionsScroll{
+  min-height: 100vh !important;
+  overflow-y: auto;
+}
+}

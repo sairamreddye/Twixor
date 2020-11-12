@@ -1,0 +1,69 @@
+<div class="p-0">
+    <div class="">
+      <div *ngIf = "showLoader">
+            <img src="assets/img/loader.gif" class="chat_option_loader">
+         </div>
+       <div id="accordion" class="chatOptionsScroll">
+          <div class="">
+             <div class = "accordionChatOptions">
+                Customer Information
+                <img src="assets/img/conversation/expand-arrow-24.png" class="plus_icon"/>
+                <img src="assets/img/conversation/collapse-arrow-24.png" class="minus_icon"/>
+             </div>
+             <div class = "panel">
+               <div>
+                  <form >
+                     <div class="form-group mb-0">
+                        <label for="tag" class="col-md-12 label_name">Customer ID </label>
+                        <label class="col-md-12 label_value font_weight_500">{{customer.id}}</label>
+                     </div>
+                     <div class="form-group mb-0">
+                        <label for="tag" class="col-md-12 label_name"> Full Name </label>
+                        <label class="col-md-12 label_value font_weight_500">{{customer.name}}</label>
+                     </div>
+                     <div class="form-group mb-0">
+                        <label for="tag" class="col-md-12 label_name">Mobile</label>
+                        <label class="col-md-12 label_value font_weight_500">{{customer.number}}</label>
+                     </div>
+                     <div class="form-group mb-0">
+                        <label for="tag" class="col-md-12 label_name">Chat ID </label>
+                        <label class="col-md-12 label_value font_weight_500" >{{customer.chatId}}</label>
+                     </div>
+                  </form>
+               </div>
+            </div>
+          </div>
+          <div class="">
+             <div class = "accordionChatOptions">
+                Additional Notes
+                <img src="assets/img/conversation/expand-arrow-24.png" class="plus_icon"/>
+                <img src="assets/img/conversation/collapse-arrow-24.png" class="minus_icon"/>
+             </div>
+             <div class = "panel">
+                <div class="mt-0 p-0">
+                  <label for="Tags" class="grey_color mb-0">Tags :</label>
+                   <form #tagForm="ngForm" class="m-0 p-0">
+                     <ng-select class="font-14"  [items]="tags"
+                        bindLabel="data.desc"
+                        bindValue="_id.$oid"
+                        [multiple]="true"
+                        placeholder="Select tag"
+                        [(ngModel)]="notes.tag"
+                        name="tag" #tag="ngModel">
+                     </ng-select>
+                     <div class="form-group mb-0 mt-2">
+                         <label for="Notes" class="grey_color">Notes :</label>
+                         <textarea [(ngModel)]="notes.note" name="note" #note="ngModel" class="form-control bg-white border_radius" id="Notes" placeholder="start adding notes" rows="5" cols="50"></textarea>
+                      </div>
+                      <div>
+                        <button (click)="updateTag(tagForm)" class="btn btn-primary fontsize_12">
+                           Update
+                         </button>
+                      </div>
+                   </form>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>

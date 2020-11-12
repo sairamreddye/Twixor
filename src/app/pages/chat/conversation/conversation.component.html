@@ -1,0 +1,251 @@
+<div>
+  <div *ngIf="showLoader">
+    <img src="assets/img/loader.gif" class="conversation_loader">
+  </div>
+  <div class="row bg_waterblue border-0 m-0 for_height" type="search">
+    <div class="col-md-4 night_fish font_wieght_500">{{customerName}}</div>
+    <div class="col-md-8 custom-control custom-switch d-flex justify-content-end p-0">
+      <!-- <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
+          <label class="custom-control-label" for="customSwitch1"></label>
+          <span class="online font_wieght_500">Online<span class="pr-1 pl-1 ml-1" style="color:#b9bac0;">|</span> <i
+              class="fa fa-ellipsis-h" aria-hidden="true"></i></span> -->
+      <div *ngIf="getInvitedStatus() != false && chatType == 'active'">
+        <label class="fab-menu">
+          <input type="checkbox">
+          <div class="chat-item-box">
+            <img src="assets/img/conversation/menu24.png" class="ellipses">
+            <ul *ngIf="getInvitedStatus() === 'handling'" class="chat-items">
+              <li (click)="chatProcess('Invite Agent')">Invite Agent</li>
+              <li (click)="chatProcess('Transfer Chat')">Transfer Chat</li>
+              <li (click)="chatProcess('Close')">Close Chat</li>
+            </ul>
+            <ul *ngIf="getInvitedStatus() === 'invited'" class="chat-items">
+              <li (click)="chatProcess('Leave')">Leave Chat</li>
+            </ul>
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="conversationScroll" #scroll>
+    <div class="disp" *ngIf="displayMessage">{{displayText}}</div>
+    <div *ngIf="!displayMessage" class="card-body msg_card_body">
+      <div *ngFor="let message of messages;index as i;trackBy: trackById">
+        <div class="msg_time d-flex justify-content-center grey_text">{{ checkDate(i) }}</div>
+        <div *ngIf="message.actionType === 2">
+          <p class="chatUtilMsg"><span>{{ getAgentName(message.actionBy,message.actionType) }} joined chat</span>
+          </p>
+        </div>
+        <!-- 4-transfer to agent,department -->
+        <div *ngIf="message.actionType === 4 ">
+          <p class="chatUtilMsg"><span>{{ getAgentName(message.actionBy,message.actionType) }} transferred chat To
+              You</span></p>
+        </div>
+        <!-- 5-inviteAgent -->
+        <div *ngIf="message.actionType === 5">
+          <p class="chatUtilMsg"><span>{{ getAgentName(message.actionBy,message.actionType) }} invited
+              {{ getAgentName(message.invitedAgent,message.actionType) }}</span></p>
+        </div>
+        <!-- 6-acceptInvite -->
+        <div *ngIf="message.actionType === 6">
+          <p class="chatUtilMsg"><span>{{ getAgentName(message.actionBy,message.actionType) }} accepted chat
+              invitation</span></p>
+        </div>
+        <!-- 9-Agent Leave -->
+        <div *ngIf="message.actionType === 9">
+          <p class="chatUtilMsg"><span>{{ getAgentName(message.actionBy,message.actionType) }} left this chat</span>
+          </p>
+        </div>
+
+        <div class="d-flex justify-content-end mb-1" *ngIf="message.actionType === 3">
+          <div class="msg_cotainer_send">
+            <p *ngIf="conversation.participants.length > 1" class="nameTitle font_wieght_500">
+              {{ getAgentName(message.actionBy,message.actionType) }}</p>
+            <div>
+              <p *ngIf="message.message != ''" class="mb-0">{{ message.message }}</p>
+            </div>
+            <div *ngIf=" checkAttachment(i)">
+
+              <div *ngIf="message.attachment.type == 'URL'">
+                <img src="assets/img/conversation/menu/url.png" class="emoji">
+                <a [href]="message.attachment.url" target="_blank">{{ message.attachment.desc }}</a>
+              </div>
+
+              <div *ngIf="message.attachment.type == 'DOC'">
+                <img src="assets/img/conversation/menu/document-48.png" class="emoji">
+                <a [href]="message.attachment.url" target="_blank"> {{ message.attachment.name }}</a>
+              </div>
+
+              <div *ngIf="message.attachment.type == 'IMAGE'" (click)="openImage(message.attachment.url)">
+                <div>
+                  <img [src]="message.attachment.url" class="img_message">
+                </div>
+              </div>
+
+              <div *ngIf="message.attachment.type == 'VIDEO'">
+                <div>
+                  <video frameborder="0" class="video" controls>
+                    <source [src]="message.attachment.url">
+                  </video>
+                </div>
+              </div>
+
+              <div *ngIf="message.attachment.type == 'AUDIO'">
+                <div class="audio">
+                  <audio controls>
+                    <source [src]="message.attachment.url" type="audio/mp3">
+                  </audio>
+                </div>
+              </div>
+
+            </div>
+            <div class="row m-0 check">
+
+              <div>
+                <img src="assets/img/conversation/time_gray.png" class="conversation_time" />
+                <span class="time_text">{{ getTime(i) }}</span></div>
+              <div *ngIf="message.status == 1"><img src="assets/img/conversation/sent-48.png"
+                  class="conversation_tick" /> </div>
+              <div *ngIf="message.status == 2"><img src="assets/img/conversation/seen-48.png"
+                  class="conversation_tick_send" /> </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-start mb-1" *ngIf="message.actionType === 0 || message.actionType === 1">
+          <div class="msg_cotainer">
+            <p *ngIf="message.message != '' " class="mb-0">{{ message.message }}</p>
+
+            <div *ngIf=" checkAttachment(i)">
+              <div *ngIf="message.attachment.type == 'URL'">
+                <img src="assets/img/conversation/menu/url.png" class="emoji">
+                <a [href]="message.attachment.url" target="_blank">{{ message.attachment.desc }}
+                </a>
+              </div>
+
+              <div *ngIf="message.attachment.type == 'DOC'">
+                <img src="assets/img/conversation/menu/document-48.png" class="emoji">
+                <a [href]="message.attachment.url" target="_blank"> {{ message.attachment.name }}
+                </a>
+              </div>
+
+              <div *ngIf="message.attachment.type == 'IMAGE'" (click)="openImage(message.attachment.url)">
+                <div>
+                  <img [src]="message.attachment.url" class="img_message">
+                </div>
+              </div>
+
+              <div *ngIf="message.attachment.type == 'VIDEO'">
+                <div class="video">
+                  <video frameborder="0" controls>
+                    <source [src]="message.attachment.url">
+                  </video>
+                </div>
+              </div>
+
+              <div *ngIf="message.attachment.type == 'AUDIO'">
+                <div class="audio">
+                  <audio controls>
+                    <source [src]="message.attachment.url" type="audio/mp3">
+                  </audio>
+                </div>
+
+              </div>
+            </div>
+            <div>
+              <span><img src="assets/img/conversation/time_gray.png" class="conversation_time"> <span
+                  class="time_text">{{ getTime(i) }}</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="senderTyping" class="typing">
+
+    <p class="mb-0 pr-2" *ngIf="user.userType == 1 ">{{ getAgentName(user.uId,'') }} is Typing <img
+        src="assets/img/conversation/menu/typing.gif" class="typing_gif"></p>
+    <p class="mb-0 pl-2" *ngIf="user.userType == 2 ">{{ customerName }} is Typing <img
+        src="assets/img/conversation/menu/typing.gif" class="typing_gif"></p>
+  </div>
+  <div *ngIf=" displayMessage == false && previewAttachment == true && chatType == 'active' " class="chat-footer">
+
+    <div class="preview_body">
+      <button (click)="cancelPreview()" class="btn btn-warning text-white mr-4 mb-4">
+        Cancel
+      </button>
+      <button (click)="sendMessage()" class="btn btn-primary document_attachment mb-4">
+        Send
+      </button>
+      <div *ngIf="previewData[0].data.type == 'MSG'">
+        <p>{{ previewData[0].data.desc }}</p>
+      </div>
+
+      <div *ngIf="previewData[0].data.type == 'URL'">
+        <img src="assets/img/conversation/menu/url.png" class="emoji">
+        <a [href]="previewData[0].data.url" target="_blank">{{ previewData[0].data.desc }}</a>
+      </div>
+
+      <div *ngIf="previewData[0].data.type == 'DOC'">
+        <a [href]="previewData[0].data.url" target="_blank">
+          <img src="assets/img/conversation/menu/document-48.png" class="img_align">{{ previewData[0].data.name }}</a>
+      </div>
+
+      <div class="image_position" *ngIf="previewData[0].data.type == 'IMAGE'"
+        (click)="openImage(previewData[0].data.url)">
+        <p>{{ previewData[0].data.name }}</p>
+        <div>
+          <img [src]="previewData[0].data.url" class="img_align">
+        </div>
+      </div>
+
+      <div *ngIf="previewData[0].data.type == 'VIDEO'">
+        <div>
+          <video class="col-sm-6 video" frameborder="0" controls>
+            <source [src]="previewData[0].data.url">
+          </video>
+        </div>
+        <a [href]="previewData[0].data.url"> {{ previewData[0].data.name }}</a>
+      </div>
+
+      <div *ngIf="previewData[0].data.type == 'AUDIO'">
+        <div class="audio">
+          <audio controls>
+            <source [src]="previewData[0].data.url" type="audio/mp3">
+          </audio>
+        </div>
+        <a [href]="previewData[0].data.url"> {{ previewData[0].data.name }}</a>
+      </div>
+    </div>
+
+
+  </div>
+  <div *ngIf=" displayMessage == false && previewAttachment == false && chatType == 'active'">
+    <textarea type="text" (input)="isTyping()" class="form-control bg_waterblue border-0" [(ngModel)]="message"
+      placeholder="Start Typing....."></textarea>
+    <div class="col-md-12 row m-0 pt-1 pr-0 pl-0">
+      <div class="col-md-11 p-0">
+        <a class="btn btn-primary send" (click)="sendMessage()">
+          <div class="send_common"><img src="assets/img/conversation/send24.png" class="conversation_tick_send"><span
+              class="send">Send</span></div>
+        </a>
+      </div>
+      <div class="col-md-1 pr-0 pl-0 d-flex justify-content-center">
+        <span style="padding-left:10px"></span>
+        <label class="fab-menu mb-0">
+          <input type="checkbox">
+          <div class="menu-box">
+            <div class="menu-plus positioning">+</div>
+            <ul class="menu-items convern">
+              <li (click)="openAttachment('document')">Document</li>
+              <li (click)="openAttachment('message')">Messages</li>
+              <li (click)="openAttachment('media')">Media</li>
+              <li (click)="openAttachment('url')">Url</li>
+              <!-- <li>Map</li> -->
+            </ul>
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>

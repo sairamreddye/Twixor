@@ -1,0 +1,72 @@
+@import "~@ng-select/ng-select/themes/material.theme.css";
+
+::ng-deep .image{
+  margin-bottom: 10px;
+}
+::ng-deep .image > img {
+  margin: 0 auto;
+  width: 80%;
+  display: block;
+}
+::ng-deep .invite_chat{
+  font-size:20px;
+  color: #848ddb;
+  margin-bottom: 10px;
+}
+::ng-deep .col-md-6.close{font-size:12px}
+::ng-deep .chat_label {
+  font-size:20px;
+  font-weight:bold;
+}
+::ng-deep .col-md-6.image_close {
+  text-align: end;
+}
+::ng-deep .chat_label_role{
+  font-size:16px;
+  margin-top:10px;
+  padding:0px;
+  color:#333;
+}
+::ng-deep .process {
+  margin-right: 15px;
+}
+::ng-deep .title {
+  font-size: 22px;
+  color: #000;
+  padding: 0 10px;
+}
+::ng-deep .transferContainer {
+  width: 100%;
+}
+::ng-deep  .transferContainer h2 {
+  margin: 10px 0 0;
+  font-size: 18px;
+}
+::ng-deep  .transferContainer b {
+    font-weight: normal;
+}
+::ng-deep  .transferContainer select {
+  padding: 5px;
+  background:white;
+  border-radius: 5px;
+  margin: 10px 0;
+  width: 100%;
+}
+
+::ng-deep  button.btn.btn-primary.ng-star-inserted {
+  border: 1px solid #848ddb;
+  background-color: #848ddb;
+  font-size: 12px;
+}
+::ng-deep button.btn.btn-warning.process.text-white {
+  font-size: 12px;
+}
+::ng-deep .chat_label_role{
+  font-size:14px;
+  font-weight:600;
+}
+
+::ng-deep button.btn.btn-primary.document_attachment.mb-4 {
+  background-color: #848ddb;
+  border: 1px solid #848ddb;
+}

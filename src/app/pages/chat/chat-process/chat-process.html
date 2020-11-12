@@ -1,0 +1,65 @@
+<div>
+  <div class="row">
+    <div class="col-md-6 invite_chat">
+      {{process.action}}
+    </div>
+    <div class="col-md-6 image_close">
+    <button class="close" *ngIf="process.action === 'Image'" class="btn btn-warning process text-white" (click)="cancelProcess()">
+      Close
+  </button>
+  </div>
+  </div>
+  <hr class="mt-0">
+</div>
+  <div class=" image" *ngIf="process.action === 'Image'">
+      <img [src]="process.url">
+  </div>
+<div>
+  <div *ngIf="process.action == 'Transfer Chat' ">
+       <div class="transferContainer">
+        <label class="chat_label_role">From 'Select Role'</label>
+        <select [(ngModel)]="role" placeholder="Select role" (change)=getData() >
+            <option value="agent">Agent</option>
+            <option value="department">Department</option>
+        </select>
+     </div>    
+  </div>
+  <div *ngIf="role == 'department'" class="ngselect">
+      <label class="chat_label_role">To 'Select Department'</label>
+          <ng-select 
+            [appendTo]="'body'"
+            [items]="departments"
+            bindLabel="name"
+            bindValue="_id.$oid"
+            placeholder="Select department"
+            [(ngModel)]="selectedDepartment">
+          </ng-select>
+  </div>
+   <div class="ngselect" *ngIf="process.action == 'Invite Agent' || role == 'agent'">
+        <label class="chat_label_role" *ngIf="role == 'agent'">To 'Select Agent'</label>
+          <ng-select
+            [appendTo]="'body'"
+            [items]="agents"
+            bindLabel="name"
+            bindValue="uId"
+            placeholder="Select agent"
+            [(ngModel)]="selectedAgent">
+        </ng-select>
+  </div>
+  
+  <div *ngIf="process.action === 'Close' || process.action === 'Leave'">
+    <p>Do you want to {{ process.action }} this chat?</p>
+  </div>
+
+  <div>
+    <button *ngIf="process.action != 'Image'" class="btn btn-warning process text-white" (click)="cancelProcess()">
+        Cancel
+    </button>
+    <button *ngIf="process.action === 'Close' || process.action === 'Leave'" class="btn btn-primary"  (click)="cancelChat()">
+        {{process.action}}
+    </button>
+    <button *ngIf="process.action === 'Invite Agent' || process.action === 'Transfer Chat'" class="btn btn-primary"  (click)="chatProcess()">
+                {{process.action}}
+    </button>
+  </div>
+</div>
