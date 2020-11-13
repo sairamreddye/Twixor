@@ -14,12 +14,10 @@ export class MaindashboardComponent implements OnInit {
   ngOnInit() {
   }
   chat(){
-    //debugger
    const userToken = this.storageService.getToken();
    this.router.navigateByUrl(`/chat?authToken=${userToken}`);
   }
   encaps(){
-    //debugger
    const userToken = this.storageService.getToken();
    this.router.navigateByUrl(`/encaps?authToken=${userToken}`);
   }

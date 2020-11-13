@@ -48,7 +48,6 @@ export class SideNavComponent implements OnInit {
         }
      }
      dashboard(){
-      debugger
      const userToken = this.storageService.getToken();
      this.router.navigateByUrl(`/dashboard?authToken=${userToken}`);
     }
@@ -57,12 +56,10 @@ export class SideNavComponent implements OnInit {
        this.router.navigateByUrl(`/login`);
      }
      chat(){
-      //debugger
      const userToken = this.storageService.getToken();
      this.router.navigateByUrl(`/chat?authToken=${userToken}`);
     }
     encaps(){
-      //debugger
      const userToken = this.storageService.getToken();
      this.router.navigateByUrl(`/encaps?authToken=${userToken}`);
     }

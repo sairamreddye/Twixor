@@ -37,50 +37,38 @@ export class AuthInterceptor implements HttpInterceptor {
     let httpMethod = req.method;
     console.log('reqBody', req.body);
     console.log('req', req);
+    
+    const token: string = this.storageService.getToken();
+    const loginRequest: any = req.clone({ setHeaders: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: req.body });
+    const getRequest: any = req.clone({ setHeaders: { 'authentication-token': token }, body: req.body });
 
-    // if (httpMethod == 'POST') {
-    //   if (req.url.includes('campaigns/reports')) {
-    //     debugger
-    //     req = req.clone({
-    //       setHeaders: {
-    //         'Content-Type': 'application/x-www-form-urlencoded',
-    //         'authentication-token': this.storageService.getToken(),
-    //       },
-    //       body: req.body
-    //     });
-    //     console.log(req.url);
-    //   }
-    // } 
-    // todo method for POST method api
 
-     
-      if (httpMethod == 'GET') {
-      debugger
-      req = req.clone({
-        setHeaders: {
-          //'Content-Type': 'application/x-www-form-urlencoded',
-          'authentication-token': this.storageService.getToken(),
-          body: req.body
-        },
-      });
-      console.log(req.url);
-    } 
-    // todo method for GET method api
+    let Request
 
-    let authReq;
-    if (req.url.includes('enterprise/login')) {
-      this.storageService.removeToken();
-      authReq = req.clone({
-        setHeaders: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: req.body
-      });
-    } else {
-      authReq = req;
+    if (httpMethod === 'POST') {
+      if (req.url.includes('enterprise/login')) {   // todo condition for POST method for api errors and responses
+        if (loginRequest.headers.has('Content-Type')) {
+          debugger
+          this.storageService.removeToken();
+          Request = loginRequest;
+        }
+      }
+      console.log(`Requrl:${req.url}`);
     }
-    console.log('authReq', req);
-    return next.handle(authReq).pipe(
+    else if (httpMethod === 'GET') {
+      if (req.url.includes('enterprise/campaigns/reports')) {
+        if (getRequest.headers.has('authentication-token')) {    // todo condition for GET method for api errors and responses
+          debugger
+          Request = getRequest;
+        }
+      }
+      console.log(`Requrl:${req.url}`);
+    }
+    else {    //todo condition if any one condition is not satisfied
+      Request = req;
+    }
+    // console.log('Request', req);
+    return next.handle(Request).pipe(
       catchError((err: any) => {
         if (err instanceof HttpErrorResponse) {
           if (err.status != 200) {
