@@ -1,0 +1,178 @@
+<div id="page-top m-0">
+    <!-- Page Wrapper -->
+    <div id="" class="row m-0">
+       <!-- Sidebar -->
+       <!-- <div class="col-md-2 p-0 sidebar">
+          <iframe id="serviceFrameSend" src="../sidebar.html" class="col-md-12 p-0 iframe-embed" frameborder="0"  scrolling="no">
+          </iframe>
+       </div> -->
+       <!-- Content Wrapper -->
+       <div class="col-md-10 mt-3 aside_right">
+          <div class="col-md-12 queue-activity">
+             <div class="card p-2">
+                <div class="card-title p-3 queue_activity"><img src="assets/Dashboard/Asset28.svg" class="pr-2 encaps_dashboard">Overview</div>
+             </div>
+             <div class="col-md-12 row chats_queue m-0">
+                <div class="col-md-2">
+                   <div class="card bg_waterblue mt-3 pt-0 pb-3 pr-3 pl-3">
+                      <div class="numberic text-primary">{{totalCount}}</div>
+                      <div class="chats_details">Encaps</div>
+                   </div>
+                </div>
+                <div class="col-md-2">
+                   <div class="card bg_waterblue mt-3 pt-0 pb-3 pr-3 pl-3">
+                      <div class="numberic text-primary">{{createdCount}}</div>
+                      <div class="chats_details">Created</div>
+                   </div>
+                </div>
+                <div class="col-md-2">
+                   <div class="card bg_waterblue mt-3 pt-0 pb-3 pr-3 pl-3">
+                      <div class="numberic text-primary">{{pausedCount}}</div>
+                      <div class="chats_details">Running</div>
+                   </div>
+                </div>
+                <div class="col-md-2">
+                   <div class="card bg_waterblue mt-3 pt-0 pb-3 pr-3 pl-3">
+                      <div class="numberic text-primary">{{scheduledCount}}</div>
+                      <div class="chats_details">Scheduled</div>
+                   </div>
+                </div>
+                <div class="col-md-2">
+                   <div class="card bg_waterblue mt-3 pt-0 pb-3 pr-3 pl-3">
+                      <div class="numberic text-primary">{{stoppedCount}}</div>
+                      <div class="chats_details">Stopped</div>
+                   </div>
+                </div>
+                <div class="col-md-2">
+                   <div class="card bg_waterblue mt-3 pt-0 pb-3 pr-3 pl-3">
+                      <div class="numberic text-primary">{{expiredCount}}</div>
+                      <div class="chats_details">Expired</div>
+                   </div>
+                </div>
+             </div>
+          </div>
+          <div class="row mb-3">
+             <div class="col-md-6">
+                <div class="card mt-3 p-0">
+                   <div class="card-body pb-0">
+                      <img src="assets/Dashboard/Asset29.svg" class="pr-2 encaps_dashboard"><b>Recent Encaps</b><i class="fa fa-external-link grey_text pl-2 " aria-hidden="true"></i>
+                      <hr class="mb-1">
+                   </div>
+                   <ul class="list-group list-group-flush  border-top-0">
+                      <li class="list-group-item p-3 border-bottom-0">
+                         <div class="mb-2" *ngFor = "let namerecent of recentEncaps">
+                            {{namerecent.name}}<br>
+                            <span class="grey_text mb-4">{{namerecent.createdOn.$date | date}}</span><span class="left_running float-right text-primary">Running</span><br>
+                         </div>
+                         <!-- <div *ngFor = "let insta of instance">
+                           {{insta.name}}para
+                          <div>
+                          {{insta.createdOn.$date}}
+                            </div>
+                          </div> -->
+                         <!-- <div class="">
+                            Message<br>
+                            <span class="grey_text">Key Division</span>
+                            <span class="grey_text">closing on 09:34 PM</span><span class="left_running float-right text-primary">Running</span>
+                         </div> -->
+                      </li>
+                      <!-- <li class="list-group-item pr-3 pl-3 border-bottom-0">
+                         <div class="">
+                            Big Basket Promotion Campaign for Covid-19<br>
+                            <span class="grey_text">Key Assurance</span>
+                            <span class="grey_text">25-Mar-2020 / 09:34 PM</span><span class="left_running float-right text-primary">Created</span>
+                         </div>
+                      </li> -->
+                      <!-- <li class="list-group-item pr-3 pl-3 border-bottom-0">
+                         <div class="">
+                            HDFC New Insurance - 2020<br>
+                            <span class="grey_text">Key Group</span>
+                            <span class="grey_text">25-Mar-2020 / 09:34 PM</span><span class="left_running float-right text-primary">Running</span><br>
+                         </div>
+                      </li> -->
+                      <!-- <li class="list-group-item p-3 border_radius_15 border-bottom-0">
+                         <div class="mb-2">
+                            HDFC<br>
+                            <span class="grey_text">25-Mar-2020 / 09:34 PM</span><span class="left_running float-right text-primary">Stopped</span><br>
+                         </div>
+                      </li> -->
+                   </ul>
+                </div>
+             </div>
+             <div class="col-md-6">
+                <div class="card mt-3 p-0">
+                   <div class="card-body pb-0">
+                      <div class="mr-4 ml-4" id="re_workspace">
+                         <img src="assets/Dashboard/Asset30.svg" class="pr-2 encaps_dashboard"><b>&nbsp;&nbsp;&nbsp;Closing Soon<i class="fa fa-external-link grey_text pl-2" aria-hidden="true"></i></b>
+                      </div>
+                      <hr class="mb-1">
+                   </div>
+                   <ul class="list-group list-group-flush  border-top-0" style="height:310px;">
+                      <li class="list-group-item p-3 border-bottom-0 border_radius_15">
+                         <div class="mb-2" *ngFor = "let nameclosing of closingEncaps">
+                            {{nameclosing.name}}<br>
+                            <span class="grey_text mb-4">{{nameclosing.createdOn.$date | date}}</span><span class="left_running float-right text-primary">Running</span><br>
+                         </div>
+                         <!-- <div class="">
+                            Message<br>
+                            <span class="grey_text">Key Division</span>
+                            <span class="grey_text">closing on 09:34 PM</span><span class="left_running float-right text-primary">Running</span>
+                         </div> -->
+                      </li>
+                   </ul>
+                </div>
+             </div>
+          </div>
+          <div class="running_encaps">
+             <img src="assets/Dashboard/Asset28.svg" class="pr-2 encaps_dashboard"><b>Running Encaps</b><i class="fa fa-external-link grey_text pl-2" aria-hidden="true"></i>
+          </div>
+          <div class="row">
+             <div class="col-md-12">
+                <ul class="col-md-12 nav float-right border pt-2 pb-2 d-flex justify-content-around mt-3 mb-3">
+                   <li class="nav-item p-0 active">
+                      <a class="nav-link height workspace d-flex justify-content-center" href="#" id="flow_item">
+                      Launch Name </a>
+                   </li>
+                   <li class="nav-item border-right p-0 "></li>
+                   <li class="nav-item p-0">
+                      <a class="nav-link height" href="#" id="form_item">
+                      Status </a>
+                   </li>
+                   <li class="nav-item border-right p-0 "></li>
+                   <li class="nav-item p-0">
+                      <a class="nav-link height" href="#" id="button_item">
+                      Total</a>
+                   </li>
+                   <li class="nav-item border-right p-0 "></li>
+                   <li class="nav-item p-0">
+                      <a class="nav-link height" href="#" id="webhooks_item">
+                      Visited </a>
+                   </li>
+                   <li class="nav-item border-right p-0 "></li>
+                   <li class="nav-item p-0">
+                      <a class="nav-link height" href="#" id="webhooks_item">
+                      Created On </a>
+                   </li>
+                   <li class="nav-item border-right p-0 "></li>
+                   <li class="nav-item p-0">
+                      <a class="nav-link height" href="#" id="webhooks_item">
+                      Closing On </a>
+                   </li>
+                   <div></div>
+                </ul>
+                <div class="col-md-12 card mt-3 no_record_height" style="height:320px;">
+                   <img src="assets/Dashboard/Asset25.svg" class="encaps mx-auto" width="150" height="150">
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <!-- <script src="../library/bootstrap/js/bootstrap.4.5.0.min.js"></script>
+    <script src="../library/bootstrap/js/popper.min.1.16.0.js"></script>
+    <script src="../library/bootstrap/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="../library/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/encaps_dashboard.js"></script>
+    <script src="../resources/js/sidebar.js"></script> -->
+    <!--bootstrap javascripts ends here-->
+</div>

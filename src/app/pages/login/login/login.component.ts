@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
           this.storageService.setToken(token)
           // const userToken = storage.getToken();
           const userToken = this.storageService.getToken();
-          this.router.navigateByUrl(`/chat?authToken=${userToken}`);
+          this.router.navigateByUrl(`/dashboard?authToken=${userToken}`);
         }
       },
       (err) => {

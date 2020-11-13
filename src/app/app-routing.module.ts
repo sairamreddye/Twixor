@@ -16,14 +16,34 @@ const routes: Routes =
       path: 'login',
       loadChildren: () =>
         import('./pages/login/login.module').then((m) => m.LoginModule),
-    },
+    },{
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
+  {
+    path: 'dashboard',
+    canActivate: [Authguard],
+    loadChildren: () =>
+      import('./pages/maindashboard/maindashboard.module').then((m) => m.MaindashboardModule),
+  },
     {
       path: '', component: FullLayoutComponent,
       children: [{
         path: 'chat',
         canActivate: [Authguard],
         loadChildren: () => import('./pages/chat/chat.module').then(m => m.ChatModule),
-      }]
+      },
+      {
+        path: 'encaps',
+        canActivate: [Authguard],
+        loadChildren: () => import('./pages/encaps/encaps.module').then(m => m.EncapsModule),
+      }
+    ]
+    },
+    {
+      path: 'integration/encaps',
+      loadChildren: () => import('./pages/encaps/encaps.module').then(m => m.EncapsModule),
     },
     {
       path: 'integration/chat',

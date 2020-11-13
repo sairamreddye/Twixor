@@ -1,0 +1,152 @@
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>Twixor</title> -->
+      <!-- Custom fonts-->
+      <!-- <link href="library/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+      <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+      <!--custom fonts ends here-->
+      <!-- Custom styles-->
+      <!-- <link href="resources/css/sidebar.css" rel="stylesheet">
+      <link href="resources/css/custom.css" rel="stylesheet">
+      <link href="library/bootstrap/css/bootstrap.min.4.5.0.css" rel="stylesheet"> -->
+      <!--common style ends here-->
+      <!-- <style>
+         .bs-example{
+         margin: 20px;
+         }
+      </style>
+   </head>
+   <body> -->
+    <div class="bs-example m-0">
+        <nav class="navbar navbar-expand-md navbar-light bg_waterblue pt-0 pb-0 fixed-top">
+           <a class="navbar-brand">
+              <div class="sidebar-brand-icon rotate-n-15">
+                 <img src="../../../../assets/Dashboard/logo.JPG" width="30">
+                 <div class="sidebar-brand-text m-1 float-right">
+                    <b>TWIXOR</b>
+                 </div>
+              </div>
+           </a>
+           <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+           <span class="navbar-toggler-icon"></span>
+           </button>
+           <div class="collapse navbar-collapse" id="navbarCollapse">
+              <div class="navbar-nav ml-auto">
+                 <a href="#" class="nav-item nav-link"><b>John Copper</b><button class="btn btn-primary p-0  admin mr-2 ml-2">Admin</button><img src="../../../../assets/Dashboard/Asset17.svg" class="journey_call"></a>
+              </div>
+           </div>
+        </nav>
+     </div>
+     <div class="row col-md-12 m-0 pr-0 pl-0 pt-4 pb-4 mt-5">
+        <div class="col-md-3">
+           <a routerLink="/chat" (click)="chat()">
+              <div class="card p-3">
+                 <div class="font_20 font_weigh_600">
+                    <img src="../../../../assets/Dashboard/Asset1.svg" class="tile_image">Chat
+                    <hr>
+                 </div>
+                 <p class="grey_text">Info about chat <br>Leverage social media comversation and customer responses to promote products</p>
+              </div>
+           </a>
+        </div>
+        <div class="col-md-3">
+           <a href="encaps_launchpad/encaps_launchpad.html">
+              <div class="card p-3">
+                 <div class="font_20 font_weigh_600">
+                    <img src="../../../../assets/Dashboard/Asset2.svg" class="tile_image">Campaign
+                    <hr>
+                 </div>
+                 <p class="grey_text">Info about Campaign <br> Leverage social media comversation and customer responses to promote products</p>
+              </div>
+           </a>
+        </div>
+        <div class="col-md-3" >
+           <a [routerLink]='["/encaps"]' (click)="encaps()">
+              <div class="card p-3" style="box-shadow: 0 0 10px #d5d5d5;">
+                 <div class="font_20 font_weigh_600">
+                    <img src="../../../../assets/Dashboard/Asset3.svg" class="tile_image">Encaps
+                    <hr>
+                 </div>
+                 <p class="grey_text">Info about Encaps <br>Leverage social media comversation and customer responses to promote products</p>
+              </div>
+           </a>
+        </div>
+        <div class="col-md-3">
+           <a href="journey/journey.html">
+              <div class="card p-3">
+                 <div class="font_20 font_weigh_600">
+                    <img src="../../../../assets/Dashboard/Asset4.svg" class="tile_image">Journey
+                    <hr>
+                 </div>
+                 <p class="grey_text">Info about Journey <br> Leverage social media comversation and customer responses to promote products</p>
+              </div>
+           </a>
+        </div>
+     </div>
+     <div class="row m-0">
+        <div class="col-md-6">
+           <img src="../../../../assets/Dashboard/dashboard.png" style="width:647px;">
+        </div>
+        <div class="col-md-6">
+           <div class="card p-2">
+              <div class="card-title p-3 queue_activity"><img src="../../../../assets/Dashboard/Asset5.svg" class="index_subicon">Overview</div>
+           </div>
+           <div class="col-md-12 row chats_queue m-0">
+              <div class="col-md-6">
+                 <div class="card bg_waterblue mt-3 p-3">
+                    <div class="numberic text-primary">08</div>
+                    <div class="chats_details">Active Chats <span class="float-right"><img src="../../../../assets/Dashboard/asset6.svg" class="external_chat"></span></div>
+                 </div>
+              </div>
+              <div class="col-md-6">
+                 <div class="card bg_waterblue mt-3 p-3">
+                    <div class="numberic text-primary">08</div>
+                    <div class="chats_details">Encaps <span class="float-right"><img src="../../../../assets/Dashboard/asset6.svg" class="external_chat"></span></div>
+                 </div>
+              </div>
+           </div>
+           <div class="row second-card">
+              <div class="col-md-6">
+                 <div class="card p-2">
+                    <div class="card-title p-3 queue_activity"><img src="../../../../assets/Dashboard/Asset7.svg" class="index_subicon">Satisfication Rating</div>
+                 </div>
+                 <div class="col-md-12 row chats_queue m-0">
+                    <div class="col-md-12">
+                       <div class="card bg-primary mt-3 p-3">
+                          <div class="numberic text-white">4.25</div>
+                          <div class="chats_details text-white">Average Rating</div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <div class="col-md-6">
+                 <div class="card">
+                    <ul class="list-group list-group-flush border_radius_15">
+                       <li class="list-group-item font_20"><img src="../../../../assets/Dashboard/Asset8.svg" class="index_subicon">Live Chats</li>
+                       <li class="list-group-item border-0 font_16 pb-0">Transferred Chats<span class="font_20 float-right">03</span></li>
+                       <li class="list-group-item border-0 font_16 pb-0">New Chats<span class="font_20 float-right">03</span></li>
+                       <li class="list-group-item border-0 font_16">Invited Chats<span class="font_20 float-right">03</span></li>
+                    </ul>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <!-- Bootstrap core JavaScript-->
+     <!-- <script src="library/bootstrap/js/bootstrap.4.5.0.min.js"></script>
+     <script src="library/bootstrap/js/popper.min.1.16.0.js"></script>
+     <script src="library/bootstrap/js/jquery-3.5.1.slim.min.js"></script>
+     <script src="library/bootstrap/js/bootstrap.bundle.min.js"></script>
+     <script src="resources/js/sidebar.js"></script> -->
+     <!--bootstrap javascripts ends here-->
+  <!-- </body>
+</html> -->
+

@@ -50,18 +50,22 @@ export class AuthInterceptor implements HttpInterceptor {
     //     });
     //     console.log(req.url);
     //   }
-    // } todo method for POST method api
-    //  else if (httpMethod == 'GET') {
-    //   debugger
-    //   req = req.clone({
-    //     setHeaders: {
-    //       'Content-Type': 'application/x-www-form-urlencoded',
-    //       'authentication-token': this.storageService.getToken(),
-    //       body: req.body
-    //     },
-    //   });
-    //   console.log(req.url);
-    // } todo method for GET method api
+    // } 
+    // todo method for POST method api
+
+     
+      if (httpMethod == 'GET') {
+      debugger
+      req = req.clone({
+        setHeaders: {
+          //'Content-Type': 'application/x-www-form-urlencoded',
+          'authentication-token': this.storageService.getToken(),
+          body: req.body
+        },
+      });
+      console.log(req.url);
+    } 
+    // todo method for GET method api
 
     let authReq;
     if (req.url.includes('enterprise/login')) {
