@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/app/providers/storage/storage.service';
 import { UtilityService } from 'src/app/providers/utility.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { UtilityService } from 'src/app/providers/utility.service';
 })
 export class SideNavComponent implements OnInit {
    accordion:any;
-  constructor( private router: Router, private logoutService:UtilityService) { }
+  constructor( private router: Router, private logoutService:UtilityService,private storageService:StorageService,
+    ) { }
 
   ngOnInit() {     
     this.accordion =  Array.from(document.getElementsByClassName('accordionSidebar') as HTMLCollectionOf<HTMLElement>);
@@ -45,9 +47,23 @@ export class SideNavComponent implements OnInit {
           close.style.display = "none";
         }
      }
-
+     dashboard(){
+      debugger
+     const userToken = this.storageService.getToken();
+     this.router.navigateByUrl(`/dashboard?authToken=${userToken}`);
+    }
      logOut(){
        this.logoutService.logOut();
        this.router.navigateByUrl(`/login`);
      }
+     chat(){
+      //debugger
+     const userToken = this.storageService.getToken();
+     this.router.navigateByUrl(`/chat?authToken=${userToken}`);
+    }
+    encaps(){
+      //debugger
+     const userToken = this.storageService.getToken();
+     this.router.navigateByUrl(`/encaps?authToken=${userToken}`);
+    }
 }
