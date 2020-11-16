@@ -29,14 +29,15 @@ const routes: Routes =
   },
     {
       path: '', component: FullLayoutComponent,
+      canActivate: [Authguard],
       children: [{
         path: 'chat',
-        canActivate: [Authguard],
+        // canActivate: [Authguard],
         loadChildren: () => import('./pages/chat/chat.module').then(m => m.ChatModule),
       },
       {
         path: 'encaps',
-        canActivate: [Authguard],
+        // canActivate: [Authguard],
         loadChildren: () => import('./pages/encaps/encaps.module').then(m => m.EncapsModule),
       }
     ]
