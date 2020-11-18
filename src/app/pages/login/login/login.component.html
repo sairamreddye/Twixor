@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="col-md-12 col-sm-12">
     <img src="../../../../assets/img/logoTwixorlogin.png" alt="Twixor" />
   </div>
@@ -12,11 +12,30 @@
       </div>
     </div>
   </div>
-</header>
+</header> -->
+<div class="bs-example m-0">
+  <nav class="navbar navbar-expand-md navbar-light bg_waterblue pt-0 pb-0 fixed-top">
+     <a class="navbar-brand">
+        <div class="sidebar-brand-icon rotate-n-15">
+           <img src="../../../../assets/Dashboard/logo.JPG" width="30">
+           <div class="sidebar-brand-text m-1 float-right">
+              <b>TWIXOR</b>
+           </div>
+        </div>
+     </a>
+     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+     <span class="navbar-toggler-icon"></span>
+     </button>
+     <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ml-auto">
+           <a href="#" class="nav-item nav-link"><b>John Copper</b><button class="btn btn-primary p-0  admin mr-2 ml-2">Admin</button><img src="../../../../assets/Dashboard/Asset17.svg" class="journey_call"></a>
+        </div>
+     </div>
+  </nav>
+</div>
 
-
-<div class="container Twixor_login_form">
-  <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" class="form">
+<div class="container Twixor_login_form ">
+  <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" class="form loginform vertical-center">
 
     <mat-form-field floatLabel="never" class="form-element">
       <!-- <span>Email</span> -->
@@ -35,7 +54,7 @@
     </mat-form-field>
 
     <div class="form-element">
-      <button mat-raised-button color="primary" type="submit" class="button"
+      <button mat-raised-button color="primary" type="submit" class="button loginbutton btn-block btn btn-primary text-white"
         [disabled]="!loginForm.valid">login</button>
     </div>
 

@@ -42,6 +42,7 @@ export class EncapsComponent implements OnInit {
   CreatedOnClosing: any;
   UpdatedOnClosing: any;
   countdetails: any;
+  showEncaps: boolean;
 
   constructor(private DashBoardService: DashBoardService, private storageService:StorageService, private router: Router) { }
 
@@ -66,31 +67,47 @@ export class EncapsComponent implements OnInit {
   }
   getRecentEncaps(){
     this.DashBoardService.getRecentEncaps().subscribe((res: any)=>{
+      this.instanceundefind()
       this.recentEncaps = res.response['instances'];
     })
   }
   getClosingsoon(){
     this.DashBoardService.getClosingsoon().subscribe((res: any)=>{
+      this.instanceundefind()
       this.closingEncaps = res.response['instances'];
     })
   }
   getRunning(){
     this.DashBoardService.getRunning().subscribe((res: any)=>{
-      this.runningEncaps = res.response['instances'];
-      this.nameRunning = res.response.instances[0].name;
-      this.stateRunning = res.response.instances[0].state;
-      this.totalRunning = res.response.instances[0].total;
+      // this.runningEncaps = res.response['instances'];
+      // this.nameRunning = res.response.instances[0].name;
+      // this.stateRunning = res.response.instances[0].state;
+      // this.totalRunning = res.response.instances[0].total;
 
-      this.idRunning = this.runningEncaps.map(value => {
-        return value._id.$oid;
-      });
-      this.CreatedOnRunning = this.runningEncaps.map(value => {
-        return value.createdOn.$date;
-      });
-      this.UpdatedOnRunning = this.runningEncaps.map(value => {
-        return value.updatedOn.$date;
-      });
+      // this.idRunning = this.runningEncaps.map(value => {
+      //   return value._id.$oid;
+      // });
+      // this.CreatedOnRunning = this.runningEncaps.map(value => {
+      //   return value.createdOn.$date;
+      // });
+      // this.UpdatedOnRunning = this.runningEncaps.map(value => {
+      //   return value.updatedOn.$date;
+      // });
+      this.instanceundefind()
+      this.runningEncaps = res.response['instances'];
     })
+  }
+  instanceundefind(){
+    if(this.recentEncaps === undefined ){
+        return this.showEncaps = true;
+    }else if(this.closingEncaps === undefined){
+      return this.showEncaps = true;
+    }else if(this.runningEncaps === undefined){
+      return this.showEncaps = true;
+    }
+    else{
+      return
+    }
   }
   
 }

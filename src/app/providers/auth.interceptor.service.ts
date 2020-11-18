@@ -48,7 +48,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (httpMethod === 'POST') {
       if (req.url.includes('enterprise/login')) {   // todo condition for POST method for api errors and responses
         if (loginRequest.headers.has('Content-Type')) {
-          debugger
+          //debugger
           this.storageService.removeToken();
           Request = loginRequest;
         }
@@ -61,7 +61,7 @@ export class AuthInterceptor implements HttpInterceptor {
     else if (httpMethod === 'GET') {
       if (req.url.includes('enterprise/campaigns/reports')) {
         if (getRequest.headers.has('authentication-token')) {    // todo condition for GET method for api errors and responses
-          debugger
+          //debugger
           Request = getRequest;
         }
       }
