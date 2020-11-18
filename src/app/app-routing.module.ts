@@ -39,6 +39,11 @@ const routes: Routes =
         path: 'encaps',
         // canActivate: [Authguard],
         loadChildren: () => import('./pages/encaps/encaps.module').then(m => m.EncapsModule),
+      },
+      {
+        path: 'analytics',
+        // canActivate: [Authguard],
+        loadChildren: () => import('./pages/analytics/analytics.module').then(m => m.AnalyticsModule),
       }
     ]
     },
