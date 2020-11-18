@@ -53,6 +53,9 @@ export class AuthInterceptor implements HttpInterceptor {
           Request = loginRequest;
         }
       }
+      else {    //todo condition if any one condition is not satisfied
+        Request = req;
+      }
       console.log(`Requrl:${req.url}`);
     }
     else if (httpMethod === 'GET') {
@@ -61,6 +64,9 @@ export class AuthInterceptor implements HttpInterceptor {
           //debugger
           Request = getRequest;
         }
+      }
+      else {    //todo condition if any one condition is not satisfied
+        Request = getRequest;
       }
       console.log(`Requrl:${req.url}`);
     }
