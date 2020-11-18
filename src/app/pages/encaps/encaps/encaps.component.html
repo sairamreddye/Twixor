@@ -96,6 +96,9 @@
                             <span class="grey_text">25-Mar-2020 / 09:34 PM</span><span class="left_running float-right text-primary">Stopped</span><br>
                          </div>
                       </li> -->
+                      <div class=" text-right">
+                        <button class="btn btn-primary text-default">View all</button>
+                     </div>
                    </ul>
                 </div>
              </div>
@@ -119,6 +122,9 @@
                             <span class="grey_text">closing on 09:34 PM</span><span class="left_running float-right text-primary">Running</span>
                          </div> -->
                       </li>
+                      <div class=" text-right">
+                        <button class="btn btn-primary text-default">View all</button>
+                     </div>
                    </ul>
                 </div>
              </div>
@@ -160,8 +166,49 @@
                    </li>
                    <div></div>
                 </ul>
-                <div class="col-md-12 card mt-3 no_record_height" style="height:320px;">
-                   <img src="assets/Dashboard/Asset25.svg" class="encaps mx-auto" width="150" height="150">
+                <div class=" card no_record_height" style="height:320px;" >
+                   <!-- <img src="assets/Dashboard/Asset25.svg" class="encaps mx-auto" width="150" height="150"> -->
+                   <table>
+                      <tr >
+                         <ul class="col-md-12 nav float-right border pb-2 d-flex justify-content-around  mb-3" *ngFor = "let namerunning of runningEncaps">
+                              <td >
+                                 <li class="nav-item p-0 border-right active">
+                                    <a class="nav-link height " href="#" id="flow_item">
+                                       {{namerunning.name}}</a>
+                                 </li>
+                              </td>
+                              <td>
+                                 <li class="nav-item p-0 border-right p-0 text-center ">
+                                    <a class="nav-link height  color_black" href="#" id="form_item">{{namerunning.state}} </a>
+                                 </li>
+                              </td>
+                              <td>
+                                 <li class="nav-item p-0 border-right p-0 ">
+                                    <a class="nav-link height  color_black" href="#" id="form_item">{{namerunning.total}} </a>
+                                 </li>
+                              </td>
+                              <td>
+                                 <li class="nav-item p-0 border-right p-0 ">
+                                    <a class="nav-link height  color_black" href="#" id="form_item">{{namerunning.viewed}} </a>
+                                 </li>
+                              </td>
+                              <td>
+                                 <li class="nav-item p-0 border-right p-0 ">
+                                    <a class="nav-link height  color_black" href="#" id="form_item">{{namerunning.createdOn.$date | date}} </a>
+                                 </li>
+                              </td>
+                              <td>
+                                 <li class="nav-item p-0  p-0 ">
+                                    <a class="nav-link height  color_black" href="#" id="form_item">Forever </a>
+                                 </li>
+                              </td>
+                             
+                         </ul>
+                         <div class=" text-right">
+                           <button class="btn btn-primary text-default">View all</button>
+                        </div>
+                      </tr>
+                   </table>
                 </div>
              </div>
           </div>
