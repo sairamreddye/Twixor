@@ -30,78 +30,101 @@
          <div class="col-md-10 mt-3 aside_right">
             <div class="col-md-12 pr-0 pl-0 bg_waterblue border_radius_15 border">
                <div class="p-3">
-                  <form class="row">
+                  <form class="row" [formGroup]="group" (submit)="submit($event)" (reset)="reset($event)" #f="ngForm">
                      <div class="col-md-2 form-group mb-0 analytics">
                         <label for="idate">Department</label>
-                        <div class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white">
+                        <!-- <div class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white">
                            <div class="custom-select">
                               <div class="custom-select__trigger">
                                  <span class="grey_text">E.g:Admin</span>
                                  <img src="../../../../assets/img/analytics/Asset17.svg" class="journey_call">
-                              </div>
+                              </div> -->
                               <!--    <div class="custom-select__trigger"><span class="grey_text">Admin</span>
                                  <div class="arrow"></div>
                                  </div> -->
-                              <div class="col-md-12 custom-options encaps">
+                              <!-- <div class="col-md-12 custom-options encaps">
                                  <span class="custom-option selected" data-value="tesla">Associate</span>
                                  <span class="custom-option" data-value="volvo">Trainee</span>
                               </div>
                            </div>
-                        </div>
+                        </div>  -->
+                  	<mat-form-field matLine>
+                        <mat-select formControlName="department" placeholder="Select Department">
+                           <mat-option [value]="choice.id" *ngFor="let choice of analyticDepartment">{{ choice.name }}</mat-option>
+                        </mat-select>
+                     </mat-form-field>
+
                      </div>
+                    
+
                      <div class="col-md-2 form-group mb-0 analytics">
                         <label for="idate">Agent</label>
-                        <div class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white">
+                        <!-- <div class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white">
                            <div class="custom-select">
                               <div class="custom-select__trigger">
                                  <span class="grey_text">E.g:John</span>
                                   <img src="../../../../assets/img/analytics/Asset17.svg" class="journey_call">
-                              </div>
+                              </div> -->
                               <!--    <div class="custom-select__trigger"><span class="grey_text">Admin</span>
                                  <div class="arrow"></div>
                                  </div> -->
-                              <div class="col-md-12 custom-options encaps">
+                              <!-- <div class="col-md-12 custom-options encaps">
                                  <span class="custom-option selected" data-value="tesla">Associate</span>
                                  <span class="custom-option" data-value="volvo">Trainee</span>
                               </div>
                            </div>
-                        </div>
+                        </div> -->
+                        <mat-form-field matLine>
+                           <mat-select formControlName="agent" placeholder="Select Agent">
+                              <mat-option [value]="choice.id" *ngFor="let choice of analyticDepartment">{{ choice.name }}</mat-option>
+                           </mat-select>
+                        </mat-form-field>
                      </div>
                      <div class="col-md-2 form-group mb-0 analytics">
                         <label for="idate">Start Date</label>
-                        <div class="input-group input-medium">
+                        <!-- <div class="input-group input-medium">
                            <input type="text" class="form-control date_width border-0 bg-white" id="date" placeholder="E.g 22-5-2020">
                            <span class="input-group-btn bg-white">
                            <button class="btn btn-default fleet_date"><img src="../../../../assets/img/analytics/Asset24.svg" class="analytic_date"/></button>
                            </span>
-                        </div>
+                        </div> -->
+                        <mat-form-field>
+                           <input matInput [matDatepicker]="dp" placeholder="startDate" formControlName="startdate">
+                           <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                           <mat-datepicker #dp></mat-datepicker>
+                         </mat-form-field>
                      </div>
                      <span class="text-primary hypen">-</span>
                      <div class="col-md-2 form-group mb-0 analytics">
                         <label for="idate">End Date</label>
-                        <div class="input-group input-medium">
+                        <!-- <div class="input-group input-medium">
                            <input type="text" class="form-control date_width border-0 bg-white" placeholder="E.g 25-09-2020">
                            <span class="input-group-btn bg-white">
                            <button class="btn btn-default fleet_date "><img src="../../../../assets/img/analytics/Asset24.svg" class="analytic_date"/></button>
                            </span>
-                        </div>
+                        </div> -->
+                        <mat-form-field>
+                           <input matInput [matDatepicker]="dps" placeholder="End Date" formControlName="enddate">
+                           <mat-datepicker-toggle matSuffix [for]="dps"></mat-datepicker-toggle>
+                           <mat-datepicker #dps></mat-datepicker>
+                         </mat-form-field>
                      </div>
-                     <button type="submit" class="btn btn-light border-light m-3 p-2">Get Report</button>
+                     <button type="submit" class="btn btn-light border-light m-3 p-2" type="submit">Get Report</button>
                   </form>
                </div>
             </div>
             <div class="row">
                <div class="col-md-2">
-                  <div class="card bg_waterblue mt-3 pt-0 pr-3 pl-3 pb-3">
-                     <div class="numberic text-primary">08</div>
+                  <div class="card bg_waterblue mt-3 pt-0 pr-3 pl-3 pb-3" *ngIf = "chatAttended !== undefined">
+                     <div class="numberic text-primary">{{chatAttended}}</div>
                      <div class="chats_details">Attended Chats</div>
                   </div>
                   <div class="card bg_waterblue mt-3 pt-0 pr-3 pl-3 pb-3">
-                     <div class="numberic text-primary">08</div>
+                     <div class="numberic text-primary">{{missedChat}}</div>
                      <div class="chats_details">Missed Chats</div>
                   </div>
                   <div class="card bg_waterblue mt-3 pt-0 pr-3 pl-3 pb-3">
-                     <div class="numberic text-primary">08 <span style="font-size:1rem;">Sec</span></div>
+                     <div class="numberic text-primary">{{avgPickedUpInterval.value}}<span style="font-size:1rem;">{{avgPickedUpInterval.unit}}</span></div>
                      <div class="chats_details">Time Taken</div>
                   </div>
                   <div class="card bg-primary mt-3 p-3">
