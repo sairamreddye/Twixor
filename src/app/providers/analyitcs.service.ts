@@ -6,11 +6,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AnalyitcsService {
   
- baseurl:any ="https://aim.twixor.com/e/enterprise/chat/dashboard_info?fromDate=2020-11-12T00%3A00%3A00.000&toDate=2020-11-18T23%3A59%3A00.000&clientOffset=-330&timeType=DAY&currentDate=2020-11-18&department=&agent=0&departmentsRequired=true&_=1605677463250"
-
+ 
  constructor(private http: HttpClient) { }
 
-  analytics(){
-    return this.http.get(this.baseurl)
+  analytics(a,b,c,d,e,f,g){
+    debugger;
+   const baseurl =`https://aim.twixor.com/e/enterprise/chat/dashboard_info?fromDate=${a}T00%3A00%3A00.000&toDate=${b}T23%3A59%3A00.000&clientOffset=${c}&timeType=${d}&currentDate=${e}&department=&agent=${f}&departmentsRequired=${g}&_=1605677463250`
+    return this.http.get(baseurl)
   }
 }
