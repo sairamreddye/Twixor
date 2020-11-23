@@ -109,22 +109,22 @@
                            <mat-datepicker #dps></mat-datepicker>
                          </mat-form-field>
                      </div>
-                     <button type="submit" class="btn btn-light border-light m-3 p-2" type="submit">Get Report</button>
+                     <button type="submit" class="btn btn-light border-light m-3 p-2" type="submit" [disabled]="!group.valid">Get Report</button>
                   </form>
                </div>
             </div>
             <div class="row">
                <div class="col-md-2">
-                  <div class="card bg_waterblue mt-3 pt-0 pr-3 pl-3 pb-3" *ngIf = "chatAttended !== undefined">
-                     <div class="numberic text-primary">{{chatAttended}}</div>
+                  <div class="card bg_waterblue mt-3 pt-0 pr-3 pl-3 pb-3" *ngIf ="chatAttended !== undefined">
+                     <div class="numberic text-primary">{{chatAttended ?chatAttended : 00}}</div>
                      <div class="chats_details">Attended Chats</div>
                   </div>
-                  <div class="card bg_waterblue mt-3 pt-0 pr-3 pl-3 pb-3">
-                     <div class="numberic text-primary">{{missedChat}}</div>
+                  <div class="card bg_waterblue mt-3 pt-0 pr-3 pl-3 pb-3" *ngIf ="missedChat !== undefined">
+                     <div class="numberic text-primary">{{missedChat ? missedChat : 00}}</div>
                      <div class="chats_details">Missed Chats</div>
                   </div>
-                  <div class="card bg_waterblue mt-3 pt-0 pr-3 pl-3 pb-3">
-                     <div class="numberic text-primary">{{avgPickedUpInterval.value}}<span style="font-size:1rem;">{{avgPickedUpInterval.unit}}</span></div>
+                  <div class="card bg_waterblue mt-3 pt-0 pr-3 pl-3 pb-3" *ngIf ="avgPickedUpInterval !== undefined">
+                     <div class="numberic text-primary">{{avgPickedUpInterval.value ? avgPickedUpInterval.value : 00}}<span style="font-size:1rem;">{{avgPickedUpInterval.unit ? avgPickedUpInterval.unit : sec}}</span></div>
                      <div class="chats_details">Time Taken</div>
                   </div>
                   <div class="card bg-primary mt-3 p-3">

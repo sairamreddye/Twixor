@@ -4,8 +4,6 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 // import { MomentDateAdapter } from "@angular/material-moment-adapter";
 import { DatePipe } from "@angular/common";
 
-
-
 @Component({
   selector: 'app-analytics',
   templateUrl: './analytics.component.html',
@@ -14,12 +12,13 @@ import { DatePipe } from "@angular/common";
     DatePipe
   ]
 })
+
 export class AnalyticsComponent implements OnInit {
   @ViewChild('f', { static: false }) myForm;
 
-  chatAttended: any = "00";
+  chatAttended: any ="00";
   missedChat: any = "00";
-  avgPickedUpInterval: any;
+  avgPickedUpInterval: any = "0";
   survey = new Array<MyObj>();
   group: FormGroup;
   analyticDepartment = [
@@ -37,10 +36,7 @@ export class AnalyticsComponent implements OnInit {
   department: any;
   agent: any;
 
-
-
-
-  constructor(private analytics: AnalyitcsService, private datePipe: DatePipe, private formBuilder: FormBuilder,) { }
+  constructor(private analytics: AnalyitcsService, private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.analyticsData();
@@ -54,7 +50,6 @@ export class AnalyticsComponent implements OnInit {
   }
 
   analyticsData() {
-    debugger;
     if (this.parametersCheck) {
       this.startDate = this.Last7Days();
       this.enddate = this.formatDate();
@@ -65,16 +60,15 @@ export class AnalyticsComponent implements OnInit {
     this.currentDate = this.formatDate();
     this.departmentsRequired = true;
     this.analytics.analytics(this.startDate, this.enddate, this.clientOffset, this.timeType, this.currentDate, this.departmentAgent, this.departmentsRequired).subscribe((res: any) => {
-      const analyticResponse = res.response;
-      this.chatAttended = this.zeroAdd(analyticResponse['noOfAttendedChats']) !== undefined ? this.zeroAdd(analyticResponse['noOfAttendedChats']) : "00";
-      this.missedChat = this.zeroAdd(analyticResponse['noOfMissedChats']) !== undefined ? this.zeroAdd(analyticResponse['noOfMissedChats']) : "00";
-      this.avgPickedUpInterval = this.getDuration(analyticResponse['avgPickedUpInterval']) !== undefined ? this.getDuration(analyticResponse['avgPickedUpInterval']) : "00";
+    const analyticResponse = res.response;
+    this.chatAttended = this.zeroAdd(analyticResponse['noOfAttendedChats']) !== undefined ? this.zeroAdd(analyticResponse['noOfAttendedChats']) : "00";
+    this.missedChat = this.zeroAdd(analyticResponse['noOfMissedChats']) !== undefined ? this.zeroAdd(analyticResponse['noOfMissedChats']) : "00";
+    this.avgPickedUpInterval = this.getDuration(analyticResponse['avgPickedUpInterval']) !== undefined ? this.getDuration(analyticResponse['avgPickedUpInterval']) : "00";
     });
   }
 
   submit($event) {
     $event.preventDefault();
-    debugger
     if (this.group.valid) {
       const obj = new MyObj();
       Object.assign(obj, this.group.value);
@@ -109,8 +103,8 @@ export class AnalyticsComponent implements OnInit {
       this.reset();
       return;
     }
-    else{
-    alert('not valid, try again');
+    else {
+      alert('not valid, try again');
     }
   }
 
@@ -118,16 +112,6 @@ export class AnalyticsComponent implements OnInit {
     this.myForm.resetForm(); // <-- ici
     this.group.reset();
   }
-
-  fillForm(selection) {
-    this.group.reset({
-      department: selection.department,
-      agent: selection.agent,
-      startdate: selection.startdate,
-      enddate: selection.enddate
-    });
-  }
-
 
 
   zeroAdd(parameter) {
@@ -150,12 +134,9 @@ export class AnalyticsComponent implements OnInit {
   }
 
   Last7Days() {
-    const n = 6;
-    const d = new Date();
-    d.setDate(d.getDate() - n);
-    return (function (day, month, year) {
-      return [year, month < 10 ? '0' + month : month, day < 10 ? '0' + day : day].join('-');
-    })(d.getDate(), d.getMonth(), d.getFullYear());
+    let date = new Date();
+    date.setDate(date.getDate() - 6);
+    return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
   }
 
   formatDate() {
@@ -169,17 +150,22 @@ export class AnalyticsComponent implements OnInit {
 
     return [year, month, day].join('-');
   }
-
 }
-
-
-
 class MyObj {
   select: string;
   input: string;
   date: number;
 }
 
+
+// fillForm(selection) {
+  //   this.group.reset({
+  //     department: selection.department,
+  //     agent: selection.agent,
+  //     startdate: selection.startdate,
+  //     enddate: selection.enddate
+  //   });
+  // }
 
   // constructor() {
   //   this.date = Date.now();
