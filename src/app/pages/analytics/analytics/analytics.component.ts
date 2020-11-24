@@ -21,10 +21,10 @@ export class AnalyticsComponent implements OnInit {
   avgPickedUpInterval: any = "0";
   survey = new Array<MyObj>();
   group: FormGroup;
-  analyticDepartment = [
-    { name: 'asscoiate', id: 0 },
-    { name: 'trainee', id: 1 }
-  ];
+  // analyticDepartment = [
+  //   { name: 'asscoiate', id: 0 },
+  //   { name: 'trainee', id: 1 }
+  // ];
   startDate: string;
   enddate: any;
   clientOffset: number;
@@ -35,6 +35,9 @@ export class AnalyticsComponent implements OnInit {
   parametersCheck: any = true;
   department: any;
   agent: any;
+  analyticDepartment: any;
+  analyticAgent: any;
+  dashBoardData: any;
 
   constructor(private analytics: AnalyitcsService, private datePipe: DatePipe) { }
 
@@ -53,17 +56,22 @@ export class AnalyticsComponent implements OnInit {
     if (this.parametersCheck) {
       this.startDate = this.Last7Days();
       this.enddate = this.formatDate();
+      this.agent = 0;
+      this.department = '';
+      this.departmentsRequired = true;
     }
     this.clientOffset = -330;
     this.timeType = 'DAY';
-    this.departmentAgent = 0;
     this.currentDate = this.formatDate();
-    this.departmentsRequired = true;
-    this.analytics.analytics(this.startDate, this.enddate, this.clientOffset, this.timeType, this.currentDate, this.departmentAgent, this.departmentsRequired).subscribe((res: any) => {
+    this.analytics.analytics(this.startDate, this.enddate, this.clientOffset, this.timeType, this.currentDate, this.department,this.agent, this.departmentsRequired).subscribe((res: any) => {
     const analyticResponse = res.response;
+    debugger
     this.chatAttended = this.zeroAdd(analyticResponse['noOfAttendedChats']) !== undefined ? this.zeroAdd(analyticResponse['noOfAttendedChats']) : "00";
     this.missedChat = this.zeroAdd(analyticResponse['noOfMissedChats']) !== undefined ? this.zeroAdd(analyticResponse['noOfMissedChats']) : "00";
     this.avgPickedUpInterval = this.getDuration(analyticResponse['avgPickedUpInterval']) !== undefined ? this.getDuration(analyticResponse['avgPickedUpInterval']) : "00";
+    this.analyticDepartment = analyticResponse['profiles'];
+    this.analyticAgent = analyticResponse['users'];
+    this.dashBoardData = analyticResponse['dashBoardData']; //todo reshma want to do task
     });
   }
 
@@ -76,8 +84,10 @@ export class AnalyticsComponent implements OnInit {
       this.parametersCheck = false;
       this.department = this.group.controls['department'].value;
       this.agent = this.group.controls['agent'].value;
+      debugger
+      this.departmentsRequired = false;
       this.startDate = this.datePipe.transform(this.group.controls['startdate'].value, "yyyy-MM-dd");
-      if (this.enddate = this.datePipe.transform(this.group.controls['enddate'].value, "yyyy-MM-dd") <= this.formatDate()) {
+      if (this.datePipe.transform(this.group.controls['enddate'].value, "yyyy-MM-dd") <= this.formatDate()) {
         this.enddate = this.datePipe.transform(this.group.controls['enddate'].value, "yyyy-MM-dd");
       }
       else {

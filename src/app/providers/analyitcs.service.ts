@@ -10,8 +10,8 @@ export class AnalyitcsService {
  
  constructor(private http: HttpClient) { }
 
-  analytics(a,b,c,d,e,f,g){
-   const baseurl =`${environment.BASEURL}e/enterprise/chat/dashboard_info?fromDate=${a}T00%3A00%3A00.000&toDate=${b}T23%3A59%3A00.000&clientOffset=${c}&timeType=${d}&currentDate=${e}&department=&agent=${f}&departmentsRequired=${g}&_=1605677463250`;
-    return this.http.get(baseurl)
+  analytics(a,b,c,d,e,f,g,h){
+   const baseurl =`${environment.BASEURL}e/enterprise/chat/dashboard_info?fromDate=${a}T00%3A00%3A00.000&toDate=${b}T23%3A59%3A00.000&clientOffset=${c}&timeType=${d}&currentDate=${e}&department=${f}&agent=${g}&departmentsRequired=${h}&_=1605677463250`;
+    return this.http.get(baseurl);
   }
 }
