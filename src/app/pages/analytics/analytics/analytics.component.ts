@@ -71,7 +71,7 @@ export class AnalyticsComponent implements OnInit {
     this.avgPickedUpInterval = this.getDuration(analyticResponse['avgPickedUpInterval']) !== undefined ? this.getDuration(analyticResponse['avgPickedUpInterval']) : "00";
     this.analyticDepartment = analyticResponse['profiles'];
     this.analyticAgent = analyticResponse['users'];
-    this.dashBoardData = analyticResponse['dashBoardData'];
+    this.dashBoardData = analyticResponse['dashBoardData']; //todo reshma want to do task
     });
   }
 
