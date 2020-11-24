@@ -50,7 +50,7 @@
                         </div>  -->
                   	<mat-form-field matLine>
                         <mat-select formControlName="department" placeholder="Select Department">
-                           <mat-option [value]="choice.id" *ngFor="let choice of analyticDepartment">{{ choice.name }}</mat-option>
+                           <mat-option [value]="department._id.$oid" *ngFor="let department of analyticDepartment">{{ department.name }}</mat-option>
                         </mat-select>
                      </mat-form-field>
 
@@ -76,7 +76,7 @@
                         </div> -->
                         <mat-form-field matLine>
                            <mat-select formControlName="agent" placeholder="Select Agent">
-                              <mat-option [value]="choice.id" *ngFor="let choice of analyticDepartment">{{ choice.name }}</mat-option>
+                              <mat-option [value]="agent.id" *ngFor="let agent of analyticAgent">{{ agent.name }}</mat-option>
                            </mat-select>
                         </mat-form-field>
                      </div>
