@@ -44,6 +44,11 @@ const routes: Routes =
         path: 'analytics',
         // canActivate: [Authguard],
         loadChildren: () => import('./pages/analytics/analytics.module').then(m => m.AnalyticsModule),
+      },
+      {
+        path: 'chat-history',
+        // canActivate: [Authguard],
+        loadChildren: () => import('./pages/chathistory/chathistory.module').then(m => m.ChathistoryModule),
       }
     ]
     },

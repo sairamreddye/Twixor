@@ -67,4 +67,8 @@ export class SideNavComponent implements OnInit {
       const userToken = this.storageService.getToken();
      this.router.navigateByUrl(`/analytics?authToken=${userToken}`);
     }
+    chatHistory(){
+      const userToken = this.storageService.getToken();
+     this.router.navigateByUrl(`/chat-history?authToken=${userToken}`);
+    }
 }
