@@ -68,7 +68,7 @@ export class AuthInterceptor implements HttpInterceptor {
       else {    //todo condition if any one condition is not satisfied
         Request = getRequest;
       }
-      console.log(`Requrl:${req.url}`);
+      // console.log(`Requrl:${req.url}`);
     }
     else {    //todo condition if any one condition is not satisfied
       Request = req;

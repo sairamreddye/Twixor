@@ -14,6 +14,10 @@ import { ErrorComponent } from './pages/error/error.component';
 import { SideNavComponent } from './pages/side-nav/side-nav.component';
 import { FullLayoutComponent } from './pages/full-layout/full-layout.component';
 import { AuthInterceptor } from './providers/auth.interceptor.service';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
+import { MatInputModule } from '@angular/material';
 @NgModule({
 
   declarations: [
@@ -30,7 +34,11 @@ import { AuthInterceptor } from './providers/auth.interceptor.service';
     HttpClientModule,
     FormsModule,
     NgSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule
   ],
   bootstrap: [AppComponent],
   providers: [
