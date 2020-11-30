@@ -1,28 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AnalyticsRoutingModule } from './analytics-routing.module';
-import { AnalyticsComponent } from './analytics/analytics.component';
+import { ChathistoryRoutingModule } from './chathistory-routing.module';
+import { ChathistoryComponent } from './chathistory/chathistory.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import { MatInputModule } from '@angular/material';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
-  declarations: [AnalyticsComponent],
+  declarations: [ChathistoryComponent],
   imports: [
     CommonModule,
-    AnalyticsRoutingModule,
-    MatSelectModule,
-    FormsModule,ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ChathistoryRoutingModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatRippleModule,
-    MatInputModule
-  ],
-  exports:[
-    AnalyticsComponent
+    MatInputModule,
+    MatSelectModule,
+    MatAutocompleteModule
   ]
 })
-export class AnalyticsModule { }
+export class ChathistoryModule { }
