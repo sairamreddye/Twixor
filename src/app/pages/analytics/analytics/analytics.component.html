@@ -156,7 +156,17 @@
                      <div></div>
                   </ul>
                   <div class="col-md-12 card mt-3 no_record_height">
-                     <img src="../../../../assets/img/analytics/Asset25.svg" class="mx-auto analytics" width="150" height="150">
+                     <!-- <img src="../../../../assets/img/analytics/Asset25.svg" class="mx-auto analytics" width="150" height="150"> -->
+                     <div class=" card no_record_height border-radius" style="height:320px;">
+                        <table class="table-bordered m-4">
+                            <tr *ngFor = "let result of dashBoardData">
+                                <td> {{result.date}}</td>
+                                <td> {{result.noOfAttendedChats}} </td>
+                                <td> {{result.noOfMissedChats}}</td>
+                                <td> {{result.noOfMissedChats}} </td>
+                            </tr>
+                        </table>
+                    </div> 
                   </div>
                   <div class="col-md-12 card mt-3 no_record_height">
                      <label class="text-primary graph_text">Graph</label>
