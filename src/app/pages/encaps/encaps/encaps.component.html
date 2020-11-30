@@ -1,225 +1,234 @@
 <div id="page-top m-0">
-    <!-- Page Wrapper -->
-    <div id="" class="row m-0">
+   <!-- Page Wrapper -->
+   <div id="" class="row m-0">
        <!-- Sidebar -->
        <!-- <div class="col-md-2 p-0 sidebar">
-          <iframe id="serviceFrameSend" src="../sidebar.html" class="col-md-12 p-0 iframe-embed" frameborder="0"  scrolling="no">
-          </iframe>
-       </div> -->
+         <iframe id="serviceFrameSend" src="../sidebar.html" class="col-md-12 p-0 iframe-embed" frameborder="0"  scrolling="no">
+         </iframe>
+      </div> -->
        <!-- Content Wrapper -->
-       <div class="col-md-10 mt-3 aside_right">
-          <div class="col-md-12 queue-activity">
-             <div class="card p-2">
-                <div class="card-title p-3 queue_activity"><img src="assets/Dashboard/Asset28.svg" class="pr-2 encaps_dashboard">Overview</div>
-             </div>
-             <div class="col-md-12 row chats_queue m-0">
-                <div class="col-md-2">
-                   <div class="card bg_waterblue mt-3 pt-0 pb-3 pr-3 pl-3">
-                      <div class="numberic text-primary">{{totalCount}}</div>
-                      <div class="chats_details">Encaps</div>
+       <div class="col-md-12 mt-3 aside_right">
+           <div class="col-md-12 queue-activity">
+               <div class="card top">
+                   <div class="card-title queue_activity"><img src="assets/Dashboard/Asset28.svg" class="pr-2 encaps_dashboard"><span class="tile-title">Overview</span></div>
+               </div>
+               <div class="col-md-12 row chats_queue m-0">
+                   <div class="col-md-2">
+                       <div class="card bg_waterblue mt-3 pt-0 pb-3 pr-3 pl-3">
+                           <div class="numberic">{{totalCount}}</div>
+                           <div class="chats_details">Encaps</div>
+                       </div>
                    </div>
-                </div>
-                <div class="col-md-2">
-                   <div class="card bg_waterblue mt-3 pt-0 pb-3 pr-3 pl-3">
-                      <div class="numberic text-primary">{{createdCount}}</div>
-                      <div class="chats_details">Created</div>
+                   <div class="col-md-2">
+                       <div class="card bg_waterblue mt-3 pt-0 pb-3 pr-3 pl-3">
+                           <div class="numberic">{{createdCount}}</div>
+                           <div class="chats_details">Created</div>
+                       </div>
                    </div>
-                </div>
-                <div class="col-md-2">
-                   <div class="card bg_waterblue mt-3 pt-0 pb-3 pr-3 pl-3">
-                      <div class="numberic text-primary">{{pausedCount}}</div>
-                      <div class="chats_details">Running</div>
+                   <div class="col-md-2">
+                       <div class="card bg_waterblue mt-3 pt-0 pb-3 pr-3 pl-3">
+                           <div class="numberic">{{pausedCount}}</div>
+                           <div class="chats_details">Running</div>
+                       </div>
                    </div>
-                </div>
-                <div class="col-md-2">
-                   <div class="card bg_waterblue mt-3 pt-0 pb-3 pr-3 pl-3">
-                      <div class="numberic text-primary">{{scheduledCount}}</div>
-                      <div class="chats_details">Scheduled</div>
+                   <div class="col-md-2">
+                       <div class="card bg_waterblue mt-3 pt-0 pb-3 pr-3 pl-3">
+                           <div class="numberic">{{scheduledCount}}</div>
+                           <div class="chats_details">Scheduled</div>
+                       </div>
                    </div>
-                </div>
-                <div class="col-md-2">
-                   <div class="card bg_waterblue mt-3 pt-0 pb-3 pr-3 pl-3">
-                      <div class="numberic text-primary">{{stoppedCount}}</div>
-                      <div class="chats_details">Stopped</div>
+                   <div class="col-md-2">
+                       <div class="card bg_waterblue mt-3 pt-0 pb-3 pr-3 pl-3">
+                           <div class="numberic">{{stoppedCount}}</div>
+                           <div class="chats_details">Stopped</div>
+                       </div>
                    </div>
-                </div>
-                <div class="col-md-2">
-                   <div class="card bg_waterblue mt-3 pt-0 pb-3 pr-3 pl-3">
-                      <div class="numberic text-primary">{{expiredCount}}</div>
-                      <div class="chats_details">Expired</div>
+                   <div class="col-md-2">
+                       <div class="card bg_waterblue mt-3 pt-0 pb-3 pr-3 pl-3">
+                           <div class="numberic">{{expiredCount}}</div>
+                           <div class="chats_details">Expired</div>
+                       </div>
                    </div>
-                </div>
-             </div>
-          </div>
-          <div class="row mb-3">
-             <div class="col-md-6">
-                <div class="card mt-3 p-0">
-                   <div class="card-body pb-0">
-                      <img src="assets/Dashboard/Asset29.svg" class="pr-2 encaps_dashboard"><b>Recent Encaps</b><i class="fa fa-external-link grey_text pl-2 " aria-hidden="true"></i>
-                      <hr class="mb-1">
-                   </div>
-                   <ul class="list-group list-group-flush  border-top-0">
-                      <li class="list-group-item p-3 border-bottom-0">
-                         <div class="mb-2" *ngFor = "let namerecent of recentEncaps">
-                            {{namerecent.name}}<br>
-                            <span class="grey_text mb-4">{{namerecent.createdOn.$date | date}}</span><span class="left_running float-right text-primary">Running</span><br>
-                         </div>
-                         <!-- <div *ngFor = "let insta of instance">
-                           {{insta.name}}para
-                          <div>
-                          {{insta.createdOn.$date}}
-                            </div>
-                          </div> -->
-                         <!-- <div class="">
-                            Message<br>
-                            <span class="grey_text">Key Division</span>
-                            <span class="grey_text">closing on 09:34 PM</span><span class="left_running float-right text-primary">Running</span>
+               </div>
+           </div>
+           <div class="row mb-3 m-0">
+               <div class="col-md-6">
+                   <div class="card mt-3 p-0">
+                       <div class="card-body pb-0">
+                           <img src="assets/Dashboard/Asset29.svg" class="pr-2 encaps_dashboard"><span class="tile-title">Recent Encaps</span><i class="fa fa-external-link grey_text pl-2 " aria-hidden="true"></i>
+                           <hr class="mb-1">
+                       </div>
+                       <ul class="list-group list-group-flush  border-top-0">
+                           <li class="list-group-item p-3 border-bottom-0">
+                               <div class="mb-2" *ngFor="let namerecent of recentEncaps">
+                                   <span class="label-recent">{{namerecent.name}}</span><br>
+                                   <span class="grey_text mb-4">{{namerecent.createdOn.$date | date}}</span><span class="left_running float-right ">Running</span><br>
+                               </div>
+                               <!-- <div *ngFor = "let insta of instance">
+                          {{insta.name}}para
+                         <div>
+                         {{insta.createdOn.$date}}
+                           </div>
                          </div> -->
-                      </li>
-                      <!-- <li class="list-group-item pr-3 pl-3 border-bottom-0">
-                         <div class="">
-                            Big Basket Promotion Campaign for Covid-19<br>
-                            <span class="grey_text">Key Assurance</span>
-                            <span class="grey_text">25-Mar-2020 / 09:34 PM</span><span class="left_running float-right text-primary">Created</span>
-                         </div>
-                      </li> -->
-                      <!-- <li class="list-group-item pr-3 pl-3 border-bottom-0">
-                         <div class="">
-                            HDFC New Insurance - 2020<br>
-                            <span class="grey_text">Key Group</span>
-                            <span class="grey_text">25-Mar-2020 / 09:34 PM</span><span class="left_running float-right text-primary">Running</span><br>
-                         </div>
-                      </li> -->
-                      <!-- <li class="list-group-item p-3 border_radius_15 border-bottom-0">
-                         <div class="mb-2">
-                            HDFC<br>
-                            <span class="grey_text">25-Mar-2020 / 09:34 PM</span><span class="left_running float-right text-primary">Stopped</span><br>
-                         </div>
-                      </li> -->
-                      <div class=" text-right">
-                        <button class="btn btn-primary text-default">View all</button>
-                     </div>
-                   </ul>
-                </div>
-             </div>
-             <div class="col-md-6">
-                <div class="card mt-3 p-0">
-                   <div class="card-body pb-0">
-                      <div class="mr-4 ml-4" id="re_workspace">
-                         <img src="assets/Dashboard/Asset30.svg" class="pr-2 encaps_dashboard"><b>&nbsp;&nbsp;&nbsp;Closing Soon<i class="fa fa-external-link grey_text pl-2" aria-hidden="true"></i></b>
-                      </div>
-                      <hr class="mb-1">
-                   </div>
-                   <ul class="list-group list-group-flush  border-top-0" style="height:310px;">
-                      <li class="list-group-item p-3 border-bottom-0 border_radius_15">
-                         <div class="mb-2" *ngFor = "let nameclosing of closingEncaps">
-                            {{nameclosing.name}}<br>
-                            <span class="grey_text mb-4">{{nameclosing.createdOn.$date | date}}</span><span class="left_running float-right text-primary">Running</span><br>
-                         </div>
-                         <!-- <div class="">
-                            Message<br>
-                            <span class="grey_text">Key Division</span>
-                            <span class="grey_text">closing on 09:34 PM</span><span class="left_running float-right text-primary">Running</span>
-                         </div> -->
-                      </li>
-                      <div class=" text-right">
-                        <button class="btn btn-primary text-default">View all</button>
-                     </div>
-                   </ul>
-                </div>
-             </div>
-          </div>
-          <div class="running_encaps">
-             <img src="assets/Dashboard/Asset28.svg" class="pr-2 encaps_dashboard"><b>Running Encaps</b><i class="fa fa-external-link grey_text pl-2" aria-hidden="true"></i>
-          </div>
-          <div class="row">
-             <div class="col-md-12">
-                <ul class="col-md-12 nav float-right border pt-2 pb-2 d-flex justify-content-around mt-3 mb-3">
-                   <li class="nav-item p-0 active">
-                      <a class="nav-link height workspace d-flex justify-content-center" href="#" id="flow_item">
-                      Launch Name </a>
-                   </li>
-                   <li class="nav-item border-right p-0 "></li>
-                   <li class="nav-item p-0">
-                      <a class="nav-link height" href="#" id="form_item">
-                      Status </a>
-                   </li>
-                   <li class="nav-item border-right p-0 "></li>
-                   <li class="nav-item p-0">
-                      <a class="nav-link height" href="#" id="button_item">
-                      Total</a>
-                   </li>
-                   <li class="nav-item border-right p-0 "></li>
-                   <li class="nav-item p-0">
-                      <a class="nav-link height" href="#" id="webhooks_item">
-                      Visited </a>
-                   </li>
-                   <li class="nav-item border-right p-0 "></li>
-                   <li class="nav-item p-0">
-                      <a class="nav-link height" href="#" id="webhooks_item">
-                      Created On </a>
-                   </li>
-                   <li class="nav-item border-right p-0 "></li>
-                   <li class="nav-item p-0">
-                      <a class="nav-link height" href="#" id="webhooks_item">
-                      Closing On </a>
-                   </li>
-                   <div></div>
-                </ul>
-                <div class=" card no_record_height" style="height:320px;" >
-                   <!-- <img src="assets/Dashboard/Asset25.svg" class="encaps mx-auto" width="150" height="150"> -->
-                   <table>
-                      <tr >
-                         <ul class="col-md-12 nav float-right border pb-2 d-flex justify-content-around  mb-3" *ngFor = "let namerunning of runningEncaps">
-                              <td >
-                                 <li class="nav-item p-0 border-right active">
-                                    <a class="nav-link height " href="#" id="flow_item">
-                                       {{namerunning.name}}</a>
-                                 </li>
-                              </td>
-                              <td>
-                                 <li class="nav-item p-0 border-right p-0 text-center ">
-                                    <a class="nav-link height  color_black" href="#" id="form_item">{{namerunning.state}} </a>
-                                 </li>
-                              </td>
-                              <td>
-                                 <li class="nav-item p-0 border-right p-0 ">
-                                    <a class="nav-link height  color_black" href="#" id="form_item">{{namerunning.total}} </a>
-                                 </li>
-                              </td>
-                              <td>
-                                 <li class="nav-item p-0 border-right p-0 ">
-                                    <a class="nav-link height  color_black" href="#" id="form_item">{{namerunning.viewed}} </a>
-                                 </li>
-                              </td>
-                              <td>
-                                 <li class="nav-item p-0 border-right p-0 ">
-                                    <a class="nav-link height  color_black" href="#" id="form_item">{{namerunning.createdOn.$date | date}} </a>
-                                 </li>
-                              </td>
-                              <td>
-                                 <li class="nav-item p-0  p-0 ">
-                                    <a class="nav-link height  color_black" href="#" id="form_item">Forever </a>
-                                 </li>
-                              </td>
-                             
-                         </ul>
-                         <div class=" text-right">
-                           <button class="btn btn-primary text-default">View all</button>
+                               <!-- <div class="">
+                           Message<br>
+                           <span class="grey_text">Key Division</span>
+                           <span class="grey_text">closing on 09:34 PM</span><span class="left_running float-right ">Running</span>
+                        </div> -->
+                           </li>
+                           <!-- <li class="list-group-item pr-3 pl-3 border-bottom-0">
+                        <div class="">
+                           Big Basket Promotion Campaign for Covid-19<br>
+                           <span class="grey_text">Key Assurance</span>
+                           <span class="grey_text">25-Mar-2020 / 09:34 PM</span><span class="left_running float-right ">Created</span>
                         </div>
-                      </tr>
-                   </table>
-                </div>
-             </div>
-          </div>
+                     </li> -->
+                           <!-- <li class="list-group-item pr-3 pl-3 border-bottom-0">
+                        <div class="">
+                           HDFC New Insurance - 2020<br>
+                           <span class="grey_text">Key Group</span>
+                           <span class="grey_text">25-Mar-2020 / 09:34 PM</span><span class="left_running float-right ">Running</span><br>
+                        </div>
+                     </li> -->
+                           <!-- <li class="list-group-item p-3 border_radius_15 border-bottom-0">
+                        <div class="mb-2">
+                           HDFC<br>
+                           <span class="grey_text">25-Mar-2020 / 09:34 PM</span><span class="left_running float-right ">Stopped</span><br>
+                        </div>
+                     </li> -->
+                           <!-- <div class=" text-right">
+                               <button class="btn text-default">View all</button>
+                           </div> -->
+                       </ul>
+                   </div>
+               </div>
+               <div class="col-md-6">
+                   <div class="card mt-3 p-0">
+                       <div class="card-body pb-0">
+                           <div class="mr-4 ml-4" id="re_workspace">
+                               <img src="assets/Dashboard/Asset30.svg" class="pr-2 encaps_dashboard"><span class="tile-title">Closing Soon</span><i class="fa fa-external-link grey_text pl-2" aria-hidden="true"></i>
+                           </div>
+                           <hr class="mb-1">
+                       </div>
+                       <ul class="list-group list-group-flush  border-top-0" style="height:310px;">
+                           <li class="list-group-item p-3 border-bottom-0 border_radius_15">
+                               <div class="mb-2" *ngFor="let nameclosing of closingEncaps">
+                                   {{nameclosing.name}}<br>
+                                   <span class="grey_text mb-4">{{nameclosing.createdOn.$date | date}}</span><span class="left_running float-right ">Running</span><br>
+                               </div>
+                               <!-- <div class="">
+                           Message<br>
+                           <span class="grey_text">Key Division</span>
+                           <span class="grey_text">closing on 09:34 PM</span><span class="left_running float-right ">Running</span>
+                        </div> -->
+                           </li>
+                           <!-- <div class=" text-right">
+                               <button class="btn btn-primary text-default">View all</button>
+                           </div> -->
+                       </ul>
+                   </div>
+               </div>
+           </div>
+           <div class="running_encaps pr-3 pl-3">
+               <img src="assets/Dashboard/Asset28.svg" class="pr-2 encaps_dashboard"><span class="tile-title">Running Encaps</span><i class="fa fa-external-link grey_text pl-2" aria-hidden="true"></i>
+           </div>
+           <div class="row m-0">
+               <div class="col-md-12">
+                   <ul class="col-md-12 nav float-right border d-flex justify-content-around mt-3 mb-3 pt-2 pb-2 border-radius">
+                       <li class="nav-item p-0 active">
+                           <a class="nav-link height p-0 workspace d-flex justify-content-center" href="#" id="flow_item">
+                     Launch Name </a>
+                       </li>
+                       <li class="nav-item border-right p-0 "></li>
+                       <li class="nav-item p-0">
+                           <a class="nav-link height p-0" href="#" id="form_item">
+                     Status </a>
+                       </li>
+                       <li class="nav-item border-right p-0 "></li>
+                       <li class="nav-item p-0">
+                           <a class="nav-link height p-0" href="#" id="button_item">
+                     Total</a>
+                       </li>
+                       <li class="nav-item border-right p-0 "></li>
+                       <li class="nav-item p-0">
+                           <a class="nav-link height p-0" href="#" id="webhooks_item">
+                     Visited </a>
+                       </li>
+                       <li class="nav-item border-right p-0 "></li>
+                       <li class="nav-item p-0">
+                           <a class="nav-link height p-0" href="#" id="webhooks_item">
+                     Created On </a>
+                       </li>
+                       <li class="nav-item border-right p-0 "></li>
+                       <li class="nav-item p-0">
+                           <a class="nav-link height p-0" href="#" id="webhooks_item">
+                     Closing On </a>
+                       </li>
+                       <div></div>
+                   </ul>
+                   <div class=" card no_record_height border-radius" style="height:320px;">
+                       <!-- <img src="assets/Dashboard/Asset25.svg" class="encaps mx-auto" width="150" height="150"> -->
+                       <table class="table-bordered m-4">
+                           <tr *ngFor = "let namerunning of runningEncaps">
+                               <!-- <ul class="col-md-12 nav float-right border pb-2 d-flex justify-content-around  mb-3" *ngFor="let namerunning of runningEncaps"> -->
+
+                               <!-- <li class="nav-item p-0 border-right active">
+                                           <a class="nav-link height p-0 " href="#" id="flow_item">
+                                      {{namerunning.name}}</a>
+                                       </li> -->
+
+                               <!-- <td>
+                                   <li class="nav-item p-0 border-right p-0 text-center ">
+                                       <a class="nav-link height p-0  color_black" href="#" id="form_item">{{namerunning.state}} </a>
+                                   </li>
+                               </td>
+                               <td>
+                                   <li class="nav-item p-0 border-right p-0 ">
+                                       <a class="nav-link height p-0  color_black" href="#" id="form_item">{{namerunning.total}} </a>
+                                   </li>
+                               </td>
+                               <td>
+                                   <li class="nav-item p-0 border-right p-0 ">
+                                       <a class="nav-link height p-0  color_black" href="#" id="form_item">{{namerunning.viewed}} </a>
+                                   </li>
+                               </td>
+                               <td>
+                                   <li class="nav-item p-0 border-right p-0 ">
+                                       <a class="nav-link height p-0  color_black" href="#" id="form_item">{{namerunning.createdOn.$date | date}} </a>
+                                   </li>
+                               </td>
+                               <td>
+                                   <li class="nav-item p-0  p-0 ">
+                                       <a class="nav-link height p-0  color_black" href="#" id="form_item">Forever </a>
+                                   </li>
+                               </td> -->
+                               <!-- <td> {{namerunning.name}} </td>
+                               <td> {{namerunning.state}} </td>
+                               <td> {{namerunning.total}} </td>
+                               <td> {{namerunning.viewed}} </td>
+                               <td> {{namerunning.createdOn.$date | date}} </td> -->
+                               <!-- </ul> -->
+                               <!-- <div class=" text-right">
+                                   <button class="btn btn-primary text-default">View all</button>
+                               </div> -->
+                               <td>  {{namerunning.name}} </td>
+                               <td> {{namerunning.state}} </td>
+                               <td> {{namerunning.total}} </td>
+                               <td> {{namerunning.viewed}} </td>
+                               <td> {{namerunning.createdOn.$date | date}} </td>
+                           </tr>
+                       </table>
+                   </div>
+               </div>
+           </div>
        </div>
-    </div>
-    <!-- Bootstrap core JavaScript-->
-    <!-- <script src="../library/bootstrap/js/bootstrap.4.5.0.min.js"></script>
-    <script src="../library/bootstrap/js/popper.min.1.16.0.js"></script>
-    <script src="../library/bootstrap/js/jquery-3.5.1.slim.min.js"></script>
-    <script src="../library/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="js/encaps_dashboard.js"></script>
-    <script src="../resources/js/sidebar.js"></script> -->
-    <!--bootstrap javascripts ends here-->
+   </div>
+   <!-- Bootstrap core JavaScript-->
+   <!-- <script src="../library/bootstrap/js/bootstrap.4.5.0.min.js"></script>
+   <script src="../library/bootstrap/js/popper.min.1.16.0.js"></script>
+   <script src="../library/bootstrap/js/jquery-3.5.1.slim.min.js"></script>
+   <script src="../library/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="js/encaps_dashboard.js"></script>
+   <script src="../resources/js/sidebar.js"></script> -->
+   <!--bootstrap javascripts ends here-->
 </div>

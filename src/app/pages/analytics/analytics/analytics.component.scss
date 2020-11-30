@@ -925,3 +925,12 @@ a:hover {
 .external_chat {
     width: 14px;
 }
+.table-bordered td,
+.table-bordered th {
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    text-align: center;
+}
+.border-radius {
+    border-radius: 15px;
+}

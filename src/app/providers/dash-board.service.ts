@@ -31,6 +31,16 @@ export class DashBoardService {
     const url = `${environment.BASEURL}${this.dashBoardUrlext}instances?filter=running&from=0&perPage=4`
     return this.http.get(url);
   }
+  getEncapslist(): Observable<any> {
+    // const url = `${environment.BASEURL}${this.dashBoardUrlext}instances?filter=running&from=0&perPage=4`
+    const url = "https://aim.twixor.com/e/enterprise/campaigns?perPage=15&from=0&name=&_=1606633408618"
+    return this.http.get(url);
+  }
+  createEncaps(name:string): Observable<any> {
+    // const url = `${environment.BASEURL}${this.dashBoardUrlext}instances?filter=running&from=0&perPage=4`
+    const url = "https://aim.twixor.com/e/enterprise/campaigns"
+    return this.http.post(name, url);
+  }
 }
 
 

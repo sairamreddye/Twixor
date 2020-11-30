@@ -27,7 +27,7 @@
            <img src="assets/img/expand-sidebar.svg" class="arrow_icon">
            <img src="assets/img/close-sidebar.svg" class="arrow_icon for_close">
      </div>
-        <div class="panelSidebar" id="collapseTwo" class="collapse show m-0" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
+        <div class="panelSidebar" id="collapseTwo" class="collapse show m-0" aria-labelledby="headingTwo" data-parent="#accordionSidebar" >
           <div class="py-2 collapse-inner rounded">
             <a class="collapse-item p-1 active" routerLink="/chat" (click)="chat()">Conversation</a>
             <a class="collapse-item p-1"  target="_parent" (click)="analytics()">Analytics</a>
@@ -67,10 +67,9 @@
           <div class="py-2 collapse-inner rounded">
             <!-- <a class="collapse-item p-1 active" href="encaps_dashboard/encaps_dashboard.html" target="_parent">Dashboard</a> -->
             <a class="collapse-item p-1 active" [routerLink]='["/encaps"]' (click)="encaps()">Dashboard</a>
-            <a class="collapse-item p-1" href="encaps_workspace/workspace.html" target="_parent">Workspace</a>
+            <a class="collapse-item p-1" [routerLink]='["encaps/createencaps"]' >Workspace</a>
             <a class="collapse-item p-1" href="encaps_report/encaps_report.html" target="_parent">Reports</a>
-          
-          </div>
+         </div>
         </div>
      </a>
      </li>

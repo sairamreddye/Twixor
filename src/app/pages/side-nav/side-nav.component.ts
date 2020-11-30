@@ -63,6 +63,10 @@ export class SideNavComponent implements OnInit {
      const userToken = this.storageService.getToken();
      this.router.navigateByUrl(`/encaps?authToken=${userToken}`);
     }
+    createencaps(){
+      const userToken = this.storageService.getToken();
+      this.router.navigateByUrl(`encaps/createencaps?authToken=${userToken}`);
+     }
     analytics(){
       const userToken = this.storageService.getToken();
      this.router.navigateByUrl(`/analytics?authToken=${userToken}`);
