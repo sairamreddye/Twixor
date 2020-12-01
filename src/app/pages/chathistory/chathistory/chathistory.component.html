@@ -65,7 +65,7 @@
                               </mat-option>
                             </mat-autocomplete>
                           </mat-form-field> -->
-                          <mat-form-field>
+                          <!-- <mat-form-field>
                            <input matInput [matAutocomplete]="auto" formControlName ="searchedData" [(ngModel)]="searchParam" (ngModelChange)="searchedData($event)" placeholder = "please enter 1 charcter ">
                            <mat-autocomplete #auto="matAutocomplete">
                              <mat-option *ngFor="let user of filteredData" 
@@ -73,7 +73,18 @@
                                <span>{{ user.name }}</span>
                              </mat-option>
                            </mat-autocomplete>
+                         </mat-form-field> -->
+                         <mat-form-field class="example-full-width">
+                           <input type="text" placeholder="Choose one option" aria-label="Choose one option" matInput [matAutocomplete]="auto1" formControlName ="searchedData" [(ngModel)]="searchParam" (ngModelChange)="searchedData($event)">
+                           <mat-autocomplete #auto1="matAutocomplete" [class]="'blue-bg'">
+                             <mat-option *ngFor="let option of filteredData" [value]="option.name">
+                               {{ option.name }}
+                             </mat-option>
+                           </mat-autocomplete>
                          </mat-form-field>
+                         <!-- <div *ngFor="let user of filteredData">
+                         <p>{{user.name}}</p>
+                         </div> -->
                      </div>
                      <div class="col-md-3 form-group mb-0 analytics">
                         <label for="idate" class="grey_text">From</label>
@@ -84,7 +95,7 @@
                            </span>
                         </div> -->
                         <mat-form-field>
-                            <input matInput [matDatepicker]="dp" placeholder="fromDate" formControlName="startdate">
+                            <input matInput [matDatepicker]="dp" formControlName="startdate">
                             <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
                             <mat-datepicker #dp></mat-datepicker>
                           </mat-form-field>
@@ -99,7 +110,7 @@
                            </span>
                         </div> -->
                         <mat-form-field>
-                            <input matInput [matDatepicker]="dps" placeholder="toDate" formControlName="enddate">
+                            <input matInput [matDatepicker]="dps" formControlName="enddate">
                             <mat-datepicker-toggle matSuffix [for]="dps"></mat-datepicker-toggle>
                             <mat-datepicker #dps></mat-datepicker>
                           </mat-form-field>
@@ -121,7 +132,8 @@
                               </div>
                            </div>
                         </div> -->
-                        <mat-form-field>
+
+                        <!-- <mat-form-field>
                            <input matInput [matAutocomplete]="auto" formControlName ="focusedData" (focus)="onFocusEvent($event)" placeholder = "please enter 1 charcter ">
                            <mat-autocomplete #auto="matAutocomplete">
                              <mat-option *ngFor="let user of focusedData" 
@@ -129,7 +141,31 @@
                                <span>{{ user.data.desc }}</span>
                              </mat-option>
                            </mat-autocomplete>
-                         </mat-form-field>
+                         </mat-form-field> -->
+
+                         <ng-select 
+                         (focus)="onFocusEvent($event)"
+          [items]="products"
+          bindLabel="desc"
+          bindValue="desc"
+          [multiple]="true"
+          [closeOnSelect]="false"
+          placeholder="Products"
+          formControlName="focusedData">
+          <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+            <div class="ng-value" *ngFor="let item of (items ? items.slice(0,2): [])">
+              <span class="ng-value-label">{{ item.desc }}</span>
+              <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+            </div>
+            <div class="ng-value" *ngIf="items.length > 2" >
+              <!-- <span class="ng-value-label">{{items.length - 2}} more...</span> -->
+              <span class="ng-value-label">. . .</span>
+            </div>
+          </ng-template>
+        </ng-select>
+                       <!-- <div *ngFor="let item of focusedData">
+                          <p>{{item.data.desc}}</p>
+                       </div> -->
                      </div>
                      <div class="col-md-3 form-group mb-0 analytics mt-3">
                         <label for="idate" class="grey_text">Department</label>
@@ -180,7 +216,8 @@
                      <span class="text-primary hypen d-none">-</span>
                      <div class="col-md-3 form-group mb-0 analytics ml-3 mt-3">
                         <label for="idate" class="grey_text">Status</label>
-                        <ul class="nav border pt-2 pb-2 border_radius_15 bg-white">
+                        <br>
+                        <!-- <ul class="nav border pt-2 pb-2 border_radius_15 bg-white">
                            <li class="nav-item p-0">
                               <a class="nav-link height" href="#">
                                  <div class="radio-item">
@@ -198,7 +235,13 @@
                                  </div>
                               </a>
                            </li>
-                        </ul>
+                        </ul> -->
+                        <div class="adjust-radio">
+                           <mat-radio-group formControlName="selectedStatus">
+                              <mat-radio-button  [value]=radio.value *ngFor="let radio of radioData">{{radio.key}}&nbsp;&nbsp;&nbsp;</mat-radio-button>
+                              <!-- <mat-radio-button [value]="2">Call Incomplete</mat-radio-button> -->
+                            </mat-radio-group>
+                        </div>
                      </div>
                      <div class="col-md-3 form-group mb-0 analytics mt-5">
                         <!-- <input class="form-control bg-white border-0 search" type="search" placeholder=""><span class="search_chat_history">Search</span>

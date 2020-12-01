@@ -13,9 +13,19 @@ import { catchError, map, tap, startWith, switchMap, debounceTime, distinctUntil
 })
 export class ChathistoryComponent implements OnInit {
   @ViewChild('f', { static: false }) myForm;
-  historyForm: FormGroup;
-  startDate: string;
-  enddate: any;
+  // historyForm: FormGroup;
+  historyForm = this.fb.group({
+    customerPhone:  ['', Validators.required],
+    startdate:  ['', Validators.required],
+    enddate:  ['', Validators.required],
+    department:  ['', Validators.required],
+    agent:  ['', Validators.required],
+    searchedData: ['', Validators.required],
+    focusedData: ['', Validators.required],
+    selectedStatus: ['',Validators.required]
+  });
+  startDate: any;
+  endDate: any;
   clientOffset: number;
   timeType: string;
   currentDate: string;
@@ -32,7 +42,7 @@ export class ChathistoryComponent implements OnInit {
   // myControl = new FormControl();
   filteredOptions: Observable<any[]>;
   searchParam: any;
-  filteredData: any;
+  filteredData: any = [];
   from: any;
   perPage: string;
   state: string;
@@ -40,28 +50,91 @@ export class ChathistoryComponent implements OnInit {
   historyAgent: any;
   searchedOutput: any;
   userTag: any;
-  focusedData: any;
+  focusedData: any = [];
+  selectedStatus:  number ; 
+  radioData: any = [
+    {key:"CLOSED",value:3},
+    {key:"MISSED",value:4}
+  ];
+  selectedProductsItems:any;
+  products:any[];
+  urlString: any;
   
-  constructor(private chathistory:ChathistoryService) { }
+  constructor(private chathistory:ChathistoryService, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.historyData();
-    this.historyForm = new FormGroup({
-      // customerPhone: new FormControl(null, Validators.required),
-      startdate: new FormControl(null, Validators.required),
-      enddate: new FormControl(null, Validators.required),
-      department: new FormControl(null, Validators.required),
-      agent: new FormControl(null, Validators.required),
-      searchedData: new FormControl(null,Validators.required),
-      focusedData: new FormControl(null,Validators.required)
-    });
-    // this.searchedData();
+    this.updateProfile();
+    // this.chathistory.chatHistoryUserAgent().subscribe((res:any) =>{
+    //   const data = res['response']['artifacts'];
+    //   const mapping = data.map(m => {
+    //     return m.data;
+    //   })
+    //   this.products = mapping;
+    //   debugger
+    //     console.log(this.focusedData);
+    // })
   }
 
+  historyData(){
+    if (this.parametersCheck) {
+      this.startDate = this.getStartDate();
+      this.endDate = this.getEndDate();
+      this.departmentsRequired = true;
+    }
+    this.from = '0';
+    this.perPage = '10';
+    this.state = '3'
+    this.chathistory.chatHistory(this.from,this.perPage,this.state,this.departmentsRequired,this.startDate,this.endDate).subscribe((res:any) => {
+    const historyresponse = res.response;    
+    this.historyDepartment = historyresponse['profiles'];
+    this.historyAgent = historyresponse['users'];
+    });
+  }
+
+  updateProfile() { //to intilize the form values this method will used;
+    this.historyForm.patchValue({
+      startdate: this.getStartDate(),
+      enddate: this.getEndDate(),
+      selectedStatus: this.radioData[0].value
+    });
+  }
+
+  getStartDate() {
+    var date = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
+    var startDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+    const timeConversion =  startDate.replace("Z", "");
+   return this.conversionStartTime(timeConversion);
+  }
+
+  getEndDate() {
+    var date = new Date();
+    var endDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+    const timeConversion =  endDate.replace("Z", "");
+   return this.conversionEndTime(timeConversion);
+  }
+
+  conversionStartTime(conversion){ //conversion starts start time to get 18:30:00.000
+    let str = conversion;
+    let timed = "18:30:00.000"
+    let result = str.split("T"); 
+    let shift = result.shift().toString();
+    console.log(`${shift}T${timed}`);
+    return `${shift}T${timed}`
+   }
+
+  conversionEndTime(conversion){  //conversion starts Endtime into 18:29:00.000
+    let str = conversion;
+    let timed = "18:29:00.000"
+    let result = str.split("T"); 
+    let shift = result.shift().toString();
+    console.log(`${shift}T${timed}`);
+    return `${shift}T${timed}`
+   }
 
    searchedData(event: any) {
     this.searchParam = event;
-    console.log(this.searchParam)
+    // console.log(this.searchParam)
     if(this.searchParam === undefined || this.searchParam == ""){
       this.filteredData = [];
     }
@@ -71,7 +144,7 @@ export class ChathistoryComponent implements OnInit {
           this.evenNumber = i
         }
       }
-      debounceTime(500)
+      // debounceTime(500)
       this.chathistory.chatHistoryDropdown(this.searchParam,this.evenNumber).subscribe((res:any) => {
         for (const d of (res['response']['customers'] as any)) {
           this.filteredData.push({
@@ -79,27 +152,155 @@ export class ChathistoryComponent implements OnInit {
           });
           console.log(this.filteredData);
         }
-        // this.filteredData = res['response']['customers'];
-        
+        // this.filteredData = res['response']['customers']; 
       });
     }
       
   }
+
+
   onFocusEvent($event){
     this.userTag = $event.target.value;
     this.chathistory.chatHistoryUserAgent().subscribe((res:any) =>{
+      const data = res['response']['artifacts'];
+      const mapping = data.map(m => {
+        return m.data;
+      })
+      this.products = mapping;
+      debugger
+    })
+  }
+
+  submit($event) {
+    $event.preventDefault();
+    // if (this.historyForm.valid) {
+      this.urlString = "";
+      const obj = new MyObj();
+      const formOutput =  Object.assign(obj, this.historyForm.value);
+      this.parametersCheck = false;
+      if(formOutput.startdate !== null && formOutput.startdate !== ""){
+          if(formOutput.startdate === this.startDate){
+              this.startDate;
+          }
+          else{
+        const date = new Date(formOutput.startdate - 24 * 60 * 60 * 1000);
+        const startDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+        const TimeConversion = startDate.replace("Z", "");
+        this.startDate = this.conversionStartTime(TimeConversion);
+                  this.startDate;
+          }
+      }
+      if(formOutput.enddate !== null && formOutput.enddate !== ""){
+        if(formOutput.enddate === this.endDate){
+             this.endDate;
+        }
+        else{
+        const date = new Date(formOutput.enddate);
+        const endDate = new Date(date.getTime()).toISOString();
+       const TimeConversion = endDate.replace("Z", "");
+        this.endDate = this.conversionEndTime(TimeConversion);
+               this.endDate;
+        }
+      }
+      this.selectedStatus = formOutput.selectedStatus;
+      this.department = formOutput.department;
+      this.agent = formOutput.agent;
+      this.searchedOutput = formOutput.searchedData;
+      this.focusedData = formOutput.focusedData;
+      const UrlBulidingobject = {
+        "from": this.from = '0',
+        "perPage": this.perPage = '10',
+        "state":this.selectedStatus,
+        "departmentsRequired": this.departmentsRequired,
+        "customer":this.searchedOutput,
+        "startDate" : this.startDate,
+        "endDate": this.endDate,
+        "agentTag":this.focusedData,
+        "department": this.department,
+        "agent":this.agent,
+      }
+      // for (var propName in UrlBulidingobject) { 
+      //   if (obj[propName] === null || obj[propName] === undefined || obj[propName] === "") {
+      //     delete obj[propName];
+      //   }
+      // }
+      for (var key in UrlBulidingobject) {
+        if (UrlBulidingobject[key] === null || UrlBulidingobject[key] === undefined || UrlBulidingobject[key] === "") {
+          delete UrlBulidingobject[key];
+        } 
+      }
+      const freezing = UrlBulidingobject;
+      console.log(freezing);
+      debugger
+      
+      var result = Object.keys(freezing).map(function (key) { 
+          
+        // Using Number() to convert key to number type
+        // Using obj[key] to retrieve key value
+        return [String(key),freezing[key]]; 
+    }); 
+      
+    // Printing values
+    for(var i = 0; i < result.length; i++) { 
+        for(var z = 0; z < result[i].length; z++) { 
+          // console.log(result[i][z] + "&"); 
+          if(result[i][z] === undefined){
+           return;
+          }
+          else if(z % 2 === 0) {
+            this.urlString += "&"+result[i][z]+"="
+          }
+          else{
+            this.urlString += result[i][z];
+          }
+       }  
+    } 
+    const finding = this.urlString.replace(undefined,"")
+    const baseURL = `https://aim.twixor.com/e/enterprise/chat/history?${finding}_=1606295140565`;
+    console.log(baseURL)
+      this.reset();
+      return;
+  }
+  reset() {
+    this.myForm.resetForm(); // <-- ici
+    this.historyForm.reset();
+    this.updateProfile();
+  }
+}
+
+class MyObj {
+  select: string;
+  input: string;
+  date: number;
+}
+
+  // const baseURL = `https://aim.twixor.com/e/enterprise/chat/history?&from=${a}&perPage=${b}&state=${c}&departmentsRequired=${d}&startDate=${e}&endDate=${f}&_=1606295140565`;
+
+  // if(formOutput.startdate === null){
+      //    this.startDate = this.getStartDate();
+      // }
+      // if(formOutput.enddate === null){
+      //      this.endDate = this.getEndDate()
+      // }
+
+ // this.historyForm = new FormGroup({
+    //   customerPhone: new FormControl(null, Validators.required),
+    //   startdate: new FormControl(null, Validators.required),
+    //   enddate: new FormControl(null, Validators.required),
+    //   department: new FormControl(null, Validators.required),
+    //   agent: new FormControl(null, Validators.required),
+    //   searchedData: new FormControl(null,Validators.required),
+    //   focusedData: new FormControl(null,Validators.required)
+    // });
+    // this.searchedData();
+
       // for (const d of (res['response']['artifacts'] as any)) {
       //   this.focusedData.push({
       //     name: d.data.desc
       //   });
-      const data = res['response']['artifacts'];
-      debugger
-      this.focusedData = data;
-        console.log(this.focusedData);
-      // }
-    })
-  }
-// searchedData(){
+
+
+      // searchedData(){
 //   this.filteredOptions = this.historyForm.controls['searchedData'].valueChanges.pipe(
 //     startWith(null),
 //     debounceTime(0),
@@ -112,106 +313,13 @@ export class ChathistoryComponent implements OnInit {
 //     )
 //     );
 // }
-
-  historyData(){
-    if (this.parametersCheck) {
-      this.startDate = this.getStartDate();
-      this.enddate = this.getEndDate();
-      this.departmentsRequired = true;
-    }
-    this.from = '0';
-    this.perPage = '10';
-    this.state = '3'
-    this.chathistory.chatHistory(this.from,this.perPage,this.state,this.departmentsRequired,this.startDate,this.enddate).subscribe((res:any) => {
-    const historyresponse = res.response;    
-    this.historyDepartment = historyresponse['profiles'];
-    this.historyAgent = historyresponse['users'];
-    });
-  }
-
-  getStartDate() {
-    var date = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
-    var startDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-    return startDate.replace("Z", "");
-  }
-
-  getEndDate() {
-    var date = new Date();
-    var endDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-    return endDate.replace("Z", "");
-  }
-
-  submit($event) {
-    $event.preventDefault();
-    // if (this.historyForm.valid) {
-      const obj = new MyObj();
-      const formOutput =  Object.assign(obj, this.historyForm.value);
-      if(formOutput.startdate !== null){
-        const date = new Date(formOutput.startdate - 24 * 60 * 60 * 1000);
-        const startDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
-        this.startDate = startDate.replace("Z", "");
-      }
-      if(formOutput.enddate !== null){
-        const date = new Date(formOutput.enddate);
-        const endDate = new Date(date.getTime()).toISOString();
-        this.enddate = endDate.replace("Z", "");
-      }
-      this.department = formOutput.department;
-      this.agent = formOutput.agent;
-      this.searchedOutput = formOutput.searchedData
-      debugger;
-      for (var propName in formOutput) { 
-        if (obj[propName] === null || obj[propName] === undefined) {
-          delete obj[propName];
-        }
-      }
-      // this.survey.push(obj);
-      // this.parametersCheck = false;
-      // this.department = this.group.controls['department'].value;
-      // this.agent = this.group.controls['agent'].value;
-      // debugger
-      // this.departmentsRequired = false;
-      // this.startDate = this.datePipe.transform(this.group.controls['startdate'].value, "yyyy-MM-dd");
-      // if (this.datePipe.transform(this.group.controls['enddate'].value, "yyyy-MM-dd") <= this.formatDate()) {
-      //   this.enddate = this.datePipe.transform(this.group.controls['enddate'].value, "yyyy-MM-dd");
-      // }
-      // else {
-      //   this.enddate = this.formatDate();
-      // }
-      //  if(this.department === this.agent){  //TOdo comparision department and agent
-      //     this.departmentAgent = 0
-      //  }
-      // this.historyData();
-      this.reset();
-      return;
-    // }
-    // else if (!this.historyForm.valid) {
-      // this.parametersCheck = false;
-      // this.department = this.group.controls['department'].value;
-      // this.agent = this.group.controls['agent'].value;
-      //  if(this.department === this.agent){  //TOdo comparision department and agent
-      //     this.departmentAgent = 0
-      //  }
-      // this.startDate = this.Last7Days();
-      // this.enddate = this.formatDate();
-      // this.analyticsData();
-      // this.reset();
-      // return;
-    // }
-    // else {
-    //   alert('not valid, try again');
-    // }
-  }
-
-  reset() {
-    this.myForm.resetForm(); // <-- ici
-    this.historyForm.reset();
-  }
-
-}
-
-class MyObj {
-  select: string;
-  input: string;
-  date: number;
-}
+// products: any = [
+  //   {
+  //     tagUnique: "issuenotresolved",
+  //     desc: "Issue not resolved"
+  //   },
+  //   {
+  //     tagUnique: "demo",
+  //     desc: "Demo"
+  //   }
+  // ];
