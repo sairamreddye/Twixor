@@ -75,16 +75,14 @@
                            </mat-autocomplete>
                          </mat-form-field> -->
                          <mat-form-field class="example-full-width">
-                           <input type="text" placeholder="Choose one option" aria-label="Choose one option" matInput [matAutocomplete]="auto1" formControlName ="searchedData" [(ngModel)]="searchParam" (ngModelChange)="searchedData($event)">
+                           <input type="text" placeholder="Choose one option" aria-label="Choose one option" matInput [matAutocomplete]="auto1" formControlName ="searchedData" (ngModelChange)="searchedData($event)">
+                           <!-- [(ngModel)]="searchParam" -->
                            <mat-autocomplete #auto1="matAutocomplete" [class]="'blue-bg'">
                              <mat-option *ngFor="let option of filteredData" [value]="option.name">
                                {{ option.name }}
                              </mat-option>
                            </mat-autocomplete>
                          </mat-form-field>
-                         <!-- <div *ngFor="let user of filteredData">
-                         <p>{{user.name}}</p>
-                         </div> -->
                      </div>
                      <div class="col-md-3 form-group mb-0 analytics">
                         <label for="idate" class="grey_text">From</label>
@@ -102,7 +100,8 @@
                      </div>
                      <span class="text-primary hypen">-</span>
                      <div class="col-md-3 form-group mb-0 analytics">
-                        <label for="idate" class="grey_text">Tooooooo</label>
+                        <label for="idate" class="grey_text">To</label>
+                        <br>
                         <!-- <div class="input-group input-medium">
                            <input type="text" class="form-control date_width border-0 bg-white" id="date" placeholder="E.g 22-08-2020">
                            <span class="input-group-btn bg-white">
@@ -191,7 +190,8 @@
                          </mat-form-field>    
                      </div>
                      <div class="col-md-3 form-group mb-0 analytics mt-3">
-                        <label for="idate" class="grey_text">Agentswwwwww</label>
+                        <label for="idate" class="grey_text">Agents</label>
+                        <br>
                         <!-- <div class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white">
                            <div class="custom-select">
                               <div class="custom-select__trigger">
@@ -236,6 +236,7 @@
                               </a>
                            </li>
                         </ul> -->
+                        <br>
                         <div class="adjust-radio">
                            <mat-radio-group formControlName="selectedStatus">
                               <mat-radio-button  [value]=radio.value *ngFor="let radio of radioData">{{radio.key}}&nbsp;&nbsp;&nbsp;</mat-radio-button>
