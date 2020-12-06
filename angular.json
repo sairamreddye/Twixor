@@ -35,7 +35,10 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [ "src/assets/library/bootstrap/js/popper.min.1.16.0.js",
+              "src/assets/library/bootstrap/js/jquery-3.5.1.slim.min.js",
+              "src/assets/library/bootstrap/js/bootstrap.bundle.min.js"
+             ]
           },
           "configurations": {
             "production": {
