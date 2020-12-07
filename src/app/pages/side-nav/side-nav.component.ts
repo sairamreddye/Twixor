@@ -57,7 +57,7 @@ export class SideNavComponent implements OnInit {
      }
      chat(){
      const userToken = this.storageService.getToken();
-     this.router.navigateByUrl(`/chat?authToken=${userToken}`);
+     this.router.navigateByUrl(`chat/chat?authToken=${userToken}`);
     }
     encaps(){
      const userToken = this.storageService.getToken();
@@ -69,10 +69,10 @@ export class SideNavComponent implements OnInit {
      }
     analytics(){
       const userToken = this.storageService.getToken();
-     this.router.navigateByUrl(`/analytics?authToken=${userToken}`);
+     this.router.navigateByUrl(`chat/analytics?authToken=${userToken}`);
     }
     chatHistory(){
       const userToken = this.storageService.getToken();
-     this.router.navigateByUrl(`/chat-history?authToken=${userToken}`);
+     this.router.navigateByUrl(`chat/chat-history?authToken=${userToken}`);
     }
 }

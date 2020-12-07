@@ -1,9 +1,9 @@
 import { Component, Inject} from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ApiDataService } from '../../../providers/api-data.service';
-import { UserDataService } from '../../../providers/user-data.service';
-import { AppConfig } from '../../../providers/APP_CONFIG';
-import { attachments, PreviewData } from '../../../interfaces/user-options';
+import { ApiDataService } from '../../../../providers/api-data.service';
+import { UserDataService } from '../../../../providers/user-data.service';
+import { AppConfig } from '../../../../providers/APP_CONFIG';
+import { attachments, PreviewData } from '../../../../interfaces/user-options';
 @Component({
   selector: 'app-attachment',
   templateUrl: './attachment.component.html',
