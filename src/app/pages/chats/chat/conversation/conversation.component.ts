@@ -1,7 +1,7 @@
 import { Component, OnInit,OnDestroy,AfterViewChecked,Input,ElementRef,ViewChild,HostListener } from '@angular/core';
-import { Conversation,Agents,Messages,Message, Preview } from '../../../interfaces/user-options';
-import { UserDataService } from '../../../providers/user-data.service';
-import { MessageService } from '../../../providers/websocket.service';
+import { Conversation,Agents,Messages,Message, Preview } from '../../../../interfaces/user-options';
+import { UserDataService } from '../../../../providers/user-data.service';
+import { MessageService } from '../../../../providers/websocket.service';
 import { AttachmentComponent } from '../attachment/attachment.component';
 import { ChatProcessComponent } from '../chat-process/chat-process';
 import { MatDialog } from '@angular/material/dialog';

@@ -1,9 +1,9 @@
 import { Component, OnInit, HostListener,AfterViewInit,ViewChild,ElementRef } from '@angular/core';
-import { ApiDataService } from '../../providers/api-data.service';
-import { UserDataService } from '../../providers/user-data.service';
-import { MessageService } from '../../providers/websocket.service';
-import { AppConfig } from '../../providers/APP_CONFIG';
-import { Chats, ChatItem, Agents, GetChatParams } from '../../interfaces/user-options';
+import { ApiDataService } from '../../../providers/api-data.service';
+import { UserDataService } from '../../../providers/user-data.service';
+import { MessageService } from '../../../providers/websocket.service';
+import { AppConfig } from '../../../providers/APP_CONFIG';
+import { Chats, ChatItem, Agents, GetChatParams } from '../../../interfaces/user-options';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from "@angular/router";
 @Component({

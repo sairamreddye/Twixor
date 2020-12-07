@@ -4,24 +4,26 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { DatePipe } from "@angular/common";
 import { Observable } from 'rxjs';
 // import {map, startWith} from 'rxjs/operators';
-import { catchError, map, tap, startWith, switchMap, debounceTime, distinctUntilChanged, takeWhile, first } from 'rxjs/operators';
+// import { catchError, map, tap, startWith, switchMap, debounceTime, distinctUntilChanged, takeWhile, first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-chathistory',
   templateUrl: './chathistory.component.html',
-  styleUrls: ['./chathistory.component.scss']
+  styleUrls: ['./chathistory.component.scss'],
+  providers: [
+    DatePipe
+  ]
 })
 
 export class ChathistoryComponent implements OnInit {
   @ViewChild('f', { static: false }) myForm;
-  // historyForm: FormGroup;
   historyForm = this.fb.group({
     customerPhone: ['', Validators.required],
     startdate: ['', Validators.required],
     enddate: ['', Validators.required],
     department: ['', Validators.required],
     agent: ['', Validators.required],
-    searchedData: ['', Validators.required],
+    searchedData: [''],
     focusedData: ['', Validators.required],
     selectedStatus: ['', Validators.required]
   });
@@ -39,8 +41,6 @@ export class ChathistoryComponent implements OnInit {
   analyticAgent: any;
   options: any[] = [];
   evenNumber = 0;
-  // filteredOptions:any [];
-  // myControl = new FormControl();
   filteredOptions: Observable<any[]>;
   searchParam: any;
   filteredData: any = [];
@@ -57,38 +57,84 @@ export class ChathistoryComponent implements OnInit {
     { key: "CLOSED", value: 3 },
     { key: "MISSED", value: 4 }
   ];
+  chatStatus: any = [
+    { key: "ONGOING", value: 2 },
+    { key: "CLOSED", value: 3 }
+  ];
   selectedProductsItems: any;
   products: any[];
   urlString: any;
+  finalUrl: any;
+  chatHistoryData: any = [];
+  determined: any = [];
+  isValid:boolean;
 
-  constructor(private chathistory: ChathistoryService, private fb: FormBuilder) { }
+  constructor(private chathistory: ChathistoryService, private fb: FormBuilder, private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.historyData();
     this.updateProfile();
   }
 
+  forIntialApigetStartDate() {
+    var date = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
+    var startDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+    const timeConversion = startDate.replace("Z", "");
+    return this.conversionStartTime(timeConversion);
+  }
+
+  forIntialApigetEndDate() {
+    var date = new Date();
+    var endDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+    const timeConversion = endDate.replace("Z", "");
+    return this.conversionEndTime(timeConversion);
+  }
+
   historyData() {
-    if (this.parametersCheck) {
+    // if (this.parametersCheck) {
+     this.isValid = true;
       this.startDate = this.getStartDate();
       this.endDate = this.getEndDate();
-      this.departmentsRequired = true;
-    }
-    this.from = '0';
-    this.perPage = '10';
-    this.state = '3'
-    this.chathistory.chatHistory(this.from, this.perPage, this.state, this.departmentsRequired, this.startDate, this.endDate).subscribe((res: any) => {
+      const startDate = this.forIntialApigetStartDate();
+      const endDate = this.forIntialApigetEndDate();
+      const departmentsRequired = true;
+    // }
+    const from = '0';
+    const perPage = '10';
+    const state = '3';
+    this.chathistory.chatHistory(from, perPage, state, departmentsRequired, startDate, endDate).subscribe((res: any) => {
       const historyresponse = res.response;
       this.historyDepartment = historyresponse['profiles'];
       this.historyAgent = historyresponse['users'];
+      this.chatHistoryData = historyresponse['chats'];
     });
+  }
+
+  valueChange(event){
+    this.determined = [];
+    this.isValid = false;
+    const department_$oid = event;
+    const getAgentNumbers = this.historyDepartment;
+    const agentName = getAgentNumbers.find(id => id._id.$oid === department_$oid);
+    
+    const agentnameMapping =  agentName.users;
+          agentnameMapping.forEach(id => {
+    const AgentName = this.historyAgent.find(Agentid => Agentid.id === id);
+         return  this.determined.push(AgentName);
+   });
+   this.determined
+    debugger
   }
 
   updateProfile() { //to intilize the form values this method will used;
     this.historyForm.patchValue({
       startdate: this.getStartDate(),
       enddate: this.getEndDate(),
-      selectedStatus: this.radioData[0].value
+      selectedStatus: this.radioData[0].value,
+      department: this.historyDepartment,
+      agent: this.historyAgent,
+      searchedData: this.filteredData,
+      focusedData: this.focusedData
     });
   }
 
@@ -142,9 +188,7 @@ export class ChathistoryComponent implements OnInit {
           this.filteredData.push({
             name: d.name
           });
-          // console.log(this.filteredData);
         }
-        // this.filteredData = res['response']['customers']; 
       });
     }
 
@@ -155,13 +199,29 @@ export class ChathistoryComponent implements OnInit {
     this.userTag = $event.target.value;
     this.chathistory.chatHistoryUserAgent().subscribe((res: any) => {
       const data = res['response']['artifacts'];
-      const mapping = data.map(m => {
-        return m.data;
-      })
+      // const mapping = data.map(m => {
+      //   return m.data;
+      // })
+     const mapping = data.map(({ _id, data }) => ({_id, data}));
+     debugger
       this.products = mapping;
-      debugger
     })
   }
+
+  agentDepartment(departmentId){
+    const departmentName = this.historyDepartment.find(id => id._id.$oid === departmentId);
+    return departmentName.name;
+  }
+
+  agentName(agentId){
+  const agentName = this.historyAgent.find(id => id.id === agentId);
+      return agentName.name;
+  }
+  getState(stateId){
+    const stateName = this.chatStatus.find(id => id.value == stateId);
+    return stateName.key;
+  }
+
 
   submit($event) {
     $event.preventDefault();
@@ -199,11 +259,12 @@ export class ChathistoryComponent implements OnInit {
     this.agent = formOutput.agent;
     this.searchedOutput = formOutput.searchedData;
     this.focusedData = formOutput.focusedData;
+    debugger
     const UrlBulidingobject = {
       "from": this.from = '0',
       "perPage": this.perPage = '10',
       "state": this.selectedStatus,
-      "departmentsRequired": this.departmentsRequired,
+      "departmentsRequired": this.departmentsRequired = false,
       "customer": this.searchedOutput,
       "startDate": this.startDate,
       "endDate": this.endDate,
@@ -219,7 +280,6 @@ export class ChathistoryComponent implements OnInit {
     }
     const freezing = UrlBulidingobject;
     console.log(freezing);
-    debugger
 
     var result = Object.keys(freezing).map(function (key) {
 
@@ -243,16 +303,24 @@ export class ChathistoryComponent implements OnInit {
         }
       }
     }
-    const DynamicUrl = this.urlString.replace(undefined, "")
-    const baseURL = `https://aim.twixor.com/e/enterprise/chat/history?${DynamicUrl}_=1606295140565`;
-    console.log(baseURL)
-    this.reset();
+    this.finalUrl = this.urlString.replace(undefined || null, "");
+    this.getChatHistory(this.finalUrl);
+    // this.reset();
     return;
   }
+
+  getChatHistory(finalUrl) {
+    // this.chatHistoryData = [];
+    this.chathistory.chatHistorygetChats(finalUrl).subscribe((res: any) => {
+       const response = res.response;   
+        this.chatHistoryData = response['chats'];
+    })
+  }
+
   reset() {
     this.myForm.resetForm(); // <-- ici
     this.historyForm.reset();
-    this.updateProfile();
+    // this.updateProfile();
   }
 }
 
