@@ -19,6 +19,6 @@ export class MaindashboardComponent implements OnInit {
   }
   encaps(){
    const userToken = this.storageService.getToken();
-   this.router.navigateByUrl(`/encaps?authToken=${userToken}`);
+   this.router.navigateByUrl(`/encaps/dashboard?authToken=${userToken}`);
   }
 }

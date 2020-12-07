@@ -1,3 +1,4 @@
+<!-- <h6>hii{{result}}</h6> -->
 <!-- <p>create-encaps works!</p>
 <h1>fgehsgej</h1> -->
 
@@ -39,15 +40,20 @@
                      <input class="form-control bg_waterblue border-0" type="search" placeholder="Search">
                      <img src="../../../../assets/Dashboard/Asset18.svg" class="fa fa-search">
                   </div>
+                  <!--onclick model starts here-->
                   <div class="col-md-4 row d-flex justify-content-around">
                      <a href="#" class="btn btn-light chats bg-0 all_encaps bg-white text-primary border col-md-5 box-shadow-none border-primary">Import Workspace</a>
-                     <a data-toggle="modal" data-target="#myModal" class="btn btn-primary chats col-md-6 text-white">Create New Workspace</a>
+                     <a data-toggle="modal" data-target="#myModal" class=" chats col-md-6 text-white"><button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Create New Workspace</button></a>
                   </div>
+                   
+      <!-- <div class="col-md-2 logo text-left">
+         <button class="bg-success border-success text-white" data-toggle="modal" data-target="#myModal">Create User</button>
+     </div> -->
                </div>
                <hr class="w-100">
             </div>
             <div class="row" >
-               <div class="col-md-3" id="re_sub" *ngIf ="campaigns !== undefined">
+               <div class="col-md-3" id="re_sub">
                   <div class="card mb-3" *ngFor="let encapslist of Encapsdata">
                      <div class="card-img-top-encaps image-top-one"  alt="Card image cap"></div>
                      <div class="card_buttons">
@@ -189,27 +195,40 @@
          </div>
       </div>
       <!--onclick model starts here-->
-      <div class="modal fade" id="myModal" role="dialog">
-         <div class="modal-dialog modal-dialog-centered" style="max-width:350px;">
-            <!-- Modal content-->
-            <div class="modal-content mx-auto">
-               <div class="modal-header">
-                  <h6 class="modal-title"><b>Create New Workspace</b></h6>
-               </div>
-               <div class="card border-0 p-3" >
-                  <div class="col-md-12 p-0">
-                     <label for="staticEmail" class="col-md-8 col-form-label grey_text p-0">Workspace Name</label>
-                     <div class="col-md-12 p-0 mt-1">
-                        <input type="text" class="form-control bg-white" id="" value="" placeholder="eg:john">
-                     </div>
-                  </div>
-               </div>
-               <div class="modal-footer border-0">
-                  <button type="button" data-dismiss="modal" class="col-md-3 btn btn-secondary bg-white text-primary border-primary">Cancel</button>
-                  <button type="button" data-dismiss="modal" class="col-md-3 btn btn-primary bg-primary text-white">Create</button>
-               </div>
-            </div>
-         </div>
+      <!-- <div class="col-md-2 logo text-left">
+         <button class="bg-success border-success text-white" data-toggle="modal" data-target="#myModal">Create User</button>
+     </div>
+  -->
+
+
+<div id="myModal" class="modal fade" role="dialog">
+<div class="modal-dialog">
+
+ <!-- Modal content-->
+ <div class="modal-content">
+     <div class="modal-header">
+         <h4 class="modal-title">Create New Workspace</h4>
+         <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+
+     </div>
+     <div class="modal-body">
+         <form class="form-inline" [formGroup]="Encapform" (submit)="submit($event)" (reset)="reset($event)" #f="ngForm">
+             <div class="row col-md-12">
+                 <label for="name" class="col-md-6 label">Workspace Name</label>
+                 <input type="text" formControlName="encapname"  class="col-md-6 form-control"  placeholder="Enter Name" id="email">
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-warning text-white" data-dismiss="modal">Cancel</button>
+               <!-- <button type="submit" class="btn btn-success text-white form-control" data-dismiss="modal">Create</button> -->
+               <button type="submit" class="form-control form-control bg-white border-0 search">create</button>
+           </div>
+         </form>
+     </div>
+     
+ </div>
+
+</div>
+</div>
       <!---onclick model ends here-->
       <!-- Bootstrap core JavaScript-->
       <!-- <script src="../library/bootstrap/js/bootstrap.4.5.0.min.js"></script>

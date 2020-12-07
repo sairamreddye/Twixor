@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from 'src/app/providers/storage/storage.service';
 import { DashBoardService} from "../../../providers/dash-board.service";
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-create-encaps',
@@ -9,25 +11,57 @@ import { DashBoardService} from "../../../providers/dash-board.service";
 })
 export class CreateEncapsComponent implements OnInit {
   Encapsdata: any =[];
-  result: any = [];
+  result: "";
   newencap: any;
-
-  constructor(private DashBoardService: DashBoardService, private storageService:StorageService) { }
+  @ViewChild('f', { static: false }) myForm;
+  Encapform = this.fb.group({
+    encapname: ['', Validators.required],
+  
+  });
+  
+  constructor(private DashBoardService: DashBoardService, private storageService:StorageService,private fb:FormBuilder) { }
 
   ngOnInit() {
-    debugger
-    this.getEncapslist();
     
+    this.getEncapslist();
+    //this.createEncaps(name);   
+  }
+  updateProfile() { //to intilize the form values this method will used;
+    this.Encapform.patchValue({
+      encapname: ""
+    });
+  }
+  submit($event) {
+    $event.preventDefault();
+  const obj = new MyObj();
+  const formOutput = Object.assign(obj, this.Encapform.value);
+  const encapName = formOutput.encapname;
+  this.createEncaps(encapName);
+  debugger
+  }    
+  
+  reset() {
+    this.myForm.resetForm(); // <-- ici
+    this.Encapform.reset();
+    // this.updateProfile();
   }
   getEncapslist(){
     this.DashBoardService.getEncapslist().subscribe((res: any)=>{
       this.Encapsdata = res.response['campaigns'];
     })
 }
-createEncaps(name){
+createEncaps(name:string){
+  debugger
   this.DashBoardService.createEncaps(name).subscribe((res: any)=>{
-    //this.result = res
-    this.newencap = res.response['campaigns'];
+    this.result = res
+    //this.newencap = res.response['campaigns'];
   })
 }
+
+}
+class MyObj {
+  // select: string;
+  // input: string;
+  // date: number;
+  encapname:any;
 }
