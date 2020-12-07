@@ -1,7 +1,7 @@
 import { Component,Input,Output,EventEmitter,OnInit } from '@angular/core';
-import { Customer, Notes } from '../../../interfaces/user-options';
-import { ApiDataService } from '../../../providers/api-data.service';
-import { UserDataService } from '../../../providers/user-data.service';
+import { Customer, Notes } from '../../../../interfaces/user-options';
+import { ApiDataService } from '../../../../providers/api-data.service';
+import { UserDataService } from '../../../../providers/user-data.service';
 @Component({
   selector: 'app-chat-options',
   templateUrl: './chat-options.component.html',

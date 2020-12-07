@@ -145,15 +145,15 @@
                          <ng-select 
                          (focus)="onFocusEvent($event)"
           [items]="products"
-          bindLabel="desc"
-          bindValue="desc"
+          bindLabel="data.desc"
+          bindValue="_id.$oid"
           [multiple]="true"
           [closeOnSelect]="false"
-          placeholder="Products"
+          placeholder="Agent Tag"
           formControlName="focusedData">
           <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
             <div class="ng-value" *ngFor="let item of (items ? items.slice(0,2): [])">
-              <span class="ng-value-label">{{ item.desc }}</span>
+              <span class="ng-value-label">{{ item.data.desc }}</span>
               <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
             </div>
             <div class="ng-value" *ngIf="items.length > 2" >
@@ -184,7 +184,7 @@
                            </div>
                         </div> -->
                         <mat-form-field matLine>
-                            <mat-select formControlName="department" placeholder="Select Department">
+                            <mat-select formControlName="department" placeholder="Select Department" (ngModelChange)="valueChange($event)" >
                                <mat-option [value]="department._id.$oid"  *ngFor="let department of historyDepartment">{{department.name}}</mat-option>
                             </mat-select>
                          </mat-form-field>    
@@ -207,12 +207,13 @@
                               </div>
                            </div>
                         </div> -->
-                        <mat-form-field matLine>
+                        <mat-form-field matLine *ngIf="isValid;else other_content">
                             <mat-select formControlName="agent" placeholder="Select Agent">
                                <mat-option [value]="agent.id" *ngFor="let agent of historyAgent">{{agent.name}}</mat-option>
                             </mat-select>
                          </mat-form-field>
                      </div>
+                  
                      <span class="text-primary hypen d-none">-</span>
                      <div class="col-md-3 form-group mb-0 analytics ml-3 mt-3">
                         <label for="idate" class="grey_text">Status</label>
@@ -247,7 +248,7 @@
                      <div class="col-md-3 form-group mb-0 analytics mt-5">
                         <!-- <input class="form-control bg-white border-0 search" type="search" placeholder=""><span class="search_chat_history">Search</span>
                         <i class="fa fa-search chat_history"></i> -->
-                        <button type="submit" class="form-control form-control bg-white border-0 search" type="submit">Search</button>
+                        <button type="submit" class="form-control form-control bg-white border-0 search">Search</button>
                      </div>
                   </form>
                </div>
@@ -307,12 +308,60 @@
                      <div></div>
                   </ul>
                   <div class="col-md-12 card mt-3 no_record_height" style="height:320px;">
-                     <img src="../../../../assets//img/chathistory/Asset25.svg" class="chat mx-auto" width="150" height="150">
+                     <div>
+                        <table class="table table-bordered" *ngIf ="chatHistoryData">
+                           <thead>
+                             <tr>
+                               <th>customer</th>
+                               <th>Ip Adress</th>
+                               <th>Start Date</th>
+                               <th>Chat</th>
+                               <th>Closed Date</th>
+                               <th>Status</th>
+                               <th>Department</th>
+                               <th>Agent</th>
+                               <th>Rating</th>
+                               <th>Location</th>
+                             </tr>
+                           </thead>
+                           <tbody>
+                             <tr *ngFor="let chatData of chatHistoryData">
+                               <td>{{chatData.customerName}}</td>
+                               <td></td>
+                               <td>{{chatData.startedOn.$date | date:'medium'}}</td>
+                               <td>{{chatData.messages[0].message}}</td>
+                               <td>{{chatData.lastModifiedOn.$date | date:'medium'}}</td>
+                               <td>{{getState(chatData.state)}}</td>
+                               <td>{{agentDepartment(chatData.handlingDept.$oid)}}</td>
+                               <td>{{agentName(chatData.handlingAgent)}}</td>
+                               <td>-</td>
+                               <td></td>
+                             </tr>
+                           </tbody>
+                         </table>
+                     </div>
+                     
                   </div>
                </div>
             </div>
          </div>
       </div>
+
+      <ng-template #other_content>
+         <!-- <div class="col-md-3 form-group mb-0 analytics mt-3">
+            <label for="idate" class="grey_text">Agents</label>
+            <br> -->
+            <form class="row"  [formGroup]="historyForm" (submit)="submit($event)" (reset)="reset($event)" #f="ngForm">
+            <mat-form-field matLine>
+                <mat-select formControlName="agent" placeholder="Select Agent">
+                   <mat-option [value]="agent.id" *ngFor="let agent of determined">{{agent.name}}</mat-option>
+                </mat-select>
+             </mat-form-field>
+             </form>
+             <!-- </div> -->
+      </ng-template>
+
+      <!-- <img src="../../../../assets//img/chathistory/Asset25.svg" class="chat mx-auto" width="150" height="150"> -->
       <!-- Bootstrap core JavaScript-->
       <!-- <script src="../library/bootstrap/js/bootstrap.4.5.0.min.js"></script>
       <script src="../library/bootstrap/js/popper.min.1.16.0.js"></script>

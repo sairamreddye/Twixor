@@ -1,10 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UserDataService } from '../../../providers/user-data.service';
-import { ApiDataService } from '../../../providers/api-data.service';
-import { MessageService } from '../../../providers/websocket.service';
-import { Agents, Departments } from '../../../interfaces/user-options';
-import { AppConfig } from '../../../providers/APP_CONFIG';
+import { UserDataService } from '../../../../providers/user-data.service';
+import { ApiDataService } from '../../../../providers/api-data.service';
+import { MessageService } from '../../../../providers/websocket.service';
+import { Agents, Departments } from '../../../../interfaces/user-options';
+import { AppConfig } from '../../../../providers/APP_CONFIG';
 @Component({
   selector: 'app-chat-process',
   templateUrl: './chat-process.html',

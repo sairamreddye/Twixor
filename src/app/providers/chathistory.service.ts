@@ -21,4 +21,8 @@ chatHistoryUserAgent(){
   const baseURL = `https://aim.twixor.com/e/enterprise/artifacts?desc=&from=0&perPage=10&type=4&deptId=&_=1606541652940`;
   return this.http.get(baseURL);
 }
+chatHistorygetChats(dynamicUrl){
+  const baseUrl = `https://aim.twixor.com/e/enterprise/chat/history?${dynamicUrl}&_=1606908956407`;
+  return this.http.get(baseUrl);
+}
 }
