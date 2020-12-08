@@ -51,11 +51,12 @@ export class CreateEncapsComponent implements OnInit {
     })
 }
 createEncaps(name){
-  debugger
+
   this.DashBoardService.createEncaps(name).subscribe((res: any)=>{
     this.result = res;
     console.log(this.result);
     //this.newencap = res.response['campaigns'];
+   // window.location.reload()
   });
   this.getEncapslist();
 }
