@@ -39,10 +39,10 @@ export class DashBoardService {
   createEncaps(name) : Observable<any> {
     // const url = `${environment.BASEURL}${this.dashBoardUrlext}instances?filter=running&from=0&perPage=4`
     const url = "https://aim.twixor.com/e/enterprise/campaigns";
-    const obj = {
-      name: name
-    }
-    return this.http.post(url, obj);
+    const body = new HttpParams()
+    .set('name', name)
+    debugger;
+    return this.http.post(url, body.toString());
   }
 }
 

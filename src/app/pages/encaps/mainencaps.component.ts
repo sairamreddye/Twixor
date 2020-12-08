@@ -7,10 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainencapsComponent implements OnInit {
 
-  constructor() {
-
-    debugger
-   }
+  constructor() {}
 
   ngOnInit() {
   }

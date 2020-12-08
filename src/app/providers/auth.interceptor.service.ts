@@ -41,6 +41,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const token: string = this.storageService.getToken();
     const loginRequest: any = req.clone({ setHeaders: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: req.body });
     const getRequest: any = req.clone({ setHeaders: { 'authentication-token': token }, body: req.body });
+    const bothRequest:any = req.clone({setHeaders: {'Content-Type': 'application/x-www-form-urlencoded', 'authentication-token': token}, body: req.body });
 
 
     let Request
@@ -53,8 +54,9 @@ export class AuthInterceptor implements HttpInterceptor {
           Request = loginRequest;
         }
       }
-      else {    //todo condition if any one condition is not satisfied
-        Request = getRequest;
+      else { 
+        debugger   //todo condition if any one condition is not satisfied
+        Request = bothRequest;
       }
       console.log(`Requrl:${req.url}`);
     }

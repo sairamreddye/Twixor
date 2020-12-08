@@ -26,6 +26,7 @@ export class CreateEncapsComponent implements OnInit {
     this.getEncapslist();
     //this.createEncaps(name);   
   }
+
   updateProfile() { //to intilize the form values this method will used;
     this.Encapform.patchValue({
       encapname: ""
@@ -37,7 +38,6 @@ export class CreateEncapsComponent implements OnInit {
   const formOutput = Object.assign(obj, this.Encapform.value);
   const encapName = formOutput.encapname;
   this.createEncaps(encapName);
-  debugger
   }    
   
   reset() {
@@ -50,12 +50,14 @@ export class CreateEncapsComponent implements OnInit {
       this.Encapsdata = res.response['campaigns'];
     })
 }
-createEncaps(name:string){
+createEncaps(name){
   debugger
   this.DashBoardService.createEncaps(name).subscribe((res: any)=>{
-    this.result = res
+    this.result = res;
+    console.log(this.result);
     //this.newencap = res.response['campaigns'];
-  })
+  });
+  this.getEncapslist();
 }
 
 }

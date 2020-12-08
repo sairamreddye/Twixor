@@ -52,6 +52,7 @@ export class SideNavComponent implements OnInit {
      this.router.navigateByUrl(`/dashboard?authToken=${userToken}`);
     }
      logOut(){
+       debugger
        this.logoutService.logOut().subscribe();
       //  this.router.navigateByUrl(`/login`); //yet to do
      }
