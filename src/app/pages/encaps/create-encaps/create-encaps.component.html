@@ -216,6 +216,11 @@
              <div class="row col-md-12">
                  <label for="name" class="col-md-6 label">Workspace Name</label>
                  <input type="text" formControlName="encapname"  class="col-md-6 form-control"  placeholder="Enter Name" id="email">
+                <div *ngIf="Encapform.controls.encapname.invalid && (Encapform.controls.encapname.dirty || Encapform.controls.encapname.touched)"class="text-danger">
+                 <p *ngIf="Encapform.controls.encapname.errors.required">
+                  name should not be empty
+                 </p>
+               </div>
              </div>
              <div class="modal-footer">
                <button type="button" class="btn btn-warning text-white" data-dismiss="modal">Cancel</button>

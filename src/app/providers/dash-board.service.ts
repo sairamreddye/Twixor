@@ -41,7 +41,7 @@ export class DashBoardService {
     const url = "https://aim.twixor.com/e/enterprise/campaigns";
     const body = new HttpParams()
     .set('name', name)
-    debugger;
+    
     return this.http.post(url, body.toString());
   }
 }
