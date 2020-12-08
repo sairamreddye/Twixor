@@ -21,8 +21,8 @@ export class ChathistoryComponent implements OnInit {
     customerPhone: ['', Validators.required],
     startdate: ['', Validators.required],
     enddate: ['', Validators.required],
-    department: ['', Validators.required],
-    agent: ['', Validators.required],
+    department: [''],
+    agent: [''],
     searchedData: [''],
     focusedData: ['', Validators.required],
     selectedStatus: ['', Validators.required]
@@ -67,7 +67,8 @@ export class ChathistoryComponent implements OnInit {
   finalUrl: any;
   chatHistoryData: any = [];
   determined: any = [];
-  isValid:boolean;
+  isValid: boolean;
+  OutputString: string;
 
   constructor(private chathistory: ChathistoryService, private fb: FormBuilder, private datePipe: DatePipe) { }
 
@@ -76,29 +77,28 @@ export class ChathistoryComponent implements OnInit {
     this.updateProfile();
   }
 
-  forIntialApigetStartDate() {
+  forIntialApigetStartDate() { //todo method for getting intial data startDate will get here
     var date = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
     var startDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
     const timeConversion = startDate.replace("Z", "");
     return this.conversionStartTime(timeConversion);
   }
 
-  forIntialApigetEndDate() {
+  forIntialApigetEndDate() {  //todo method for getting intial data endDate will get here
     var date = new Date();
     var endDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
     const timeConversion = endDate.replace("Z", "");
     return this.conversionEndTime(timeConversion);
   }
 
-  historyData() {
-    // if (this.parametersCheck) {
-     this.isValid = true;
-      this.startDate = this.getStartDate();
-      this.endDate = this.getEndDate();
-      const startDate = this.forIntialApigetStartDate();
-      const endDate = this.forIntialApigetEndDate();
-      const departmentsRequired = true;
-    // }
+  historyData() {   //todo method for intial binding data to ui
+
+    this.isValid = true;
+    this.startDate = this.getStartDate();
+    this.endDate = this.getEndDate();
+    const startDate = this.forIntialApigetStartDate();
+    const endDate = this.forIntialApigetEndDate();
+    const departmentsRequired = true;
     const from = '0';
     const perPage = '10';
     const state = '3';
@@ -110,23 +110,22 @@ export class ChathistoryComponent implements OnInit {
     });
   }
 
-  valueChange(event){
+  valueChange(event) { //todo method when department will change agent dropdown will changed
     this.determined = [];
     this.isValid = false;
     const department_$oid = event;
     const getAgentNumbers = this.historyDepartment;
     const agentName = getAgentNumbers.find(id => id._id.$oid === department_$oid);
-    
-    const agentnameMapping =  agentName.users;
-          agentnameMapping.forEach(id => {
-    const AgentName = this.historyAgent.find(Agentid => Agentid.id === id);
-         return  this.determined.push(AgentName);
-   });
-   this.determined
-    debugger
+
+    const agentnameMapping = agentName.users;
+    agentnameMapping.forEach(id => {
+      const AgentName = this.historyAgent.find(Agentid => Agentid.id === id);
+      return this.determined.push(AgentName);
+    });
+    this.determined
   }
 
-  updateProfile() { //to intilize the form values this method will used;
+  updateProfile() { //todo intilize the form values in this method
     this.historyForm.patchValue({
       startdate: this.getStartDate(),
       enddate: this.getEndDate(),
@@ -138,21 +137,21 @@ export class ChathistoryComponent implements OnInit {
     });
   }
 
-  getStartDate() {
+  getStartDate() { //todo get startdate
     var date = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
     var startDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
     const timeConversion = startDate.replace("Z", "");
     return this.conversionStartTime(timeConversion);
   }
 
-  getEndDate() {
+  getEndDate() {  //todo get enddate
     var date = new Date();
     var endDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
     const timeConversion = endDate.replace("Z", "");
     return this.conversionEndTime(timeConversion);
   }
 
-  conversionStartTime(conversion) { //conversion starts start time to get 18:30:00.000
+  conversionStartTime(conversion) { //todo conversion starts replacing Starttime into 18:30:00.000
     let str = conversion;
     let timed = "18:30:00.000"
     let result = str.split("T");
@@ -161,7 +160,7 @@ export class ChathistoryComponent implements OnInit {
     return `${shift}T${timed}`
   }
 
-  conversionEndTime(conversion) {  //conversion starts Endtime into 18:29:00.000
+  conversionEndTime(conversion) {  //todo conversion starts replacing Endtime into 18:29:00.000
     let str = conversion;
     let timed = "18:29:00.000"
     let result = str.split("T");
@@ -170,7 +169,7 @@ export class ChathistoryComponent implements OnInit {
     return `${shift}T${timed}`
   }
 
-  searchedData(event: any) {
+  searchedData(event: any) {   //todo method for customer name/number search
     this.searchParam = event;
     // console.log(this.searchParam)
     if (this.searchParam === undefined || this.searchParam == "") {
@@ -191,33 +190,27 @@ export class ChathistoryComponent implements OnInit {
         }
       });
     }
-
   }
 
-
-  onFocusEvent($event) {
+  onFocusEvent($event) {  //todo method for agentTag feild onfocus method will call
     this.userTag = $event.target.value;
     this.chathistory.chatHistoryUserAgent().subscribe((res: any) => {
       const data = res['response']['artifacts'];
-      // const mapping = data.map(m => {
-      //   return m.data;
-      // })
-     const mapping = data.map(({ _id, data }) => ({_id, data}));
-     debugger
+      const mapping = data.map(({ _id, data }) => ({ _id, data }));
       this.products = mapping;
     })
   }
 
-  agentDepartment(departmentId){
+  agentDepartment(departmentId) {  //todo method for printing department in table
     const departmentName = this.historyDepartment.find(id => id._id.$oid === departmentId);
     return departmentName.name;
   }
 
-  agentName(agentId){
-  const agentName = this.historyAgent.find(id => id.id === agentId);
-      return agentName.name;
+  agentName(agentId) { //todo method for printing agent name in table
+    const agentName = this.historyAgent.find(id => id.id === agentId);
+    return agentName.name;
   }
-  getState(stateId){
+  getState(stateId) {  //todo mehtod for printing status in table
     const stateName = this.chatStatus.find(id => id.value == stateId);
     return stateName.key;
   }
@@ -258,8 +251,14 @@ export class ChathistoryComponent implements OnInit {
     this.department = formOutput.department;
     this.agent = formOutput.agent;
     this.searchedOutput = formOutput.searchedData;
-    this.focusedData = formOutput.focusedData;
-    debugger
+    const verifyingArray = formOutput.focusedData;
+
+    if (Array.isArray(verifyingArray) && verifyingArray.length) {
+      this.focusedData = JSON.stringify(formOutput.focusedData);
+    }
+    else {
+      this.focusedData = verifyingArray;
+    }
     const UrlBulidingobject = {
       "from": this.from = '0',
       "perPage": this.perPage = '10',
@@ -268,30 +267,22 @@ export class ChathistoryComponent implements OnInit {
       "customer": this.searchedOutput,
       "startDate": this.startDate,
       "endDate": this.endDate,
-      "agentTag": this.focusedData,
+      "agentTag": encodeURI(this.focusedData).replace(/,/g, "%2C"),
       "department": this.department,
       "agent": this.agent,
     }
-
+    debugger
     for (var key in UrlBulidingobject) {
       if (UrlBulidingobject[key] === null || UrlBulidingobject[key] === undefined || UrlBulidingobject[key] === "") {
         delete UrlBulidingobject[key];
       }
     }
     const freezing = UrlBulidingobject;
-    console.log(freezing);
-
     var result = Object.keys(freezing).map(function (key) {
-
-      // Using Number() to convert key to number type
-      // Using obj[key] to retrieve key value
       return [String(key), freezing[key]];
     });
-
-    // Printing values
     for (var i = 0; i < result.length; i++) {
       for (var z = 0; z < result[i].length; z++) {
-        // console.log(result[i][z] + "&"); 
         if (result[i][z] === undefined) {
           return;
         }
@@ -309,90 +300,22 @@ export class ChathistoryComponent implements OnInit {
     return;
   }
 
-  getChatHistory(finalUrl) {
+  getChatHistory(finalUrl) { //todo method after pressing the getChats
     // this.chatHistoryData = [];
     this.chathistory.chatHistorygetChats(finalUrl).subscribe((res: any) => {
-       const response = res.response;   
-        this.chatHistoryData = response['chats'];
+      const response = res.response;
+      this.chatHistoryData = response['chats'];
     })
   }
 
-  reset() {
+  reset() { //todo method form reset
     this.myForm.resetForm(); // <-- ici
     this.historyForm.reset();
-    // this.updateProfile();
+    // this.updateProfile();  //we want to set form default values after refreshing;
   }
 }
-
 class MyObj {
   select: string;
   input: string;
   date: number;
 }
-
-
- // this.chathistory.chatHistoryUserAgent().subscribe((res:any) =>{
-    //   const data = res['response']['artifacts'];
-    //   const mapping = data.map(m => {
-    //     return m.data;
-    //   })
-    //   this.products = mapping;
-    //   debugger
-    //     console.log(this.focusedData);
-    // })
-
-// for (var propName in UrlBulidingobject) { 
-      //   if (obj[propName] === null || obj[propName] === undefined || obj[propName] === "") {
-      //     delete obj[propName];
-      //   }
-      // }
-
-  // const baseURL = `https://aim.twixor.com/e/enterprise/chat/history?&from=${a}&perPage=${b}&state=${c}&departmentsRequired=${d}&startDate=${e}&endDate=${f}&_=1606295140565`;
-
-  // if(formOutput.startdate === null){
-      //    this.startDate = this.getStartDate();
-      // }
-      // if(formOutput.enddate === null){
-      //      this.endDate = this.getEndDate()
-      // }
-
- // this.historyForm = new FormGroup({
-    //   customerPhone: new FormControl(null, Validators.required),
-    //   startdate: new FormControl(null, Validators.required),
-    //   enddate: new FormControl(null, Validators.required),
-    //   department: new FormControl(null, Validators.required),
-    //   agent: new FormControl(null, Validators.required),
-    //   searchedData: new FormControl(null,Validators.required),
-    //   focusedData: new FormControl(null,Validators.required)
-    // });
-    // this.searchedData();
-
-      // for (const d of (res['response']['artifacts'] as any)) {
-      //   this.focusedData.push({
-      //     name: d.data.desc
-      //   });
-
-
-      // searchedData(){
-//   this.filteredOptions = this.historyForm.controls['searchedData'].valueChanges.pipe(
-//     startWith(null),
-//     debounceTime(0),
-//     distinctUntilChanged(),
-//     switchMap(val => 
-//        this.chathistory.chatHistoryDropdown(val)
-//         .pipe(
-//         map(response => response['response']['customers'])
-//         )
-//     )
-//     );
-// }
-// products: any = [
-  //   {
-  //     tagUnique: "issuenotresolved",
-  //     desc: "Issue not resolved"
-  //   },
-  //   {
-  //     tagUnique: "demo",
-  //     desc: "Demo"
-  //   }
-  // ];

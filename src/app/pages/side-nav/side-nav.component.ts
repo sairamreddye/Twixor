@@ -53,8 +53,11 @@ export class SideNavComponent implements OnInit {
     }
      logOut(){
        debugger
-       this.logoutService.logOut().subscribe();
-      //  this.router.navigateByUrl(`/login`); //yet to do
+       this.logoutService.logOut().subscribe((res:any) => {
+         const logout = JSON.stringify(res);
+         console.log(logout);
+       });
+       this.router.navigateByUrl(`/login`); //yet to do
      }
      chat(){
      const userToken = this.storageService.getToken();
