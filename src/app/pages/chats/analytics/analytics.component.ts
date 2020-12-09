@@ -96,9 +96,9 @@ export class AnalyticsComponent implements OnInit {
       //  if(this.department === this.agent){  //TOdo comparision department and agent
       //     this.departmentAgent = 0
       //  }
-      this.analyticsData();
-      this.reset();
-      return;
+      // this.analyticsData();
+      // // this.reset();
+      // return;
     }
     else if (!this.group.valid) {
       this.parametersCheck = false;
@@ -109,9 +109,9 @@ export class AnalyticsComponent implements OnInit {
       //  }
       this.startDate = this.Last7Days();
       this.enddate = this.formatDate();
-      this.analyticsData();
-      this.reset();
-      return;
+      // this.analyticsData();
+      // this.reset();
+      // return;
     }
     else {
       alert('not valid, try again');
