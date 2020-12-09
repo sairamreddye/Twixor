@@ -58,6 +58,7 @@ createEncaps(name){
     //this.newencap = res.response['campaigns'];
    // window.location.reload()
   });
+  // window.location.reload()
   this.getEncapslist();
 }
 

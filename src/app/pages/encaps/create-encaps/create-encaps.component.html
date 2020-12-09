@@ -33,7 +33,7 @@
             </iframe>
          </div> -->
          <!-- Content Wrapper -->
-         <div class="col-md-10 mt-3 aside_right">
+         <div class="col-md-12 mt-3 aside_right">
             <div id="content-wrapper" class="d-flex flex-column">
                <div class="row">
                   <div class="col-md-8">
@@ -43,7 +43,7 @@
                   <!--onclick model starts here-->
                   <div class="col-md-4 row d-flex justify-content-around">
                      <a href="#" class="btn btn-light chats bg-0 all_encaps bg-white text-primary border col-md-5 box-shadow-none border-primary">Import Workspace</a>
-                     <a data-toggle="modal" data-target="#myModal" class=" chats col-md-6 text-white"><button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Create New Workspace</button></a>
+                     <a data-toggle="modal" data-target="#myModal" class=" chats col-md-6 text-white"><button class="btn btn-primary" data-toggle="modal" data-target="#myModal"><b>Create New Workspace</b></button></a>
                   </div>
                    
       <!-- <div class="col-md-2 logo text-left">
@@ -52,9 +52,9 @@
                </div>
                <hr class="w-100">
             </div>
-            <div class="row" >
-               <div class="col-md-3" id="re_sub">
-                  <div class="card mb-3" *ngFor="let encapslist of Encapsdata">
+            <div class="row m-0" >
+               <div class="col-md-3" id="re_sub"  *ngFor="let encapslist of Encapsdata">
+                  <div class="card mb-3">
                      <div class="card-img-top-encaps image-top-one"  alt="Card image cap"></div>
                      <div class="card_buttons">
                         <button class="btn btn-primary encaps_count">4.0</button>
@@ -213,19 +213,19 @@
      </div>
      <div class="modal-body">
          <form class="form-inline" [formGroup]="Encapform" (submit)="submit($event)" (reset)="reset($event)" #f="ngForm">
-             <div class="row col-md-12">
-                 <label for="name" class="col-md-6 label">Workspace Name</label>
-                 <input type="text" formControlName="encapname"  class="col-md-6 form-control"  placeholder="Enter Name" id="email">
-                <div *ngIf="Encapform.controls.encapname.invalid && (Encapform.controls.encapname.dirty || Encapform.controls.encapname.touched)"class="text-danger">
+             <div class="row col-md-12 pb-2">
+                 <label for="staticEmail" class="col-md-12 col-form-label grey_text p-0 d-flex justify-content-start pb-2">Workspace Name</label>
+                 <input type="text" formControlName="encapname"  class="col-md-12 form-control form-control bg-white border-radius-25 "  placeholder="Enter Name" id="email">
+                <div class="d-flex justify-content-end ng-star-inserted" *ngIf="Encapform.controls.encapname.invalid && (Encapform.controls.encapname.dirty || Encapform.controls.encapname.touched)"class="text-danger">
                  <p *ngIf="Encapform.controls.encapname.errors.required">
                   name should not be empty
                  </p>
                </div>
              </div>
-             <div class="modal-footer">
-               <button type="button" class="btn btn-warning text-white" data-dismiss="modal">Cancel</button>
+             <div class="modal-footer col-12">
+               <button type="button" class="col-md-3 btn btn-secondary bg-white text-primary border-primary" data-dismiss="modal">Cancel</button>
                <!-- <button type="submit" class="btn btn-success text-white form-control" data-dismiss="modal">Create</button> -->
-               <button type="submit" class="form-control form-control bg-white border-0 search">create</button>
+               <button type="submit" class="form-control form-control col-md-3 btn btn-primary bg-primary text-white">create</button>
            </div>
          </form>
      </div>
