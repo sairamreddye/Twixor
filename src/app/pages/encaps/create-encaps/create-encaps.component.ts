@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Inject} from '@angular/core';
 import { StorageService } from 'src/app/providers/storage/storage.service';
 import { DashBoardService} from "../../../providers/dash-board.service";
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ViewChild } from '@angular/core';
+ import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-create-encaps',
@@ -18,8 +19,12 @@ export class CreateEncapsComponent implements OnInit {
     encapname: ['', Validators.required],
   
   });
-  
-  constructor(private DashBoardService: DashBoardService, private storageService:StorageService,private fb:FormBuilder) { }
+  showmodel:boolean;
+  constructor(
+    @Inject(DOCUMENT) private _document: Document,
+    private DashBoardService: DashBoardService, private storageService:StorageService,private fb:FormBuilder) {
+    this.showmodel = true
+   }
 
   ngOnInit() {
     
@@ -50,16 +55,35 @@ export class CreateEncapsComponent implements OnInit {
       this.Encapsdata = res.response['campaigns'];
     })
 }
+close(){
+  document.getElementById("myModal").style.display = 'none';
+  //this.showmodel = true
+ // if(this.showmodel = true){
+    document.getElementById("myModal").style.opacity = '0';
+  //}
+}
+
 createEncaps(name){
 
   this.DashBoardService.createEncaps(name).subscribe((res: any)=>{
     this.result = res;
     console.log(this.result);
-    //this.newencap = res.response['campaigns'];
-   // window.location.reload()
+    
   });
-  // window.location.reload()
+  
+  // if(this.Encapform.value.encapName==this.Encapsdata.name){
+  //   alert("department name is all ready ")
+  // }
+  this.close();
+  
   this.getEncapslist();
+  setTimeout(() => {
+    this.refresh();
+  }, 1500);
+  
+}
+refresh() {
+  this._document.defaultView.location.reload();
 }
 
 }

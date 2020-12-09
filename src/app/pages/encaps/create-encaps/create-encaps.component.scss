@@ -4,54 +4,81 @@
     line-height: 22px;
     font-size: 18px;
     color: #000 !important;
-    
     padding: 10px;
 }
+
 .btn.btn-light.chats.bg-0.all_encaps.bg-white.text-primary.border.col-md-5.box-shadow-none.border-primary {
     border: 1px solid #848DDB !important;
-    border-radius: 20px;
-    padding: 4px;
+    border-radius: 15px;
+    padding: 6px;
     color: #848DDB !important;
 }
+
 .btn.btn-primary.chats.col-md-6.text-white {
     background-color: #848ddb !important;
     border-color: #848ddb !important;
     font-size: 15px;
     border-radius: 25px;
 }
+
 .btn.btn-primary.encaps_count {
     background-color: #848ddb !important;
     border-color: #848ddb !important;
     font-size: 12px;
     border-radius: 25px;
 }
+
 .card-title {
     font-size: 18px;
     font-weight: bold;
     color: #030303 !important;
 }
-.card-img-top-encaps{
-border-radius: 15px;
-background: url(../../../../assets/Dashboard/encaps_card_1.jpg);
+
+.card-img-top-encaps {
+    border-radius: 15px;
+    background: url(../../../../assets/Dashboard/encaps_card_1.jpg);
     background-position-x: 0%;
     background-position-y: 0%;
     background-repeat: repeat;
-background-position: left top;
-background-repeat: repeat;
-padding: 20px;
-// /width: 200px;/
-height: 130px;
+    background-position: left top;
+    background-repeat: repeat;
+    padding: 20px;
+    // /width: 200px;/
+    height: 130px;
 }
-.image-top-two{background: url(../../../../assets/Dashboard/encaps_card_2.png);}
-.image-top-three{background: url(../../../../assets/Dashboard/encaps_card_8.jpg);}
-.image-top-four{background: url(../../../../assets/Dashboard/encaps_card_4.jpg);}
-.image-top-five{background: url(../../../../assets/Dashboard/encaps_card_5.jpg);}
-.image-top-six{background: url(../../../../assets/Dashboard/encaps_card_6.jpg);}
-.image-top-seven{background: url(../../../../assets/Dashboard/encaps_card_7.jpg);}
-.image-top-eight{background: url(../../../../assets/Dashboard/encaps_card_7.jpg);}
+
+.image-top-two {
+    background: url(../../../../assets/Dashboard/encaps_card_2.png);
+}
+
+.image-top-three {
+    background: url(../../../../assets/Dashboard/encaps_card_8.jpg);
+}
+
+.image-top-four {
+    background: url(../../../../assets/Dashboard/encaps_card_4.jpg);
+}
+
+.image-top-five {
+    background: url(../../../../assets/Dashboard/encaps_card_5.jpg);
+}
+
+.image-top-six {
+    background: url(../../../../assets/Dashboard/encaps_card_6.jpg);
+}
+
+.image-top-seven {
+    background: url(../../../../assets/Dashboard/encaps_card_7.jpg);
+}
+
+.image-top-eight {
+    background: url(../../../../assets/Dashboard/encaps_card_7.jpg);
+}
+
 .fa-grey {
     color: #9b9b9b !important;
 }
+
 .fa.fa-search {
     position: absolute;
     right: 28px;
@@ -60,20 +87,49 @@ height: 130px;
     color: #b9bac0 !important;
     font-weight: lighter;
 }
-.a.chats.col-md-6.text-white{
+
+.a.chats.col-md-6.text-white {
     background-color: #848ddb !important;
     border-color: #848ddb !important;
     font-size: 12px;
     border-radius: 25px;
 }
+
 .border-radius-25 {
     border-radius: 25px;
 }
+
 .button.form-control.form-control.col-md-3.btn.btn-primary.bg-primary.text-white {
     background-color: #848ddb !important;
     border-color: #848ddb !important;
 }
-.button.col-md-3.btn.btn-secondary.bg-white.text-primary.border-primary{
+
+.button.col-md-3.btn.btn-secondary.bg-white.text-primary.border-primary {
     border-color: #848ddb !important;
-    color:#848ddb !important;
+    color: #848ddb !important;
 }
+
+.background-primary {
+    background-color: #848DDB;
+    border-radius: 15px;
+    color: #Fff;
+}
+
+.border-color {
+    border: 1px solid #848DDB !important;
+    // background-color: #848DDB;
+    border-radius: 15px;
+}
+
+.card_buttons {
+    position: absolute;
+    top: 118px;
+    left: 20px;
+}
+
+button.btn.btn-primary.encaps_count {
+    border-radius: 15px;
+    height: 25px;
+    line-height: 12px;
+}
+
