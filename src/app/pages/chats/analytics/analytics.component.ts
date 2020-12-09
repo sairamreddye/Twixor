@@ -15,7 +15,6 @@ import { DatePipe } from "@angular/common";
 
 export class AnalyticsComponent implements OnInit {
   @ViewChild('f', { static: false }) myForm;
-
   chatAttended: any ="00";
   missedChat: any = "00";
   avgPickedUpInterval: any = "0";
