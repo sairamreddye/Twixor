@@ -7,182 +7,185 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <title>Twixor</title> -->
-      <!-- Custom fonts-->
-      <!-- <link href="../library/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<!-- Custom fonts-->
+<!-- <link href="../library/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
-      <!--custom fonts ends here-->
-      <!-- Custom styles-->
-      <!-- <link href="../resources/css/sidebar.css" rel="stylesheet">
+<!--custom fonts ends here-->
+<!-- Custom styles-->
+<!-- <link href="../resources/css/sidebar.css" rel="stylesheet">
       <link href="../resources/css/custom.css" rel="stylesheet">
       <link href="css/analytics.css" rel="stylesheet">
       <link href="../library/bootstrap/css/bootstrap.min.4.5.0.css" rel="stylesheet"> -->
-      <!--common style ends here-->
-   <!-- </head>
+<!--common style ends here-->
+<!-- </head>
    <body id="page-top m-0"> -->
-      <!-- Page Wrapper -->
-      <div id="" class="row m-0">
-         <!-- Sidebar -->
-         <!-- <div class="col-md-2 p-0 sidebar">
-            <iframe id="serviceFrameSend" src="../sidebar.html" class="col-md-12 p-0 iframe-embed" frameborder="0"  scrolling="no">
-            </iframe>
-         </div> -->
-         <!-- Content Wrapper -->
-         <div class="col-md-10 mt-3 aside_right">
-            <div class="col-md-12 pr-0 pl-0 bg_waterblue border_radius_15 border">
-               <div class="p-3">
-                  <form class="row" [formGroup]="group" (submit)="submit($event)" (reset)="reset($event)" #f="ngForm">
-                     <div class="col-md-2 form-group mb-0 analytics">
-                        <label for="idate">Department</label>
-                        <!-- <div class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white">
-                           <div class="custom-select">
-                              <div class="custom-select__trigger">
-                                 <span class="grey_text">E.g:Admin</span>
-                                 <img src="../../../../assets/img/analytics/Asset17.svg" class="journey_call">
-                              </div> -->
-                              <!--    <div class="custom-select__trigger"><span class="grey_text">Admin</span>
-                                 <div class="arrow"></div>
-                                 </div> -->
-                              <!-- <div class="col-md-12 custom-options encaps">
-                                 <span class="custom-option selected" data-value="tesla">Associate</span>
-                                 <span class="custom-option" data-value="volvo">Trainee</span>
-                              </div>
-                           </div>
-                        </div>  -->
-                  	<mat-form-field matLine>
-                        <mat-select formControlName="department" placeholder="Select Department">
-                           <mat-option [value]="department._id.$oid" *ngFor="let department of analyticDepartment">{{ department.name }}</mat-option>
-                        </mat-select>
-                     </mat-form-field>
-
-                     </div>
-                    
-
-                     <div class="col-md-2 form-group mb-0 analytics">
-                        <label for="idate">Agent</label>
-                        <!-- <div class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white">
-                           <div class="custom-select">
-                              <div class="custom-select__trigger">
-                                 <span class="grey_text">E.g:John</span>
-                                  <img src="../../../../assets/img/analytics/Asset17.svg" class="journey_call">
-                              </div> -->
-                              <!--    <div class="custom-select__trigger"><span class="grey_text">Admin</span>
-                                 <div class="arrow"></div>
-                                 </div> -->
-                              <!-- <div class="col-md-12 custom-options encaps">
-                                 <span class="custom-option selected" data-value="tesla">Associate</span>
-                                 <span class="custom-option" data-value="volvo">Trainee</span>
-                              </div>
-                           </div>
-                        </div> -->
-                        <mat-form-field matLine>
-                           <mat-select formControlName="agent" placeholder="Select Agent">
-                              <mat-option [value]="agent.id" *ngFor="let agent of analyticAgent">{{ agent.name }}</mat-option>
+<!-- Page Wrapper -->
+<div id="" class="row m-0">
+   <!-- Sidebar -->
+   <!-- <div class="col-md-2 p-0 sidebar">
+           <iframe id="serviceFrameSend" src="../sidebar.html" class="col-md-12 p-0 iframe-embed" frameborder="0"  scrolling="no">
+           </iframe>
+        </div> -->
+   <!-- Content Wrapper -->
+   <div class="col-md-12 mt-3 aside_right">
+       <div class="col-md-12">
+           <div class="col-md-12 bg_waterblue border_radius_15 border pt-3">
+               <form class="row" [formGroup]="group" (submit)="submit($event)" (reset)="reset($event)" #f="ngForm">
+                   <div class="col-md-2 form-group mb-0 analytics">
+                       <label for="idate">Department</label>
+                       <!-- <div class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white">
+                          <div class="custom-select">
+                             <div class="custom-select__trigger">
+                                <span class="grey_text">E.g:Admin</span>
+                                <img src="../../../../assets/img/analytics/Asset17.svg" class="journey_call">
+                             </div> -->
+                       <!--    <div class="custom-select__trigger"><span class="grey_text">Admin</span>
+                                <div class="arrow"></div>
+                                </div> -->
+                       <!-- <div class="col-md-12 custom-options encaps">
+                                <span class="custom-option selected" data-value="tesla">Associate</span>
+                                <span class="custom-option" data-value="volvo">Trainee</span>
+                             </div>
+                          </div>
+                       </div>  -->
+                       <mat-form-field matLine class="col-md-12 p-0">
+                           <mat-select formControlName="department" placeholder="Select Department">
+                               <mat-option [value]="department._id.$oid" *ngFor="let department of analyticDepartment">{{ department.name }}</mat-option>
                            </mat-select>
-                        </mat-form-field>
-                     </div>
-                     <div class="col-md-2 form-group mb-0 analytics">
-                        <label for="idate">Start Date</label>
-                        <!-- <div class="input-group input-medium">
-                           <input type="text" class="form-control date_width border-0 bg-white" id="date" placeholder="E.g 22-5-2020">
-                           <span class="input-group-btn bg-white">
-                           <button class="btn btn-default fleet_date"><img src="../../../../assets/img/analytics/Asset24.svg" class="analytic_date"/></button>
-                           </span>
-                        </div> -->
-                        <mat-form-field>
+                       </mat-form-field>
+
+                   </div>
+
+
+                   <div class="col-md-2 form-group mb-0 analytics">
+                       <label for="idate">Agent</label>
+                       <!-- <div class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white">
+                          <div class="custom-select">
+                             <div class="custom-select__trigger">
+                                <span class="grey_text">E.g:John</span>
+                                 <img src="../../../../assets/img/analytics/Asset17.svg" class="journey_call">
+                             </div> -->
+                       <!--    <div class="custom-select__trigger"><span class="grey_text">Admin</span>
+                                <div class="arrow"></div>
+                                </div> -->
+                       <!-- <div class="col-md-12 custom-options encaps">
+                                <span class="custom-option selected" data-value="tesla">Associate</span>
+                                <span class="custom-option" data-value="volvo">Trainee</span>
+                             </div>
+                          </div>
+                       </div> -->
+                       <mat-form-field matLine class="col-md-12 p-0">
+                           <mat-select formControlName="agent" placeholder="Select Agent">
+                               <mat-option [value]="agent.id" *ngFor="let agent of analyticAgent">{{ agent.name }}</mat-option>
+                           </mat-select>
+                       </mat-form-field>
+                   </div>
+                   <div class="col-md-2 form-group mb-0 analytics">
+                       <label for="idate">Start Date</label>
+                       <!-- <div class="input-group input-medium">
+                          <input type="text" class="form-control date_width border-0 bg-white" id="date" placeholder="E.g 22-5-2020">
+                          <span class="input-group-btn bg-white">
+                          <button class="btn btn-default fleet_date"><img src="../../../../assets/img/analytics/Asset24.svg" class="analytic_date"/></button>
+                          </span>
+                       </div> -->
+                       <mat-form-field class="col-md-12 p-0">
                            <input matInput [matDatepicker]="dp" placeholder="startDate" formControlName="startdate">
                            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
                            <mat-datepicker #dp></mat-datepicker>
-                         </mat-form-field>
-                     </div>
-                     <span class="text-primary hypen">-</span>
-                     <div class="col-md-2 form-group mb-0 analytics">
-                        <label for="idate">End Date</label>
-                        <!-- <div class="input-group input-medium">
-                           <input type="text" class="form-control date_width border-0 bg-white" placeholder="E.g 25-09-2020">
-                           <span class="input-group-btn bg-white">
-                           <button class="btn btn-default fleet_date "><img src="../../../../assets/img/analytics/Asset24.svg" class="analytic_date"/></button>
-                           </span>
-                        </div> -->
-                        <mat-form-field>
+                       </mat-form-field>
+                   </div>
+                   <span class="text-primary hypen">-</span>
+                   <div class="col-md-2 form-group mb-0 analytics">
+                       <label for="idate">End Date</label>
+                       <!-- <div class="input-group input-medium">
+                          <input type="text" class="form-control date_width border-0 bg-white" placeholder="E.g 25-09-2020">
+                          <span class="input-group-btn bg-white">
+                          <button class="btn btn-default fleet_date "><img src="../../../../assets/img/analytics/Asset24.svg" class="analytic_date"/></button>
+                          </span>
+                       </div> -->
+                       <mat-form-field class="col-md-12 p-0">
                            <input matInput [matDatepicker]="dps" placeholder="End Date" formControlName="enddate">
                            <mat-datepicker-toggle matSuffix [for]="dps"></mat-datepicker-toggle>
                            <mat-datepicker #dps></mat-datepicker>
-                         </mat-form-field>
-                     </div>
-                     <button type="submit" class="btn btn-light border-light m-3 p-2" type="submit" [disabled]="!group.valid">Get Report</button>
-                  </form>
+                       </mat-form-field>
+                   </div>
+                   <!-- <div class="col-md-1"></div> -->
+                   <div class="col-md-2">
+                       <button type="submit" class="btn btn-light border-rep m-3 p-2" type="submit" [disabled]="!group.valid">Get Report</button>
+                   </div>
+               </form>
+           </div>
+       </div>
+       <div class="row m-0">
+           <div class="col-md-2">
+               <div class="card bg_waterblue mt-3 pt-0 pr-3 pl-3 pb-3" *ngIf="chatAttended !== undefined">
+                   <div class="numberic">{{chatAttended ?chatAttended : 00}}</div>
+                   <div class="chats_details">Attended Chats</div>
                </div>
-            </div>
-            <div class="row">
-               <div class="col-md-2">
-                  <div class="card bg_waterblue mt-3 pt-0 pr-3 pl-3 pb-3" *ngIf ="chatAttended !== undefined">
-                     <div class="numberic text-primary">{{chatAttended ?chatAttended : 00}}</div>
-                     <div class="chats_details">Attended Chats</div>
-                  </div>
-                  <div class="card bg_waterblue mt-3 pt-0 pr-3 pl-3 pb-3" *ngIf ="missedChat !== undefined">
-                     <div class="numberic text-primary">{{missedChat ? missedChat : 00}}</div>
-                     <div class="chats_details">Missed Chats</div>
-                  </div>
-                  <div class="card bg_waterblue mt-3 pt-0 pr-3 pl-3 pb-3" *ngIf ="avgPickedUpInterval !== undefined">
-                     <div class="numberic text-primary">{{avgPickedUpInterval.value ? avgPickedUpInterval.value : 00}}<span style="font-size:1rem;">{{avgPickedUpInterval.unit ? avgPickedUpInterval.unit : sec}}</span></div>
-                     <div class="chats_details">Time Taken</div>
-                  </div>
-                  <div class="card bg-primary mt-3 p-3">
-                     <div class="numberic text-white">4.25 <span style="font-size:1rem;">(2.5k)</span></div>
-                     <div class="chats_details text-white">Average Rating</div>
-                  </div>
+               <div class="card bg_waterblue mt-3 pt-0 pr-3 pl-3 pb-3" *ngIf="missedChat !== undefined">
+                   <div class="numberic">{{missedChat ? missedChat : 00}}</div>
+                   <div class="chats_details">Missed Chats</div>
                </div>
-               <div class="col-md-10">
-                  <ul class="col-md-12 nav float-right border pt-2 pb-2 d-flex justify-content-around mt-3 mb-3 border_radius_15">
-                     <li class="nav-item p-0 active">
-                        <a class="col-md-10 nav-link height workspace d-flex justify-content-center" href="#" id="flow_item">
-                        Date </a>
-                     </li>
-                     <li class="nav-item border-right p-0 "></li>
-                     <li class="nav-item p-0">
-                        <a class="nav-link height" href="#" id="form_item">
-                        Attended Chats </a>
-                     </li>
-                     <li class="nav-item border-right p-0 "></li>
-                     <li class="nav-item p-0">
-                        <a class="nav-link height" href="#" id="button_item">
-                        Missed Chats </a>
-                     </li>
-                     <li class="nav-item border-right p-0 "></li>
-                     <li class="nav-item p-0">
-                        <a class="nav-link height" href="#" id="webhooks_item">
-                        Avg Pickup Interval </a>
-                     </li>
-                     <div></div>
-                  </ul>
-                  <div class="col-md-12 card mt-3 no_record_height">
-                     <!-- <img src="../../../../assets/img/analytics/Asset25.svg" class="mx-auto analytics" width="150" height="150"> -->
-                     <div class=" card no_record_height border-radius" style="height:320px;">
-                        <table class="table-bordered m-4">
-                            <tr *ngFor = "let result of dashBoardData">
-                                <td> {{result.date}}</td>
-                                <td> {{result.noOfAttendedChats}} </td>
-                                <td> {{result.noOfMissedChats}}</td>
-                                <td> {{result.noOfMissedChats}} </td>
-                            </tr>
-                        </table>
-                    </div> 
-                  </div>
-                  <div class="col-md-12 card mt-3 no_record_height">
-                     <label class="text-primary graph_text">Graph</label>
-                  </div>
+               <div class="card bg_waterblue mt-3 pt-0 pr-3 pl-3 pb-3" *ngIf="avgPickedUpInterval !== undefined">
+                   <div class="numberic">{{avgPickedUpInterval.value ? avgPickedUpInterval.value : 00}}<span style="font-size:1rem;">{{avgPickedUpInterval.unit ? avgPickedUpInterval.unit : sec}}</span></div>
+                   <div class="chats_details">Time Taken</div>
                </div>
-            </div>
-         </div>
-      </div>
-      <!-- Bootstrap core JavaScript-->
-      <!-- <script src="../library/bootstrap/js/bootstrap.4.5.0.min.js"></script>
-      <script src="../library/bootstrap/js/popper.min.1.16.0.js"></script>
-      <script src="../library/bootstrap/js/jquery-3.5.1.slim.min.js"></script>
-      <script src="../library/bootstrap/js/bootstrap.bundle.min.js"></script>
-      <script src="js/conversation.js"></script>
-      <script src="../resources/js/sidebar.js"></script> -->
-      <!--bootstrap javascripts ends here-->
-   <!-- </body> -->
+               <div class="card background-primary mt-3 p-3">
+                   <div class="numberic text-white">4.25 <span style="font-size:1rem;">(2.5k)</span></div>
+                   <div class="chats_details ">Average Rating</div>
+               </div>
+           </div>
+           <div class="col-md-10">
+               <ul class="col-md-12 border-color nav float-right border pt-2 pb-2 d-flex justify-content-around mt-3 mb-3 border_radius_15">
+                   <li class="nav-item p-0 active">
+                       <a class="col-md-10 nav-link height workspace d-flex justify-content-center" href="#" id="flow_item">
+                       Date </a>
+                   </li>
+                   <li class="nav-item border-right p-0 "></li>
+                   <li class="nav-item p-0">
+                       <a class="nav-link height" href="#" id="form_item">
+                       Attended Chats </a>
+                   </li>
+                   <li class="nav-item border-right p-0 "></li>
+                   <li class="nav-item p-0">
+                       <a class="nav-link height" href="#" id="button_item">
+                       Missed Chats </a>
+                   </li>
+                   <li class="nav-item border-right p-0 "></li>
+                   <li class="nav-item p-0">
+                       <a class="nav-link height" href="#" id="webhooks_item">
+                       Avg Pickup Interval </a>
+                   </li>
+                   <div></div>
+               </ul>
+               <div class="col-md-12 card mt-3 no_record_height border-color">
+                   <!-- <img src="../../../../assets/img/analytics/Asset25.svg" class="mx-auto analytics" width="150" height="150"> -->
+                   <div class=" card no_record_height border-radius border-0" style="height:320px;">
+                       <table class="table-bordered m-4">
+                           <tr *ngFor="let result of dashBoardData">
+                               <td> {{result.date}}</td>
+                               <td> {{result.noOfAttendedChats}} </td>
+                               <td> {{result.noOfMissedChats}}</td>
+                               <td> {{result.noOfMissedChats}} </td>
+                           </tr>
+                       </table>
+                   </div>
+               </div>
+               <div class="col-md-12 card mt-3 mb-3 no_record_height border-color " style="height:320px;">
+                   <label class="text-primary graph_text">Graph</label>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+<!-- Bootstrap core JavaScript-->
+<!-- <script src="../library/bootstrap/js/bootstrap.4.5.0.min.js"></script>
+     <script src="../library/bootstrap/js/popper.min.1.16.0.js"></script>
+     <script src="../library/bootstrap/js/jquery-3.5.1.slim.min.js"></script>
+     <script src="../library/bootstrap/js/bootstrap.bundle.min.js"></script>
+     <script src="js/conversation.js"></script>
+     <script src="../resources/js/sidebar.js"></script> -->
+<!--bootstrap javascripts ends here-->
+<!-- </body> -->
 <!-- </html> -->
 

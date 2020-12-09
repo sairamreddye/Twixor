@@ -7,369 +7,362 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <title>Twixor</title> -->
-      <!-- Custom fonts-->
-      <!-- <link href="../library/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<!-- Custom fonts-->
+<!-- <link href="../library/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
-      <!--custom fonts ends here-->
-      <!-- Custom styles-->
-      <!-- <link href="../resources/css/sidebar.css" rel="stylesheet">
+<!--custom fonts ends here-->
+<!-- Custom styles-->
+<!-- <link href="../resources/css/sidebar.css" rel="stylesheet">
       <link href="../resources/css/custom.css" rel="stylesheet"> -->
-      <!-- <link href="css/chat_history.css" rel="stylesheet"> -->
-      <!-- <link href="../library/bootstrap/css/bootstrap.min.4.5.0.css" rel="stylesheet"> -->
-      <!--common style ends here-->
-   <!-- </head> -->
-   <!-- <body id="page-top m-0"> -->
-      <!-- Page Wrapper -->
-      <div id="" class="row m-0">
-         <!-- Sidebar -->
-         <!-- <div class="col-md-2 p-0 sidebar">
-            <iframe id="serviceFrameSend" src="../sidebar.html" class="col-md-12 p-0 iframe-embed" frameborder="0"  scrolling="no">
-            </iframe>
-         </div> -->
-         <!-- Content Wrapper -->
-         <div class="col-md-10 mt-3 aside_right">
-            <div class="col-md-12 pr-0 pl-0 bg_waterblue border_radius_15 border">
-               <div class="p-3">
-                  <form class="row"  [formGroup]="historyForm" (submit)="submit($event)" (reset)="reset($event)" #f="ngForm">
-                     <div class="col-md-3 form-group mb-0 analytics">
-                        <label for="idate" class="grey_text">Customer name / Phone number</label>
+<!-- <link href="css/chat_history.css" rel="stylesheet"> -->
+<!-- <link href="../library/bootstrap/css/bootstrap.min.4.5.0.css" rel="stylesheet"> -->
+<!--common style ends here-->
+<!-- </head> -->
+<!-- <body id="page-top m-0"> -->
+<!-- Page Wrapper -->
+<div id="" class="row m-0">
+   <!-- Sidebar -->
+   <!-- <div class="col-md-2 p-0 sidebar">
+           <iframe id="serviceFrameSend" src="../sidebar.html" class="col-md-12 p-0 iframe-embed" frameborder="0"  scrolling="no">
+           </iframe>
+        </div> -->
+   <!-- Content Wrapper -->
+   <div class="col-md-12 mt-3 aside_right">
+       <div class="col-md-12">
+           <div class="col-md-12 bg_waterblue border_radius_15 border pt-3">
+               <form class="row" [formGroup]="historyForm" (submit)="submit($event)" (reset)="reset($event)" #f="ngForm">
+                   <div class="col-md-3 form-group mb-0 analytics">
+                       <label for="idate" class="grey_text">Customer name / Phone number</label>
 
-                        <!-- <input class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white" placeholder="E.g: John Hunt"> -->
-                           <!-- <div class="custom-select">
-                              <div class="custom-select__trigger">
-                                 <span class="grey_text">John Hunt</span>
-                                 <div class="arrow">
-                                 </div>
-                              </div>
-                              <div class="col-md-12 custom-options encaps">
-                                 <span class="custom-option selected" data-value="tesla">Associate</span>
-                                 <span class="custom-option" data-value="volvo">Trainee</span>
-                              </div>
-                           </div> -->
-                           <!-- <mat-form-field matLine>
-                            <mat-select formControlName="customerPhone" placeholder="Select Department">
-                               <mat-option [value]="department._id.$oid" *ngFor="let department of analyticDepartment">{{ department.name }}</mat-option>
-                            </mat-select>
-                         </mat-form-field> -->
-                         <!-- <mat-form-field class="example-full-width">
-                            <input type="text"
-                                   placeholder="Pick one"
-                                   aria-label="Number"
-                                   matInput
-                                   formControlName ="searchedData"
-                                   [matAutocomplete]="auto"
-                                   (ngModelChange)="onSearchInputChange($event)">
-                            <mat-autocomplete #auto="matAutocomplete">
-                              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                                {{option}}
-                              </mat-option>
-                            </mat-autocomplete>
-                          </mat-form-field> -->
-                          <!-- <mat-form-field>
-                           <input matInput [matAutocomplete]="auto" formControlName ="searchedData" [(ngModel)]="searchParam" (ngModelChange)="searchedData($event)" placeholder = "please enter 1 charcter ">
+                       <!-- <input class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white" placeholder="E.g: John Hunt"> -->
+                       <!-- <div class="custom-select">
+                             <div class="custom-select__trigger">
+                                <span class="grey_text">John Hunt</span>
+                                <div class="arrow">
+                                </div>
+                             </div>
+                             <div class="col-md-12 custom-options encaps">
+                                <span class="custom-option selected" data-value="tesla">Associate</span>
+                                <span class="custom-option" data-value="volvo">Trainee</span>
+                             </div>
+                          </div> -->
+                       <!-- <mat-form-field matLine>
+                           <mat-select formControlName="customerPhone" placeholder="Select Department">
+                              <mat-option [value]="department._id.$oid" *ngFor="let department of analyticDepartment">{{ department.name }}</mat-option>
+                           </mat-select>
+                        </mat-form-field> -->
+                       <!-- <mat-form-field class="example-full-width">
+                           <input type="text"
+                                  placeholder="Pick one"
+                                  aria-label="Number"
+                                  matInput
+                                  formControlName ="searchedData"
+                                  [matAutocomplete]="auto"
+                                  (ngModelChange)="onSearchInputChange($event)">
                            <mat-autocomplete #auto="matAutocomplete">
-                             <mat-option *ngFor="let user of filteredData" 
-                                [value]="user.name">
-                               <span>{{ user.name }}</span>
+                             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                               {{option}}
                              </mat-option>
                            </mat-autocomplete>
                          </mat-form-field> -->
-                         <mat-form-field class="example-full-width">
-                           <input type="text" placeholder="Choose one option" aria-label="Choose one option" matInput [matAutocomplete]="auto1" formControlName ="searchedData" (ngModelChange)="searchedData($event)">
+                       <!-- <mat-form-field>
+                          <input matInput [matAutocomplete]="auto" formControlName ="searchedData" [(ngModel)]="searchParam" (ngModelChange)="searchedData($event)" placeholder = "please enter 1 charcter ">
+                          <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let user of filteredData" 
+                               [value]="user.name">
+                              <span>{{ user.name }}</span>
+                            </mat-option>
+                          </mat-autocomplete>
+                        </mat-form-field> -->
+                       <mat-form-field class="example-full-width">
+                           <input type="text" placeholder="Choose one option" aria-label="Choose one option" matInput [matAutocomplete]="auto1" formControlName="searchedData" (ngModelChange)="searchedData($event)">
                            <!-- [(ngModel)]="searchParam" -->
                            <mat-autocomplete #auto1="matAutocomplete" [class]="'blue-bg'">
-                             <mat-option *ngFor="let option of filteredData" [value]="option.name">
-                               {{ option.name }}
-                             </mat-option>
+                               <mat-option *ngFor="let option of filteredData" [value]="option.name">
+                                   {{ option.name }}
+                               </mat-option>
                            </mat-autocomplete>
-                         </mat-form-field>
-                     </div>
-                     <div class="col-md-3 form-group mb-0 analytics">
-                        <label for="idate" class="grey_text">From</label>
-                        <!-- <div class="input-group input-medium">
-                           <input type="text" class="form-control date_width border-0 bg-white" id="date" placeholder="E.g 22-08-2020">
-                           <span class="input-group-btn bg-white">
-                           <button class="btn btn-default fleet_date"><img src="image/../../../../assets/img/chathistory/Asset24.svg" class="chat_date"></button>
-                           </span>
-                        </div> -->
-                        <mat-form-field>
-                            <input matInput [matDatepicker]="dp" formControlName="startdate">
-                            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-                            <mat-datepicker #dp></mat-datepicker>
-                          </mat-form-field>
-                     </div>
-                     <span class="text-primary hypen">-</span>
-                     <div class="col-md-3 form-group mb-0 analytics">
-                        <label for="idate" class="grey_text">To</label>
-                        <br>
-                        <!-- <div class="input-group input-medium">
-                           <input type="text" class="form-control date_width border-0 bg-white" id="date" placeholder="E.g 22-08-2020">
-                           <span class="input-group-btn bg-white">
-                           <button class="btn btn-default fleet_date"><img src="image/../../../../assets/img/chathistory/Asset24.svg" class="chat_date"></button>
-                           </span>
-                        </div> -->
-                        <mat-form-field>
-                            <input matInput [matDatepicker]="dps" formControlName="enddate">
-                            <mat-datepicker-toggle matSuffix [for]="dps"></mat-datepicker-toggle>
-                            <mat-datepicker #dps></mat-datepicker>
-                          </mat-form-field>
-                     </div>
-                     <div class="col-md-3 form-group mb-0 analytics">
-                        <label for="idate" class="grey_text">User Tag</label>
-                        <!-- <div class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white">
-                           <div class="custom-select">
-                              <div class="custom-select__trigger">
-                                 <span class="grey_text">eg:white</span>
-                                  <img src="image/../../../../assets/img/chathistory/Asset17.svg" class="journey_call">
-                              </div>
-                                 <div class="custom-select__trigger"><span class="grey_text">Admin</span>
-                                 <div class="arrow"></div>
-                                 </div>
-                              <div class="col-md-12 custom-options encaps">
-                                 <span class="custom-option selected" data-value="tesla">Associate</span>
-                                 <span class="custom-option" data-value="volvo">Trainee</span>
-                              </div>
-                           </div>
-                        </div> -->
-
-                        <!-- <mat-form-field>
-                           <input matInput [matAutocomplete]="auto" formControlName ="focusedData" (focus)="onFocusEvent($event)" placeholder = "please enter 1 charcter ">
-                           <mat-autocomplete #auto="matAutocomplete">
-                             <mat-option *ngFor="let user of focusedData" 
-                                [value]="user.data.desc">
-                               <span>{{ user.data.desc }}</span>
-                             </mat-option>
-                           </mat-autocomplete>
-                         </mat-form-field> -->
-
-                         <ng-select 
-                         (focus)="onFocusEvent($event)"
-          [items]="products"
-          bindLabel="data.desc"
-          bindValue="_id.$oid"
-          [multiple]="true"
-          [closeOnSelect]="false"
-          placeholder="Agent Tag"
-          formControlName="focusedData">
-          <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
-            <div class="ng-value" *ngFor="let item of (items ? items.slice(0,2): [])">
-              <span class="ng-value-label">{{ item.data.desc }}</span>
-              <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
-            </div>
-            <div class="ng-value" *ngIf="items.length > 2" >
-              <!-- <span class="ng-value-label">{{items.length - 2}} more...</span> -->
-              <span class="ng-value-label">. . .</span>
-            </div>
-          </ng-template>
-        </ng-select>
-                       <!-- <div *ngFor="let item of focusedData">
-                          <p>{{item.data.desc}}</p>
+                       </mat-form-field>
+                   </div>
+                   <div class="col-md-3 form-group mb-0 analytics">
+                       <label for="idate" class="grey_text">From</label>
+                       <br>
+                       <!-- <div class="input-group input-medium">
+                          <input type="text" class="form-control date_width border-0 bg-white" id="date" placeholder="E.g 22-08-2020">
+                          <span class="input-group-btn bg-white">
+                          <button class="btn btn-default fleet_date"><img src="image/../../../../assets/img/chathistory/Asset24.svg" class="chat_date"></button>
+                          </span>
                        </div> -->
-                     </div>
-                     <div class="col-md-3 form-group mb-0 analytics mt-3">
-                        <label for="idate" class="grey_text">Department</label>
-                        <!-- <div class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white">
-                           <div class="custom-select">
-                              <div class="custom-select__trigger">
-                                 <span class="grey_text">eg:Admin</span>
-                                  <img src="../../../../assets/img/chathistory/Asset17.svg" class="journey_call">
-                              </div>
-                                 <div class="custom-select__trigger"><span class="grey_text">Admin</span>
-                                 <div class="arrow"></div>
-                                 </div>
-                              <div class="col-md-12 custom-options encaps">
-                                 <span class="custom-option selected" data-value="tesla">Associate</span>
-                                 <span class="custom-option" data-value="volvo">Trainee</span>
-                              </div>
-                           </div>
-                        </div> -->
-                        <mat-form-field matLine>
-                            <mat-select formControlName="department" placeholder="Select Department" (ngModelChange)="valueChange($event)" >
-                               <mat-option [value]="department._id.$oid"  *ngFor="let department of historyDepartment">{{department.name}}</mat-option>
-                            </mat-select>
-                         </mat-form-field>    
-                     </div>
-                     <div class="col-md-3 form-group mb-0 analytics mt-3">
-                        <label for="idate" class="grey_text">Agents</label>
-                        <br>
-                        <!-- <div class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white">
-                           <div class="custom-select">
-                              <div class="custom-select__trigger">
-                                 <span class="grey_text">Department</span>
-                                  <img src="../../../../assets/img/chathistory/Asset17.svg" class="journey_call">
-                              </div>
-                                 <div class="custom-select__trigger"><span class="grey_text">Admin</span>
-                                 <div class="arrow"></div>
-                                 </div>
-                              <div class="col-md-12 custom-options encaps">
-                                 <span class="custom-option selected" data-value="tesla">Associate</span>
-                                 <span class="custom-option" data-value="volvo">Trainee</span>
-                              </div>
-                           </div>
-                        </div> -->
-                        <mat-form-field matLine *ngIf="isValid;else other_content">
-                            <mat-select formControlName="agent" placeholder="Select Agent">
+                       <mat-form-field>
+                           <input matInput [matDatepicker]="dp" formControlName="startdate">
+                           <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                           <mat-datepicker #dp></mat-datepicker>
+                       </mat-form-field>
+                   </div>
+                   <span class="text-primary hypen">-</span>
+                   <div class="col-md-3 form-group mb-0 analytics">
+                       <label for="idate" class="grey_text">To</label>
+                       <br>
+                       <!-- <div class="input-group input-medium">
+                          <input type="text" class="form-control date_width border-0 bg-white" id="date" placeholder="E.g 22-08-2020">
+                          <span class="input-group-btn bg-white">
+                          <button class="btn btn-default fleet_date"><img src="image/../../../../assets/img/chathistory/Asset24.svg" class="chat_date"></button>
+                          </span>
+                       </div> -->
+                       <mat-form-field>
+                           <input matInput [matDatepicker]="dps" formControlName="enddate">
+                           <mat-datepicker-toggle matSuffix [for]="dps"></mat-datepicker-toggle>
+                           <mat-datepicker #dps></mat-datepicker>
+                       </mat-form-field>
+                   </div>
+                   <div class="col-md-3 form-group mb-0 analytics">
+                       <label for="idate" class="grey_text">User Tag</label>
+                       <!-- <div class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white">
+                          <div class="custom-select">
+                             <div class="custom-select__trigger">
+                                <span class="grey_text">eg:white</span>
+                                 <img src="image/../../../../assets/img/chathistory/Asset17.svg" class="journey_call">
+                             </div>
+                                <div class="custom-select__trigger"><span class="grey_text">Admin</span>
+                                <div class="arrow"></div>
+                                </div>
+                             <div class="col-md-12 custom-options encaps">
+                                <span class="custom-option selected" data-value="tesla">Associate</span>
+                                <span class="custom-option" data-value="volvo">Trainee</span>
+                             </div>
+                          </div>
+                       </div> -->
+
+                       <!-- <mat-form-field>
+                          <input matInput [matAutocomplete]="auto" formControlName ="focusedData" (focus)="onFocusEvent($event)" placeholder = "please enter 1 charcter ">
+                          <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let user of focusedData" 
+                               [value]="user.data.desc">
+                              <span>{{ user.data.desc }}</span>
+                            </mat-option>
+                          </mat-autocomplete>
+                        </mat-form-field> -->
+
+                       <ng-select (focus)="onFocusEvent($event)" [items]="products" bindLabel="data.desc" bindValue="_id.$oid" [multiple]="true" [closeOnSelect]="false" placeholder="Agent Tag" formControlName="focusedData">
+                           <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                               <div class="ng-value" *ngFor="let item of (items ? items.slice(0,2): [])">
+                                   <span class="ng-value-label">{{ item.data.desc }}</span>
+                                   <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+                               </div>
+                               <div class="ng-value" *ngIf="items.length > 2">
+                                   <!-- <span class="ng-value-label">{{items.length - 2}} more...</span> -->
+                                   <span class="ng-value-label">. . .</span>
+                               </div>
+                           </ng-template>
+                       </ng-select>
+                       <!-- <div *ngFor="let item of focusedData">
+                         <p>{{item.data.desc}}</p>
+                      </div> -->
+                   </div>
+                   <div class="col-md-3 form-group mb-0 analytics mt-3">
+                       <label for="idate" class="grey_text">Department</label>
+                       <br>
+                       <!-- <div class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white">
+                          <div class="custom-select">
+                             <div class="custom-select__trigger">
+                                <span class="grey_text">eg:Admin</span>
+                                 <img src="../../../../assets/img/chathistory/Asset17.svg" class="journey_call">
+                             </div>
+                                <div class="custom-select__trigger"><span class="grey_text">Admin</span>
+                                <div class="arrow"></div>
+                                </div>
+                             <div class="col-md-12 custom-options encaps">
+                                <span class="custom-option selected" data-value="tesla">Associate</span>
+                                <span class="custom-option" data-value="volvo">Trainee</span>
+                             </div>
+                          </div>
+                       </div> -->
+                       <mat-form-field matLine>
+                           <mat-select formControlName="department" placeholder="Select Department" (ngModelChange)="valueChange($event)">
+                               <mat-option [value]="department._id.$oid" *ngFor="let department of historyDepartment">{{department.name}}</mat-option>
+                           </mat-select>
+                       </mat-form-field>
+                   </div>
+                   <div class="col-md-3 form-group mb-0 analytics mt-3">
+                       <label for="idate" class="grey_text">Agents</label>
+                       <br>
+                       <!-- <div class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white">
+                          <div class="custom-select">
+                             <div class="custom-select__trigger">
+                                <span class="grey_text">Department</span>
+                                 <img src="../../../../assets/img/chathistory/Asset17.svg" class="journey_call">
+                             </div>
+                                <div class="custom-select__trigger"><span class="grey_text">Admin</span>
+                                <div class="arrow"></div>
+                                </div>
+                             <div class="col-md-12 custom-options encaps">
+                                <span class="custom-option selected" data-value="tesla">Associate</span>
+                                <span class="custom-option" data-value="volvo">Trainee</span>
+                             </div>
+                          </div>
+                       </div> -->
+                       <mat-form-field matLine *ngIf="isValid;else other_content">
+                           <mat-select formControlName="agent" placeholder="Select Agent">
                                <mat-option [value]="agent.id" *ngFor="let agent of historyAgent">{{agent.name}}</mat-option>
-                            </mat-select>
-                         </mat-form-field>
-                     </div>
-                  
-                     <span class="text-primary hypen d-none">-</span>
-                     <div class="col-md-3 form-group mb-0 analytics ml-3 mt-3">
-                        <label for="idate" class="grey_text">Status</label>
-                        <br>
-                        <!-- <ul class="nav border pt-2 pb-2 border_radius_15 bg-white">
-                           <li class="nav-item p-0">
-                              <a class="nav-link height" href="#">
-                                 <div class="radio-item">
-                                    <input type="radio" id="ritema" name="ritem" value="ropt1" checked="checked">
-                                    <label for="ritema" class="">Closed</label>
-                                 </div>
-                              </a>
-                           </li>
-                           <li class="col-md-1 nav-item border-right p-0"></li>
-                           <li class="nav-item p-0">
-                              <a class="nav-link height" href="#">
-                                 <div class="radio-item">
-                                    <input type="radio" id="ritemb" name="ritem" value="ropt1">
-                                    <label for="ritemb" class="grey_text">Missed</label>
-                                 </div>
-                              </a>
-                           </li>
-                        </ul> -->
-                        <br>
-                        <div class="adjust-radio">
+                           </mat-select>
+                       </mat-form-field>
+                   </div>
+
+                   <span class="text-primary hypen d-none">-</span>
+                   <div class="col-md-3 form-group mb-0 analytics ml-3 mt-3">
+                       <label for="idate" class="grey_text">Status</label>
+                       <br>
+                       <!-- <ul class="nav border pt-2 pb-2 border_radius_15 bg-white">
+                          <li class="nav-item p-0">
+                             <a class="nav-link height" href="#">
+                                <div class="radio-item">
+                                   <input type="radio" id="ritema" name="ritem" value="ropt1" checked="checked">
+                                   <label for="ritema" class="">Closed</label>
+                                </div>
+                             </a>
+                          </li>
+                          <li class="col-md-1 nav-item border-right p-0"></li>
+                          <li class="nav-item p-0">
+                             <a class="nav-link height" href="#">
+                                <div class="radio-item">
+                                   <input type="radio" id="ritemb" name="ritem" value="ropt1">
+                                   <label for="ritemb" class="grey_text">Missed</label>
+                                </div>
+                             </a>
+                          </li>
+                       </ul> -->
+                       <br>
+                       <div class="adjust-radio">
                            <mat-radio-group formControlName="selectedStatus">
-                              <mat-radio-button  [value]=radio.value *ngFor="let radio of radioData">{{radio.key}}&nbsp;&nbsp;&nbsp;</mat-radio-button>
-                              <!-- <mat-radio-button [value]="2">Call Incomplete</mat-radio-button> -->
-                            </mat-radio-group>
-                        </div>
-                     </div>
-                     <div class="col-md-3 form-group mb-0 analytics mt-5">
-                        <!-- <input class="form-control bg-white border-0 search" type="search" placeholder=""><span class="search_chat_history">Search</span>
-                        <i class="fa fa-search chat_history"></i> -->
-                        <button type="submit" class="form-control form-control bg-white border-0 search">Get Chats</button>
-                     </div>
-                  </form>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-12">
-                  <!-- <ul class="col-md-12 nav float-right border pt-2 pb-2 d-flex justify-content-around mt-3 mb-3">
-                     <li class="nav-item p-0 active">
-                        <a class="col-md-10 nav-link height workspace d-flex justify-content-center" href="#" id="flow_item">
-                        Customer </a>
-                     </li>
-                     <li class="nav-item border-right p-0 "></li>
-                     <li class="nav-item p-0">
-                        <a class="nav-link height" href="#" id="form_item">
-                        IP Address </a>
-                     </li>
-                     <li class="nav-item border-right p-0 "></li>
-                     <li class="nav-item p-0">
-                        <a class="nav-link height" href="#" id="button_item">
-                        Started Date</a>
-                     </li>
-                     <li class="nav-item border-right p-0 "></li>
-                     <li class="nav-item p-0">
-                        <a class="nav-link height" href="#" id="webhooks_item">
-                        Closed Date </a>
-                     </li>
-                     <li class="nav-item border-right p-0 "></li>
-                     <li class="nav-item p-0">
-                        <a class="nav-link height" href="#" id="webhooks_item">
-                        Status </a>
-                     </li>
-                     <li class="nav-item border-right p-0 "></li>
-                     <li class="nav-item p-0">
-                        <a class="nav-link height" href="#" id="webhooks_item">
-                        Department </a>
-                     </li>
-                     <li class="nav-item border-right p-0 "></li>
-                     <li class="nav-item p-0">
-                        <a class="nav-link height" href="#" id="webhooks_item">
-                        Agent </a>
-                     </li>
-                     <li class="nav-item border-right p-0 "></li>
-                     <li class="nav-item p-0">
-                        <a class="nav-link height" href="#" id="webhooks_item">
-                        Chat </a>
-                     </li>
-                     <li class="nav-item border-right p-0 "></li>
-                     <li class="nav-item p-0">
-                        <a class="nav-link height" href="#" id="webhooks_item">
-                        Rating </a>
-                     </li>
-                     <li class="nav-item border-right p-0 "></li>
-                     <li class="nav-item p-0">
-                        <a class="nav-link height" href="#" id="webhooks_item">
-                        Location </a>
-                     </li>
-                     <div></div>
-                  </ul> -->
-                  <div class="col-md-12 card mt-3 no_record_height" style="height:320px;">
-                     <div>
-                        <table class="table table-bordered" *ngIf ="chatHistoryData">
+                               <mat-radio-button [value]=radio.value *ngFor="let radio of radioData">{{radio.key}}&nbsp;&nbsp;&nbsp;</mat-radio-button>
+                               <!-- <mat-radio-button [value]="2">Call Incomplete</mat-radio-button> -->
+                           </mat-radio-group>
+                       </div>
+                   </div>
+                   <div class="col-md-3 form-group mb-0 analytics mt-4">
+                       <!-- <input class="form-control bg-white border-0 search" type="search" placeholder=""><span class="search_chat_history">Search</span>
+                       <i class="fa fa-search chat_history"></i> -->
+                       <button type="submit" class="btn btn-light border-rep m-3 p-2">Get Chats</button>
+                   </div>
+               </form>
+           </div>
+       </div>
+       <div class="row m-0">
+           <div class="col-md-12">
+               <!-- <ul class="col-md-12 nav float-right border pt-2 pb-2 d-flex justify-content-around mt-3 mb-3">
+                    <li class="nav-item p-0 active">
+                       <a class="col-md-10 nav-link height workspace d-flex justify-content-center" href="#" id="flow_item">
+                       Customer </a>
+                    </li>
+                    <li class="nav-item border-right p-0 "></li>
+                    <li class="nav-item p-0">
+                       <a class="nav-link height" href="#" id="form_item">
+                       IP Address </a>
+                    </li>
+                    <li class="nav-item border-right p-0 "></li>
+                    <li class="nav-item p-0">
+                       <a class="nav-link height" href="#" id="button_item">
+                       Started Date</a>
+                    </li>
+                    <li class="nav-item border-right p-0 "></li>
+                    <li class="nav-item p-0">
+                       <a class="nav-link height" href="#" id="webhooks_item">
+                       Closed Date </a>
+                    </li>
+                    <li class="nav-item border-right p-0 "></li>
+                    <li class="nav-item p-0">
+                       <a class="nav-link height" href="#" id="webhooks_item">
+                       Status </a>
+                    </li>
+                    <li class="nav-item border-right p-0 "></li>
+                    <li class="nav-item p-0">
+                       <a class="nav-link height" href="#" id="webhooks_item">
+                       Department </a>
+                    </li>
+                    <li class="nav-item border-right p-0 "></li>
+                    <li class="nav-item p-0">
+                       <a class="nav-link height" href="#" id="webhooks_item">
+                       Agent </a>
+                    </li>
+                    <li class="nav-item border-right p-0 "></li>
+                    <li class="nav-item p-0">
+                       <a class="nav-link height" href="#" id="webhooks_item">
+                       Chat </a>
+                    </li>
+                    <li class="nav-item border-right p-0 "></li>
+                    <li class="nav-item p-0">
+                       <a class="nav-link height" href="#" id="webhooks_item">
+                       Rating </a>
+                    </li>
+                    <li class="nav-item border-right p-0 "></li>
+                    <li class="nav-item p-0">
+                       <a class="nav-link height" href="#" id="webhooks_item">
+                       Location </a>
+                    </li>
+                    <div></div>
+                 </ul> -->
+               <div class="col-md-12 card mt-3 no_record_height border-color mb-3" style="height:320px;">
+                   <div>
+                       <table class="table table-bordered border-color mt-3" *ngIf="chatHistoryData">
                            <thead>
-                             <tr>
-                               <th>customer</th>
-                               <th>Ip Adress</th>
-                               <th>Start Date</th>
-                               <th>Chat</th>
-                               <th>Closed Date</th>
-                               <th>Status</th>
-                               <th>Department</th>
-                               <th>Agent</th>
-                               <th>Rating</th>
-                               <th>Location</th>
-                             </tr>
+                               <tr>
+                                   <th>customer</th>
+                                   <th>Ip Adress</th>
+                                   <th>Start Date</th>
+                                   <th>Chat</th>
+                                   <th>Closed Date</th>
+                                   <th>Status</th>
+                                   <th>Department</th>
+                                   <th>Agent</th>
+                                   <th>Rating</th>
+                                   <th>Location</th>
+                               </tr>
                            </thead>
                            <tbody>
-                             <tr *ngFor="let chatData of chatHistoryData">
-                               <td>{{chatData.customerName}}</td>
-                               <td></td>
-                               <td>{{chatData.startedOn.$date | date:'medium'}}</td>
-                               <td>{{chatData.messages[0].message}}</td>
-                               <td>{{chatData.lastModifiedOn.$date | date:'medium'}}</td>
-                               <td>{{getState(chatData.state)}}</td>
-                               <td>{{agentDepartment(chatData.handlingDept.$oid)}}</td>
-                               <td>{{agentName(chatData.handlingAgent)}}</td>
-                               <td>-</td>
-                               <td></td>
-                             </tr>
+                               <tr *ngFor="let chatData of chatHistoryData">
+                                   <td>{{chatData.customerName}}</td>
+                                   <td></td>
+                                   <td>{{chatData.startedOn.$date | date:'medium'}}</td>
+                                   <td>{{chatData.messages[0].message}}</td>
+                                   <td>{{chatData.lastModifiedOn.$date | date:'medium'}}</td>
+                                   <td>{{getState(chatData.state)}}</td>
+                                   <td>{{agentDepartment(chatData.handlingDept.$oid)}}</td>
+                                   <td>{{agentName(chatData.handlingAgent)}}</td>
+                                   <td>-</td>
+                                   <td></td>
+                               </tr>
                            </tbody>
-                         </table>
-                     </div>
-                     
-                  </div>
+                       </table>
+                   </div>
+
                </div>
-            </div>
-         </div>
-      </div>
+           </div>
+       </div>
+   </div>
+</div>
 
-      <ng-template #other_content>
-         <!-- <div class="col-md-3 form-group mb-0 analytics mt-3">
-            <label for="idate" class="grey_text">Agents</label>
-            <br> -->
-            <form class="row"  [formGroup]="historyForm" (submit)="submit($event)" (reset)="reset($event)" #f="ngForm">
-            <mat-form-field matLine>
-                <mat-select formControlName="agent" placeholder="Select Agent">
-                   <mat-option [value]="agent.id" *ngFor="let agent of determined">{{agent.name}}</mat-option>
-                </mat-select>
-             </mat-form-field>
-             </form>
-             <!-- </div> -->
-      </ng-template>
+<ng-template #other_content>
+   <!-- <div class="col-md-3 form-group mb-0 analytics mt-3">
+           <label for="idate" class="grey_text">Agents</label>
+           <br> -->
+   <form class="row" [formGroup]="historyForm" (submit)="submit($event)" (reset)="reset($event)" #f="ngForm">
+       <mat-form-field matLine>
+           <mat-select formControlName="agent" placeholder="Select Agent">
+               <mat-option [value]="agent.id" *ngFor="let agent of determined">{{agent.name}}</mat-option>
+           </mat-select>
+       </mat-form-field>
+   </form>
+   <!-- </div> -->
+</ng-template>
 
-      <!-- <img src="../../../../assets//img/chathistory/Asset25.svg" class="chat mx-auto" width="150" height="150"> -->
-      <!-- Bootstrap core JavaScript-->
-      <!-- <script src="../library/bootstrap/js/bootstrap.4.5.0.min.js"></script>
-      <script src="../library/bootstrap/js/popper.min.1.16.0.js"></script>
-      <script src="../library/bootstrap/js/jquery-3.5.1.slim.min.js"></script>
-      <script src="../library/bootstrap/js/bootstrap.bundle.min.js"></script>
-      <script src="js/chat_history.js"></script>
-      <script src="../resources/js/sidebar.js"></script> -->
-      <!--bootstrap javascripts ends here-->
-   <!-- </body>
+<!-- <img src="../../../../assets//img/chathistory/Asset25.svg" class="chat mx-auto" width="150" height="150"> -->
+<!-- Bootstrap core JavaScript-->
+<!-- <script src="../library/bootstrap/js/bootstrap.4.5.0.min.js"></script>
+     <script src="../library/bootstrap/js/popper.min.1.16.0.js"></script>
+     <script src="../library/bootstrap/js/jquery-3.5.1.slim.min.js"></script>
+     <script src="../library/bootstrap/js/bootstrap.bundle.min.js"></script>
+     <script src="js/chat_history.js"></script>
+     <script src="../resources/js/sidebar.js"></script> -->
+<!--bootstrap javascripts ends here-->
+<!-- </body>
 </html> -->
-
