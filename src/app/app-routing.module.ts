@@ -30,7 +30,8 @@ const routes: Routes =
     {
       path: '', component: FullLayoutComponent,
       canActivate: [Authguard],
-      children: [{
+      children: [
+        {
         path: 'chat',
         // canActivate: [Authguard],
         loadChildren: () => import('./pages/chats/mainchat.module').then(m => m.MainchatModule),

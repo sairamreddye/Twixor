@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChathistoryService } from '../../../providers/chathistory.service';
+import { ChathistoryService } from '../../../../providers/chathistory.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { DatePipe } from "@angular/common";
 import { Observable } from 'rxjs';
@@ -66,7 +66,7 @@ export class ChathistoryComponent implements OnInit {
   urlString: any;
   finalUrl: any;
   chatHistoryData: any = [];
-  determined: any = [];
+  newAgentDropdown: any = [];
   isValid: boolean;
   OutputString: string;
 
@@ -111,7 +111,7 @@ export class ChathistoryComponent implements OnInit {
   }
 
   valueChange(event) { //todo method when department will change agent dropdown will changed
-    this.determined = [];
+    this.newAgentDropdown = [];
     this.isValid = false;
     const department_$oid = event;
     const getAgentNumbers = this.historyDepartment;
@@ -120,9 +120,9 @@ export class ChathistoryComponent implements OnInit {
     const agentnameMapping = agentName.users;
     agentnameMapping.forEach(id => {
       const AgentName = this.historyAgent.find(Agentid => Agentid.id === id);
-      return this.determined.push(AgentName);
+      return this.newAgentDropdown.push(AgentName);
     });
-    this.determined
+    this.newAgentDropdown
   }
 
   updateProfile() { //todo intilize the form values in this method

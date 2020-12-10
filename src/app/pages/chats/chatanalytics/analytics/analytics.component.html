@@ -30,7 +30,7 @@
    <div class="col-md-12 mt-3 aside_right">
        <div class="col-md-12">
            <div class="col-md-12 bg_waterblue border_radius_15 border pt-3">
-               <form class="row" [formGroup]="group" (submit)="submit($event)" (reset)="reset($event)" #f="ngForm">
+               <form class="row" [formGroup]="analyticsForm" (submit)="submit($event)" (reset)="reset($event)" #f="ngForm">
                    <div class="col-md-2 form-group mb-0 analytics">
                        <label for="idate">Department</label>
                        <!-- <div class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white">
@@ -49,7 +49,7 @@
                           </div>
                        </div>  -->
                        <mat-form-field matLine class="col-md-12 p-0">
-                           <mat-select formControlName="department" placeholder="Select Department">
+                           <mat-select formControlName="department" placeholder="Select Department" (ngModelChange)="valueChange($event)">
                                <mat-option [value]="department._id.$oid" *ngFor="let department of analyticDepartment">{{ department.name }}</mat-option>
                            </mat-select>
                        </mat-form-field>
@@ -74,7 +74,7 @@
                              </div>
                           </div>
                        </div> -->
-                       <mat-form-field matLine class="col-md-12 p-0">
+                       <mat-form-field matLine class="col-md-12 p-0" *ngIf="isValid;else other_content">
                            <mat-select formControlName="agent" placeholder="Select Agent">
                                <mat-option [value]="agent.id" *ngFor="let agent of analyticAgent">{{ agent.name }}</mat-option>
                            </mat-select>
@@ -111,7 +111,7 @@
                    </div>
                    <!-- <div class="col-md-1"></div> -->
                    <div class="col-md-2">
-                       <button type="submit" class="btn btn-light border-rep m-3 p-2" type="submit" [disabled]="!group.valid">Get Report</button>
+                       <button type="submit" class="btn btn-light border-rep m-3 p-2" type="submit" [disabled]="!analyticsForm.valid">Get Report</button>
                    </div>
                </form>
            </div>
@@ -178,6 +178,23 @@
        </div>
    </div>
 </div>
+
+<ng-template #other_content>
+    <!-- <div class="col-md-3 form-group mb-0 analytics mt-3">
+            <label for="idate" class="grey_text">Agents</label>
+            <br> -->
+    <form class="row" [formGroup]="analyticsForm" (submit)="submit($event)" (reset)="reset($event)" #f="ngForm">
+        <mat-form-field matLine>
+            <mat-select formControlName="agent" placeholder="Select Agent">
+                <mat-option [value]="agent.id" *ngFor="let agent of newAgentDropdown">{{agent.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+    <!-- </div> -->
+ </ng-template>
+
+
+
 <!-- Bootstrap core JavaScript-->
 <!-- <script src="../library/bootstrap/js/bootstrap.4.5.0.min.js"></script>
      <script src="../library/bootstrap/js/popper.min.1.16.0.js"></script>

@@ -1,9 +1,6 @@
 import { MainchatComponent } from './mainchat.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ChatComponent } from '../chats/chat/chat.component';
-import { AnalyticsComponent } from './analytics/analytics.component';
-import { ChathistoryComponent } from './chathistory/chathistory.component';
 
 const routes: Routes = [
   {
@@ -11,16 +8,16 @@ const routes: Routes = [
     component:MainchatComponent,
     children:[
       {
-        path: 'chat',
-        component: ChatComponent
+        path: 'conversation',
+        loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule)
       },
       {
         path:'analytics',
-        component:AnalyticsComponent
+        loadChildren: () => import('./chatanalytics/chatanalytics.module').then(m => m.ChatanalyticsModule)
       },
       {
         path:'chat-history',
-        component: ChathistoryComponent
+        loadChildren: () => import('./chathistory/chathistory.module').then(m => m.ChathistoryModule)
       }
     ]
   }

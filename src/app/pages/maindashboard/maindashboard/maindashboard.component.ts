@@ -15,7 +15,7 @@ export class MaindashboardComponent implements OnInit {
   }
   chat(){
    const userToken = this.storageService.getToken();
-   this.router.navigateByUrl(`chat/chat?authToken=${userToken}`);
+   this.router.navigateByUrl(`chat/conversation?authToken=${userToken}`);
   }
   encaps(){
    const userToken = this.storageService.getToken();
