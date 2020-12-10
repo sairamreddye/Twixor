@@ -39,12 +39,21 @@ const routes: Routes =
         path: 'encaps',
         // canActivate: [Authguard],
         loadChildren: () => import('./pages/encaps/encaps.module').then(m => m.EncapsModule),
+      },
+      {
+        path: 'journey',
+        // canActivate: [Authguard],
+        loadChildren: () => import('./pages/journey/journey.module').then(m => m.JourneyModule),
       }
       ]
     },
     {
       path: 'integration/encaps',
       loadChildren: () => import('./pages/encaps/encaps.module').then(m => m.EncapsModule),
+    },
+    {
+      path: 'integration/journey',
+      loadChildren: () => import('./pages/journey/journey.module').then(m => m.JourneyModule),
     },
     {
       path: 'integration/chat',
