@@ -1,0 +1,263 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>Twixor</title> -->
+      <!-- Custom fonts-->
+      <!-- <link href="../library/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+      <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+      <!--custom fonts ends here-->
+      <!-- Custom styles-->
+      <!-- <link href="../resources/css/sidebar.css" rel="stylesheet">
+      <link href="../resources/css/custom.css" rel="stylesheet">
+      <link href="css/journey.css" rel="stylesheet">
+      <link href="../library/bootstrap/css/bootstrap.min.4.5.0.css" rel="stylesheet"> -->
+      <!--common style ends here-->
+   <!-- </head> -->
+   <div id="page-top m-0">
+      <!-- Page Wrapper -->
+      <div id="" class="row m-0">
+         <!-- Sidebar -->
+         <!-- <div class="col-md-2 p-0 sidebar">
+            <iframe id="serviceFrameSend" src="../sidebar.html" class="col-md-12 p-0 iframe-embed" frameborder="0"  scrolling="no">
+            </iframe>
+         </div> -->
+         <!-- Content Wrapper -->
+         <div class="col-md-10 mt-3 aside_right">
+            <div id="content-wrapper" class="d-flex flex-column">
+               <div class="row">
+                  <div class="col-md-9">
+                     <input class="form-control bg_waterblue border-0" type="search" placeholder="Search">
+                     <i class="fa fa-search"></i>
+                  </div>
+                  <div class="col-md-3 row d-flex justify-content-end p-0">
+                     <a href="#" class="col-md-4 btn btn-light chats bg-0 all_encaps mr-1 bg-white border-primary text-primary">Import</a>
+                     <a href="#" class="btn btn-primary chats" data-toggle="modal" data-target="#myModal">Create Journey</a>
+                  </div>
+               </div>
+               <hr class="w-100">
+            </div>
+            <div class="row">
+               <div class="col-md-3"  *ngFor="let res of result">
+                  <a href="journey_analyser.html">
+                     <div class="card mb-3">
+                        <div class="card-body pb-0">
+                           <h5 class="card-title">{{res.name}}</h5>
+                           <hr class="w-25 float-left m-0">
+                        </div>
+                        <ul class="list-group list-group-flush border-0 mr-3 ml-3">
+                           <li class="list-group-item border-0 pr-1 pl-1 pb-0 pr-1 pl-1"><img src="image/Asset99.svg" class="journey_call">{{res.phoneNumber}}</li>
+                           <li class="list-group-item border-0 pr-1 pl-1"><img src="image/Asset32.svg" class="journey_call">{{res.createdOn | date: "d MMM yyyy hh:mm a"}}</li>
+                        </ul>
+                     </div>
+                  </a>
+               </div>
+               <!-- <div class="col-md-3">
+                  <a href="journey_analyser.html">
+                     <div class="card mb-3" >
+                        <div class="card-body pb-0">
+                           <h5 class="card-title">Advanced Bi-directional Circuit</h5>
+                           <hr class="w-25 float-left m-0">
+                           <p class="card-text"></p>
+                        </div>
+                        <ul class="list-group list-group-flush border-0 mr-3 ml-3">
+                           <li class="list-group-item border-0 pr-1 pl-1 pb-0 pr-1 pl-1"><img src="image/Asset99.svg" class="journey_call">(+91)9087654321</li>
+                           <li class="list-group-item border-0 pr-1 pl-1"><img src="image/Asset32.svg" class="journey_call">09-jun-2020 / 12:45 P.M</li>
+                        </ul>
+                     </div>
+                  </a>
+               </div>
+               <div class="col-md-3">
+                  <a href="journey_analyser.html">
+                     <div class="card mb-3" >
+                        <div class="card-body pb-0">
+                           <h5 class="card-title">Ergonamic Clear Thinking frame</h5>
+                           <hr class="w-25 float-left m-0">
+                           <p class="card-text"></p>
+                        </div>
+                        <ul class="list-group list-group-flush border-0 mr-3 ml-3">
+                           <li class="list-group-item border-0 pr-1 pl-1 pb-0 pr-1 pl-1"><img src="image/Asset99.svg" class="journey_call">(+91)6789054321</li>
+                           <li class="list-group-item border-0 pr-1 pl-1"><img src="image/Asset32.svg" class="journey_call">09-jun-2020 / 12:45 P.M</li>
+                        </ul>
+                     </div>
+                  </a>
+               </div>
+               <div class="col-md-3">
+                  <a href="journey_analyser.html">
+                     <div class="card mb-3" >
+                        <div class="card-body pb-0">
+                           <h5 class="card-title">Enchanced system worth time-frame</h5>
+                           <hr class="w-25 float-left m-0">
+                           <p class="card-text"></p>
+                        </div>
+                        <ul class="list-group list-group-flush border-0 mr-3 ml-3">
+                           <li class="list-group-item border-0 pr-1 pl-1 pb-0 pr-1 pl-1"><img src="image/Asset99.svg" class="journey_call">29-apr-2020 / 05:29 AM</li>
+                           <li class="list-group-item border-0 pr-1 pl-1"><img src="image/Asset32.svg" class="journey_call">(+91)8037605890</li>
+                        </ul>
+                     </div>
+                  </a>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-3">
+                  <a href="journey_analyser.html">
+                     <div class="card mb-3" >
+                        <div class="card-body pb-0">
+                           <h5 class="card-title">Future Proof Explict framework</h5>
+                           <hr class="w-25 float-left m-0">
+                           <p class="card-text"></p>
+                        </div>
+                        <ul class="list-group list-group-flush border-0 mr-3 ml-3">
+                           <li class="list-group-item border-0 pr-1 pl-1 pb-0 pr-1 pl-1"><img src="image/Asset99.svg" class="journey_call">(+91)6789054321</li>
+                           <li class="list-group-item border-0 pr-1 pl-1"><img src="image/Asset32.svg" class="journey_call">09-jun-2020 / 12:45 P.M</li>
+                        </ul>
+                     </div>
+                  </a>
+               </div>
+               <div class="col-md-3">
+                  <a href="journey_analyser.html">
+                     <div class="card mb-3" >
+                        <div class="card-body pb-0">
+                           <h5 class="card-title">Integrated Interactive Protocol</h5>
+                           <hr class="w-25 float-left m-0">
+                           <p class="card-text"></p>
+                        </div>
+                        <ul class="list-group list-group-flush border-0 mr-3 ml-3">
+                           <li class="list-group-item border-0 pr-1 pl-1 pb-0 pr-1 pl-1"><img src="image/Asset99.svg" class="journey_call">(+91)8037605890</li>
+                           <li class="list-group-item border-0 pr-1 pl-1"><img src="image/Asset32.svg" class="journey_call">09-jun-2020 / 12:45 P.M</li>
+                        </ul>
+                     </div>
+                  </a>
+               </div>
+               <div class="col-md-3">
+                  <a href="journey_analyser.html">
+                     <div class="card mb-3" >
+                        <div class="card-body pb-0">
+                           <h5 class="card-title">Mandatory next generation benchmark</h5>
+                           <hr class="w-25 float-left m-0">
+                           <p class="card-text"></p>
+                        </div>
+                        <ul class="list-group list-group-flush border-0 mr-3 ml-3">
+                           <li class="list-group-item border-0 pr-1 pl-1 pb-0 pr-1 pl-1"><img src="image/Asset99.svg" class="journey_call">(+91)8037605890</li>
+                           <li class="list-group-item border-0 pr-1 pl-1"><img src="image/Asset32.svg" class="journey_call">(+91)8037605890</li>
+                        </ul>
+                     </div>
+                  </a>
+               </div>
+               <div class="col-md-3">
+                  <a href="journey_analyser.html">
+                     <div class="card mb-3" >
+                        <div class="card-body pb-0">
+                           <h5 class="card-title">Right sized 6th generation extranet</h5>
+                           <hr class="w-25 float-left m-0">
+                           <p class="card-text"></p>
+                        </div>
+                        <ul class="list-group list-group-flush border-0 mr-3 ml-3">
+                           <li class="list-group-item border-0 pr-1 pl-1 pb-0 pr-1 pl-1"><img src="image/Asset99.svg" class="journey_call">(+91)8037605890</li>
+                           <li class="list-group-item border-0 pr-1 pl-1"><img src="image/Asset32.svg" class="journey_call">(+91)8037605890</li>
+                        </ul>
+                     </div>
+                  </a>
+               </div>
+               <div class="col-md-3">
+                  <a href="journey_analyser.html">
+                     <div class="card mb-3" >
+                        <div class="card-body pb-0">
+                           <h5 class="card-title">Fully Configurable intermediate archive</h5>
+                           <hr class="w-25 float-left m-0">
+                           <p class="card-text"></p>
+                        </div>
+                        <ul class="list-group list-group-flush border-0 mr-3 ml-3">
+                           <li class="list-group-item border-0 pr-1 pl-1 pb-0 pr-1 pl-1"><img src="image/Asset99.svg" class="journey_call">(+91)8037605890</li>
+                           <li class="list-group-item border-0 pr-1 pl-1"><img src="image/Asset32.svg" class="journey_call">(+91)8037605890</li>
+                        </ul>
+                     </div>
+                  </a>
+               </div>
+            </div> -->
+         </div>
+      </div>
+      <!--onclick create journey starts here-->
+      <div class="modal fade" id="myModal" role="dialog">
+         <div class="modal-dialog modal-dialog-centered">
+            <!-- Modal content-->
+            <div class="modal-content mx-auto p-3"  style="width:400px;">
+               <div class="modal-header pl-0 pt-0">
+                  <div class="col-md-4 p-0">
+                     <i class="fa fa-chevron-left channel float-left" aria-hidden="true" style="top:0px;"></i><b><span class="float-left"> &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;Create Journey</span></b>
+                  </div>
+               </div>
+               <!-- <hr class="col-md-12 mt-0"> -->
+               <div class="card border-0">
+                  <form  [formGroup]="JourneyForm" (submit)="submit($event)" (reset)="reset($event)" #f="ngForm">
+                     <div class="row mb-2">
+                        <div class="col-md-12 form-group row m-0">
+                           <div class="col-md-12 mt-2 pl-0">
+                              <label for="staticEmail" class="col-md-8 col-form-label grey_text">Title</label>
+                              <div class="col-md-12 p-0 mt-1">
+                                 <input type="text" formControlName="name" class="form-control bg-white" id="" value="" placeholder="eg:john">
+                                 <div class="d-flex justify-content-end ng-star-inserted" *ngIf="JourneyForm.controls.name.invalid && (JourneyForm.controls.name.dirty || JourneyForm.controls.name.touched)" class="text-danger">
+                                    <p *ngIf="JourneyForm.controls.name.errors.required">
+                                        name should not be empty
+                                    </p>
+                                </div>
+                              </div>
+                           </div>
+                           <div class="col-md-12 mt-2 pl-0">
+                              <label for="staticEmail" class="col-md-8 col-form-label grey_text">Business Phone</label>
+                              <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                              <div class="input-group mb-2">
+                                 <div class="input-group-prepend">
+                                    <div class="input-group-text"><img src="image/flag-india.JPG" width="20" height="20"></div>
+                                 </div>
+                                 <input type="text" formControlName="phone" class="form-control bg-white border" id="inlineFormInputGroup" placeholder="+91 9876453201">
+                              </div>
+                           </div>
+                           <div class="col-md-12 mt-2 pl-0">
+                              <label for="staticEmail" class="col-md-8 col-form-label grey_text">Channel Type</label>
+                              <div class="col-md-12 custom-select-wrapper float-right p-2 border border_radius_15">
+                                 <!-- <div class="custom-select"> -->
+                                    <select formControlName="channel">
+                                       <option value="whatsapp" selected>Whats app</option>
+                                       <option value="Telegram">Telegram</option>
+                                     </select>
+                                    <!-- <div class="custom-select__trigger">
+                                       <span>Whatsapp</span>
+                                       <div class="arrow"></div>
+                                    </div> -->
+                                    <!-- <div class="custom-options">
+                                       <span class="custom-option selected" data-value="tesla">Telegram</span>
+                                       <span class="custom-option" data-value="volvo">SMS</span> -->
+                                       <!-- <span class="custom-option" data-value="mercedes">Mercedes</span> -->
+                                    <!-- </div> -->
+                                 <!-- </div> -->
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="modal-footer mt-3">
+                        <button type="button" class="btn btn-secondary border-primary bg-white text-primary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="col-md-3 btn btn-primary background-primary text-white">create</button>
+                     </div>
+                  </form>
+                 
+               </div>
+            </div>
+         </div>
+      </div>
+      <!---onclick model ends here-->
+      <!-- Bootstrap core JavaScript-->
+      <!-- <script src="../library/bootstrap/js/bootstrap.4.5.0.min.js"></script>
+      <script src="../library/bootstrap/js/popper.min.1.16.0.js"></script>
+      <script src="../library/bootstrap/js/jquery-3.5.1.slim.min.js"></script>
+      <script src="../library/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="js/conversation.js"></script>
+      <script src="../resources/js/sidebar.js"></script> -->
+      <!--bootstrap javascripts ends here-->
+      </div>
+<!-- </html> -->
+

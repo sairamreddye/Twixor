@@ -44,6 +44,19 @@ export class DashBoardService {
     
     return this.http.post(url, body.toString());
   }
+  getjourneylist(): Observable<any> {
+    // const url = `${environment.BASEURL}${this.dashBoardUrlext}instances?filter=running&from=0&perPage=4`
+    const url = "https://aim.twixor.com/chatbird/api/journeys?perPage=15&from=0&name=&_=1607594505626"
+    return this.http.get(url);
+  }
+  createJourney(name) : Observable<any> {
+    // const url = `${environment.BASEURL}${this.dashBoardUrlext}instances?filter=running&from=0&perPage=4`
+    const url = "https://richsms.twixor.com/moc/chatbird/api/journeys"
+    const body = new HttpParams()
+    .set('name', name)
+    
+    return this.http.post(url, body.toString());
+  }
 }
 
 
