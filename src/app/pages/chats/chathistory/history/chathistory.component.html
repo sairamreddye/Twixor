@@ -348,7 +348,7 @@
    <form class="row" [formGroup]="historyForm" (submit)="submit($event)" (reset)="reset($event)" #f="ngForm">
        <mat-form-field matLine>
            <mat-select formControlName="agent" placeholder="Select Agent">
-               <mat-option [value]="agent.id" *ngFor="let agent of determined">{{agent.name}}</mat-option>
+               <mat-option [value]="agent.id" *ngFor="let agent of newAgentDropdown">{{agent.name}}</mat-option>
            </mat-select>
        </mat-form-field>
    </form>
