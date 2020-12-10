@@ -15,6 +15,12 @@ import { DatePipe } from "@angular/common";
 
 export class AnalyticsComponent implements OnInit {
   @ViewChild('f', { static: false }) myForm;
+  analyticsForm = this.fb.group({
+    department: ['', Validators.required],
+    agent: ['', Validators.required],
+    startdate:['', Validators.required],
+    enddate: ['', Validators.required]
+  });
   chatAttended: any ="00";
   missedChat: any = "00";
   avgPickedUpInterval: any = "0";
@@ -37,18 +43,38 @@ export class AnalyticsComponent implements OnInit {
   analyticDepartment: any;
   analyticAgent: any;
   dashBoardData: any;
+  newAgentDropdown: any[];
+  isValid: boolean;
 
-  constructor(private analytics: AnalyitcsService, private datePipe: DatePipe) { }
+  constructor(private analytics: AnalyitcsService, private datePipe: DatePipe,private fb: FormBuilder) { }
 
   ngOnInit() {
     this.analyticsData();
-    this.group = new FormGroup({
-      department: new FormControl(null, Validators.required),
-      agent: new FormControl(null, Validators.required),
-      startdate: new FormControl(null, Validators.required),
-      enddate: new FormControl(null, Validators.required)
-    });
+    this.updateProfile();
     this.Last7Days();
+  }
+  updateProfile() { //todo intilize the form values in this method
+    this.analyticsForm.patchValue({
+      department: this.analyticDepartment,
+      agent: this.analyticAgent,
+      // startdate:this.Last7Days(),
+      // enddate: this.formatDate()
+    });
+  }
+
+  valueChange(event) { //todo method when department will change agent dropdown will changed
+    this.newAgentDropdown = [];
+    this.isValid = false;
+    const department_$oid = event;
+    const getAgentNumbers = this.analyticDepartment;
+    const agentName = getAgentNumbers.find(id => id._id.$oid === department_$oid);
+
+    const agentnameMapping = agentName.users;
+    agentnameMapping.forEach(id => {
+      const AgentName = this.analyticAgent.find(Agentid => Agentid.id === id);
+      return this.newAgentDropdown.push(AgentName);
+    });
+    this.newAgentDropdown
   }
 
   analyticsData() {
@@ -59,12 +85,12 @@ export class AnalyticsComponent implements OnInit {
       this.department = '';
       this.departmentsRequired = true;
     }
+    this.isValid = true;
     this.clientOffset = -330;
     this.timeType = 'DAY';
     this.currentDate = this.formatDate();
     this.analytics.analytics(this.startDate, this.enddate, this.clientOffset, this.timeType, this.currentDate, this.department,this.agent, this.departmentsRequired).subscribe((res: any) => {
     const analyticResponse = res.response;
-    debugger
     this.chatAttended = this.zeroAdd(analyticResponse['noOfAttendedChats']) !== undefined ? this.zeroAdd(analyticResponse['noOfAttendedChats']) : "00";
     this.missedChat = this.zeroAdd(analyticResponse['noOfMissedChats']) !== undefined ? this.zeroAdd(analyticResponse['noOfMissedChats']) : "00";
     this.avgPickedUpInterval = this.getDuration(analyticResponse['avgPickedUpInterval']) !== undefined ? this.getDuration(analyticResponse['avgPickedUpInterval']) : "00";
@@ -76,18 +102,17 @@ export class AnalyticsComponent implements OnInit {
 
   submit($event) {
     $event.preventDefault();
-    if (this.group.valid) {
+    if (this.analyticsForm.valid) {
       const obj = new MyObj();
-      Object.assign(obj, this.group.value);
+      Object.assign(obj, this.analyticsForm.value);
       this.survey.push(obj);
       this.parametersCheck = false;
-      this.department = this.group.controls['department'].value;
-      this.agent = this.group.controls['agent'].value;
-      debugger
+      this.department = this.analyticsForm.controls['department'].value;
+      this.agent = this.analyticsForm.controls['agent'].value;
       this.departmentsRequired = false;
-      this.startDate = this.datePipe.transform(this.group.controls['startdate'].value, "yyyy-MM-dd");
-      if (this.datePipe.transform(this.group.controls['enddate'].value, "yyyy-MM-dd") <= this.formatDate()) {
-        this.enddate = this.datePipe.transform(this.group.controls['enddate'].value, "yyyy-MM-dd");
+      this.startDate = this.datePipe.transform(this.analyticsForm.controls['startdate'].value, "yyyy-MM-dd");
+      if (this.datePipe.transform(this.analyticsForm.controls['enddate'].value, "yyyy-MM-dd") <= this.formatDate()) {
+        this.enddate = this.datePipe.transform(this.analyticsForm.controls['enddate'].value, "yyyy-MM-dd");
       }
       else {
         this.enddate = this.formatDate();
@@ -99,10 +124,10 @@ export class AnalyticsComponent implements OnInit {
       // // this.reset();
       // return;
     }
-    else if (!this.group.valid) {
+    else if (!this.analyticsForm.valid) {
       this.parametersCheck = false;
-      this.department = this.group.controls['department'].value;
-      this.agent = this.group.controls['agent'].value;
+      this.department = this.analyticsForm.controls['department'].value;
+      this.agent = this.analyticsForm.controls['agent'].value;
       //  if(this.department === this.agent){  //TOdo comparision department and agent
       //     this.departmentAgent = 0
       //  }
@@ -119,7 +144,7 @@ export class AnalyticsComponent implements OnInit {
 
   reset() {
     this.myForm.resetForm(); // <-- ici
-    this.group.reset();
+    this.analyticsForm.reset();
   }
 
 
