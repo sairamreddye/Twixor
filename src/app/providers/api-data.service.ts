@@ -51,15 +51,15 @@ export class ApiDataService {
   }
 
   get(url: string): Observable<any> {
-    const headers = new HttpHeaders().set('authentication-token', this.authToken);
-    return this.http.get(url, { headers });
+    // const headers = new HttpHeaders().set('authentication-token', this.authToken);
+    return this.http.get(url);
   }
   put(url: string, data: any): Observable<any> {
-    const headers = new HttpHeaders().set('authentication-token', this.authToken);
-    return this.http.put(url, data, { headers });
+    // const headers = new HttpHeaders().set('authentication-token', this.authToken);
+    return this.http.put(url, data);
   }
   post(url: string, data: any): Observable<any> {
-    const headers = new HttpHeaders().set('authentication-token', this.authToken);
-    return this.http.post(url, data, { 'headers': headers });
+    // const headers = new HttpHeaders().set('authentication-token', this.authToken);
+    return this.http.post(url, data);
   }
 }

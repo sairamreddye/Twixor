@@ -222,7 +222,7 @@ export class ChathistoryComponent implements OnInit {
     this.urlString = "";
     const obj = new MyObj();
     const formOutput = Object.assign(obj, this.historyForm.value);
-    this.parametersCheck = false;
+    // this.parametersCheck = false;
     if (formOutput.startdate !== null && formOutput.startdate !== "") {
       if (formOutput.startdate === this.startDate) {
         this.startDate;
@@ -271,7 +271,6 @@ export class ChathistoryComponent implements OnInit {
       "department": this.department,
       "agent": this.agent,
     }
-    debugger
     for (var key in UrlBulidingobject) {
       if (UrlBulidingobject[key] === null || UrlBulidingobject[key] === undefined || UrlBulidingobject[key] === "") {
         delete UrlBulidingobject[key];

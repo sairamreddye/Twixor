@@ -6,7 +6,6 @@ import { ChathistoryComponent } from './history/chathistory.component';
 const routes: Routes = [
   {
     path:"",
-    // pathMatch:"full",
     component:ChathistoryComponent
   }
 ];
