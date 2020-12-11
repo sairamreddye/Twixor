@@ -1,6 +1,6 @@
 import { Component, OnInit , Inject} from '@angular/core';
 import { StorageService } from 'src/app/providers/storage/storage.service';
-import { DashBoardService} from "../../../providers/dash-board.service";
+import { DashBoardService} from "../../../../providers/dash-board.service";
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ViewChild } from '@angular/core';
  import { DOCUMENT } from '@angular/common';

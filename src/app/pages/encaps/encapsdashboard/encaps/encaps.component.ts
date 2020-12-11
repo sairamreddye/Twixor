@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/providers/storage/storage.service';
-import { DashBoardService} from "../../../providers/dash-board.service";
+import { DashBoardService} from "../../../../providers/dash-board.service";
 
 @Component({
   selector: 'app-encaps',
