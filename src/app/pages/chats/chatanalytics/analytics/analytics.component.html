@@ -30,7 +30,7 @@
    <div class="col-md-12 mt-3 aside_right">
        <div class="col-md-12">
            <div class="col-md-12 bg_waterblue border_radius_15 border pt-3">
-               <form class="row" [formGroup]="analyticsForm" (submit)="submit($event)" (reset)="reset($event)" #f="ngForm">
+               <form class="row" [formGroup]="analyticsForm" (submit)="submit($event)" novalidate (reset)="reset($event)" #f="ngForm">
                    <div class="col-md-2 form-group mb-0 analytics">
                        <label for="idate">Department</label>
                        <!-- <div class="custom-select-wrapper float-right p-2 border rounded border_radius_15 bg-white">
@@ -89,7 +89,7 @@
                           </span>
                        </div> -->
                        <mat-form-field class="col-md-12 p-0">
-                           <input matInput [matDatepicker]="dp" placeholder="startDate" formControlName="startdate">
+                           <input matInput [matDatepicker]="dp" placeholder="start Date" formControlName="startdate">
                            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
                            <mat-datepicker #dp></mat-datepicker>
                        </mat-form-field>
@@ -111,7 +111,7 @@
                    </div>
                    <!-- <div class="col-md-1"></div> -->
                    <div class="col-md-2">
-                       <button type="submit" class="btn btn-light border-rep m-3 p-2" type="submit" [disabled]="!analyticsForm.valid">Get Report</button>
+                       <button type="submit" class="btn btn-light border-rep m-3 p-2">Get Report</button>
                    </div>
                </form>
            </div>

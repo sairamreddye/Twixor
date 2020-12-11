@@ -16,16 +16,16 @@ import { DatePipe } from "@angular/common";
 export class AnalyticsComponent implements OnInit {
   @ViewChild('f', { static: false }) myForm;
   analyticsForm = this.fb.group({
-    department: ['', Validators.required],
-    agent: ['', Validators.required],
-    startdate:['', Validators.required],
-    enddate: ['', Validators.required]
+    department: [''],
+    agent: [''],
+    startdate: ['',Validators.required],
+    enddate: ['',Validators.required]
   });
-  chatAttended: any ="00";
+  chatAttended: any = "00";
   missedChat: any = "00";
   avgPickedUpInterval: any = "0";
-  survey = new Array<MyObj>();
-  group: FormGroup;
+  // survey = new Array<MyObj>();
+  // group: FormGroup;
   // analyticDepartment = [
   //   { name: 'asscoiate', id: 0 },
   //   { name: 'trainee', id: 1 }
@@ -42,23 +42,71 @@ export class AnalyticsComponent implements OnInit {
   agent: any;
   analyticDepartment: any;
   analyticAgent: any;
-  dashBoardData: any;
+  dashBoardData: any = [];
   newAgentDropdown: any[];
   isValid: boolean;
+  urlString: string;
+  endDate: string;
+  finalUrl: string;
 
-  constructor(private analytics: AnalyitcsService, private datePipe: DatePipe,private fb: FormBuilder) { }
+  constructor(private analytics: AnalyitcsService, private datePipe: DatePipe, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.analyticsData();
     this.updateProfile();
-    this.Last7Days();
+    // this.Last7Days();
   }
   updateProfile() { //todo intilize the form values in this method
     this.analyticsForm.patchValue({
       department: this.analyticDepartment,
       agent: this.analyticAgent,
-      // startdate:this.Last7Days(),
-      // enddate: this.formatDate()
+      startdate: this.Last7Days(),
+      enddate: this.formatDate()
+    });
+  }
+
+  forIntialApigetStartDate() {
+    var MyDate = new Date();
+    var MyDateString;
+    MyDate.setDate(MyDate.getDate() - 6);
+    MyDateString = MyDate.getFullYear() + '-' + ('0' + (MyDate.getMonth() + 1)).slice(-2) + '-' + ('0' + MyDate.getDate()).slice(-2);
+    return MyDateString;
+  }
+
+  forIntialApigetEndDate(){
+    let d = new Date(),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+
+  return [year, month, day].join('-');
+  }
+
+  analyticsData() {
+    this.startDate = this.Last7Days();
+    this.endDate = this.formatDate();
+    this.isValid = true;
+    const startDate = this.forIntialApigetStartDate();
+    const enddate = this.forIntialApigetEndDate();
+    const agent = 0;
+    const department = '';
+    const departmentsRequired = true;
+    const clientOffset = -330;
+    const timeType = 'DAY';
+    const currentDate = this.forIntialApigetStartDate();
+    this.analytics.analytics(startDate, enddate, clientOffset, timeType, currentDate, department, agent, departmentsRequired).subscribe((res: any) => {
+      const analyticResponse = res.response;
+      if (analyticResponse) {
+        this.chatAttended = this.zeroAdd(analyticResponse['noOfAttendedChats']) !== undefined ? this.zeroAdd(analyticResponse['noOfAttendedChats']) : "00";
+        this.missedChat = this.zeroAdd(analyticResponse['noOfMissedChats']) !== undefined ? this.zeroAdd(analyticResponse['noOfMissedChats']) : "00";
+        this.avgPickedUpInterval = this.getDuration(analyticResponse['avgPickedUpInterval']) !== undefined ? this.getDuration(analyticResponse['avgPickedUpInterval']) : "00";
+        this.analyticDepartment = analyticResponse['profiles'];
+        this.analyticAgent = analyticResponse['users'];
+        this.dashBoardData = analyticResponse['dashBoardData']; //todo reshma want to do task
+      }
     });
   }
 
@@ -77,69 +125,101 @@ export class AnalyticsComponent implements OnInit {
     this.newAgentDropdown
   }
 
-  analyticsData() {
-    if (this.parametersCheck) {
-      this.startDate = this.Last7Days();
-      this.enddate = this.formatDate();
-      this.agent = 0;
-      this.department = '';
-      this.departmentsRequired = true;
-    }
-    this.isValid = true;
-    this.clientOffset = -330;
-    this.timeType = 'DAY';
-    this.currentDate = this.formatDate();
-    this.analytics.analytics(this.startDate, this.enddate, this.clientOffset, this.timeType, this.currentDate, this.department,this.agent, this.departmentsRequired).subscribe((res: any) => {
-    const analyticResponse = res.response;
-    this.chatAttended = this.zeroAdd(analyticResponse['noOfAttendedChats']) !== undefined ? this.zeroAdd(analyticResponse['noOfAttendedChats']) : "00";
-    this.missedChat = this.zeroAdd(analyticResponse['noOfMissedChats']) !== undefined ? this.zeroAdd(analyticResponse['noOfMissedChats']) : "00";
-    this.avgPickedUpInterval = this.getDuration(analyticResponse['avgPickedUpInterval']) !== undefined ? this.getDuration(analyticResponse['avgPickedUpInterval']) : "00";
-    this.analyticDepartment = analyticResponse['profiles'];
-    this.analyticAgent = analyticResponse['users'];
-    this.dashBoardData = analyticResponse['dashBoardData']; //todo reshma want to do task
-    });
-  }
 
   submit($event) {
     $event.preventDefault();
-    if (this.analyticsForm.valid) {
-      const obj = new MyObj();
-      Object.assign(obj, this.analyticsForm.value);
-      this.survey.push(obj);
-      this.parametersCheck = false;
-      this.department = this.analyticsForm.controls['department'].value;
-      this.agent = this.analyticsForm.controls['agent'].value;
-      this.departmentsRequired = false;
-      this.startDate = this.datePipe.transform(this.analyticsForm.controls['startdate'].value, "yyyy-MM-dd");
-      if (this.datePipe.transform(this.analyticsForm.controls['enddate'].value, "yyyy-MM-dd") <= this.formatDate()) {
-        this.enddate = this.datePipe.transform(this.analyticsForm.controls['enddate'].value, "yyyy-MM-dd");
+    this.urlString = "";
+    const obj = new MyObj();
+    const formOutput = Object.assign(obj, this.analyticsForm.value);
+    if (formOutput.startdate !== null && formOutput.startdate !== "") {
+      if (formOutput.startdate === this.startDate) {
+        this.startDate;
       }
       else {
-        this.enddate = this.formatDate();
+        var MyDate = new Date(formOutput.startdate);
+        var MyDateString;
+        MyDate.setDate(MyDate.getDate() - 6);
+        MyDateString = MyDate.getFullYear() + '-' + ('0' + (MyDate.getMonth() + 1)).slice(-2) + '-' + ('0' + MyDate.getDate()).slice(-2);
+        this.startDate = MyDateString;
+        this.startDate;
       }
-      //  if(this.department === this.agent){  //TOdo comparision department and agent
-      //     this.departmentAgent = 0
-      //  }
-      // this.analyticsData();
-      // // this.reset();
-      // return;
     }
-    else if (!this.analyticsForm.valid) {
-      this.parametersCheck = false;
-      this.department = this.analyticsForm.controls['department'].value;
-      this.agent = this.analyticsForm.controls['agent'].value;
-      //  if(this.department === this.agent){  //TOdo comparision department and agent
-      //     this.departmentAgent = 0
-      //  }
-      this.startDate = this.Last7Days();
-      this.enddate = this.formatDate();
-      // this.analyticsData();
-      // this.reset();
-      // return;
+
+    if (formOutput.enddate !== null && formOutput.enddate !== "") {
+      if (formOutput.enddate === this.endDate) {
+        this.endDate;
+      }
+      else {
+        let d = new Date(formOutput.enddate),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        const userselectedDate = [year, month, day].join('-');
+        this.endDate = userselectedDate;
+      }
     }
-    else {
-      alert('not valid, try again');
+      if (formOutput.department === undefined) {
+        this.department = "";
+      }
+      else{
+        this.department = formOutput.department;
+      }
+      if (formOutput.agent === undefined) {
+        this.agent = "0";
+      }
+      else{
+        this.agent = formOutput.agent;
+      }
+    
+
+    const UrlBulidingobject = {
+      "formDate": `${this.startDate}T00%3A00%3A00.000`,
+      "toDate": `${this.endDate}T23%3A59%3A00.000`,
+      "clientOffset": -330,
+      "timeType": "DAY",
+      "currentDate": this.formatDate(),
+      "department": this.department,
+      "agent": this.agent,
+      "departmentsRequired": false
     }
+    // for (var key in UrlBulidingobject) {
+    //   if (UrlBulidingobject[key] === null || UrlBulidingobject[key] === undefined || UrlBulidingobject[key] === "") {
+    //     delete UrlBulidingobject[key];
+    //   }
+    // }
+    const freezing = UrlBulidingobject;
+    var result = Object.keys(freezing).map(function (key) {
+      return [String(key), freezing[key]];
+    });
+    for (var i = 0; i < result.length; i++) {
+      for (var z = 0; z < result[i].length; z++) {
+        // if (result[i][z] === undefined) {
+        //   return;
+        // }
+         if (z % 2 === 0) {
+          this.urlString += "&" + result[i][z] + "="
+        }
+        else {
+          this.urlString += result[i][z];
+        }
+      }
+    }
+    const Url = this.urlString.replace(/undefined/g, "");
+    this.finalUrl = Url.replace("&","");
+    this.getDataonSubmission(this.finalUrl);
+    return;
+  }
+
+  getDataonSubmission(finalUrl) { //todo method after pressing the getReports
+    this.dashBoardData = [];
+    this.analytics.analyticsFormsubmission(finalUrl).subscribe((res: any) => {
+      const response = res.response;
+      this.dashBoardData = response['dashBoardData'];
+    })
   }
 
   reset() {
@@ -168,9 +248,11 @@ export class AnalyticsComponent implements OnInit {
   }
 
   Last7Days() {
-    let date = new Date();
-    date.setDate(date.getDate() - 6);
-    return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    var MyDate = new Date();
+    var MyDateString;
+    MyDate.setDate(MyDate.getDate() - 6);
+    MyDateString = MyDate.getFullYear() + '-' + ('0' + (MyDate.getMonth() + 1)).slice(-2) + '-' + ('0' + MyDate.getDate()).slice(-2);
+    return MyDateString;
   }
 
   formatDate() {
@@ -190,105 +272,3 @@ class MyObj {
   input: string;
   date: number;
 }
-
-
-// fillForm(selection) {
-  //   this.group.reset({
-  //     department: selection.department,
-  //     agent: selection.agent,
-  //     startdate: selection.startdate,
-  //     enddate: selection.enddate
-  //   });
-  // }
-
-  // constructor() {
-  //   this.date = Date.now();
-  // }
-
-
-// import {
-//   DateAdapter,
-//   MAT_DATE_FORMATS,
-//   MAT_DATE_LOCALE
-// } from "@angular/material/core";
-
-
- // {
-    //   provide: DateAdapter,
-    //   useClass: MomentDateAdapter,
-    //   deps: [MAT_DATE_LOCALE]
-    // },
-
-    // { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
-
-// startdate = new FormControl(moment());
-  // enddate = new FormControl(moment());
-
-  // StartDepartment = new FormControl('', [Validators.required]);
-  // EndDepartment = new FormControl('', [Validators.required]);
-
-  // Department(){
-//   this.testSubscription = this.StartDepartment.valueChanges
-//       // .pipe(debounceTime(100))
-//       .subscribe(value => console.log(value));
-// }
-
-// Agent(){
-//   this.testSubscription = this.EndDepartment.valueChanges
-//       // .pipe(debounceTime(100))
-//       .subscribe(value => console.log(value));
-// }
-
-// dateValue() {
-//   console.log(this.datePipe.transform(this.startdate.value, "yyyy-MM-dd"));
-// }
-// date2Value(){
-//      console.log(this.datePipe.transform(this.enddate.value, "yyyy-MM-dd"));
-// }
-
-// createForm() {
-  //   this.analyitcsForm = this.formBuilder.group({
-  //     // 'email': ['', Validators.required],
-  //     // 'password': ['', Validators.required],
-  //     'startdate': ['',moment(),Validators.required],
-  //     'enddate': [moment(),Validators.required],
-  //     'StartDepartment': ['',Validators.required],
-  //     'EndDepartment': ['',Validators.required],
-  //   });
-  // }
-
-
-  // console.log(this.survey);
-      // console.log(
-      //   this.group.controls['department'].value+"="
-      //   +this.group.controls['agent'].value+"="+
-      //   this.datePipe.transform(this.group.controls['startdate'].value, "yyyy-MM-dd")+"="+
-      //   this.datePipe.transform(this.group.controls['enddate'].value, "yyyy-MM-dd")
-      //   );
-
-      // import * as _moment from "moment";
-// import * as _rollupMoment  from "moment";
-// import { validateVerticalPosition } from '@angular/cdk/overlay';
-
-// const moment = _rollupMoment || _moment;
-
-// export const MY_FORMATS = {
-//   parse: {
-//     dateInput: "LL"
-//   },
-//   display: {
-//     dateInput: "MM-DD-YYYY",
-//     monthYearLabel: "YYYY",
-//     dateA11yLabel: "LL",
-//     monthYearA11yLabel: "YYYY"
-//   }
-// };
-
-  // else if(this.group.valid && this.enddate <= this.formatDate()){
-    //   this.parametersCheck = false;
-    //   alert("Date should be alaways be equal or lessthan todays date");
-    //     this.enddate = this.formatDate();
-    //     this.startDate;
-    //     this.analyticsData();
-    //     this.reset();
-    // }

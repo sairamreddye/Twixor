@@ -9,15 +9,18 @@ import { Observable } from 'rxjs';
 export class LoginService {
 
   constructor(private http: HttpClient) { }
-
+  // get(url: string): Observable<any> {
+  //   return this.http.get(url);
+  // }
+  // put(url: string, data: any): Observable<any> {
+  //   return this.http.put(url);
+  // }
+  post(url: string, data: any): Observable<any> {
+    return this.http.post(url,data);
+  }
+  
   getlogin(data): Observable<any> {
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type':  'application/x-www-form-urlencoded'
-    //   })};
-
     const url = `${environment.BASEURL}account/enterprise/login`;
-
     const body = new HttpParams()
       .set('email', data.email)
       .set('password', data.password)
@@ -25,7 +28,7 @@ export class LoginService {
       .set('routePath', '')
       .set('appId', 'MOC');
 
-    return this.http.post(url, body.toString());
+    return this.post(url, body.toString());
   }
 
 }
